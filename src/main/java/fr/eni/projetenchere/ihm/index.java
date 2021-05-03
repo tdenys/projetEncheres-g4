@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/index")
 public class index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String txt;
 
     /**
      * Default constructor. 
      */
     public index() {
         // TODO Auto-generated constructor stub
+    	txt = 'voici un magnifique text';
     }
 
 	/**
