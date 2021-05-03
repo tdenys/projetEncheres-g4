@@ -1,2 +1,2 @@
 # projetEncheres
-Denys Titouan, Bonnamy Diego, Guilleteau Alexandre
+Denys Titouan, Bonnamy Diego, Guilloteau Alexandre
