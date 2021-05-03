@@ -20,7 +20,7 @@ public class index extends HttpServlet {
      */
     public index() {
         // TODO Auto-generated constructor stub
-    	txt = ">>> Voici un nouveau text <<<";
+    	txt = "> Voici un nouveau text <";
     }
 
 	/**
