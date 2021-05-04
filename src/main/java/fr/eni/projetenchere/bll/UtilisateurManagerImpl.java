@@ -50,6 +50,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
 			throw new Exception("Les 2 mots de passe ne correspondent pas !");
 		}
+		
+		if(DAO.getUtilisateurByPseudo(pseudo) != null) {
+			throw new Exception("Pseudo déjà existant !");
+		}
+		
+		if(DAO.getUtilisateurByEmail(email) != null) {
+			throw new Exception("Email déjà existant !");
+		}
+		
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		byte[] digest = md.digest(mots_de_passe.getBytes());
 		StringBuffer sb = new StringBuffer();
