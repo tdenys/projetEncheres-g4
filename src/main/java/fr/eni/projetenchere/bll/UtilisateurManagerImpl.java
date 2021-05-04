@@ -45,6 +45,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		
 		String mdp = StandardCharsets.UTF_8.encode(mots_de_passe).toString();
 		System.out.println(mdp);
+		
 		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdp, 100, false);
 		DAO.insertUtilisateur(u1);
 		
