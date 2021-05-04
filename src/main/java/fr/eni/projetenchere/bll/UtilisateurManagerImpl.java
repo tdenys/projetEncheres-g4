@@ -12,17 +12,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		Utilisateur u1 = new Utilisateur();
 		
 		try {
-			u1 = DAO.getUtilisateurByPseudo(login);
+			u1 = DAO.getUtilisateurByPseudoOrEmail(login);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		if(u1 == null) {
-			try {
-				u1 = DAO.getUtilisateurByEmail(login);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		
 		if(u1 == null) {

@@ -25,21 +25,21 @@
 					<label for="password">Mot de passe</label>
 					<input type="password" class="form-control" id="password" name="password">
 					
+					<!-- Affichage message d'erreur -->
+					<%
+						if(erreur != null)
+						{
+					%>
+					<div class="alert alert-danger" role="alert">
+					  <%= erreur %>
+					</div>
+					<%
+						}
+					%>
+					
 					<!-- SUBMIT -->
 					<input type="submit" class="btn btn-dark text-light" value="Connexion"/>	
 				</form>
-				
-				<!-- Affichage message d'erreur -->
-				<%
-					if(erreur != null)
-					{
-				%>
-				<div class="alert alert-danger" role="alert">
-				  <%= erreur %>
-				</div>
-				<%
-					}
-				%>
 				
 			</div>
 		</div>
