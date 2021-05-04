@@ -49,22 +49,18 @@ public class Connexion extends HttpServlet {
 		try {
 			theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
 			
-			if(theUser != null) {
-				System.out.println("ok");
-				//RequestDispatcher rd = request.getRequestDispatcher("/");
-				//rd.forward(request, response);
-			} 
-			else {
-				request.setAttribute("erreur", "Mot de passe incorrect");
-				// Transfert de l'affichage à la JSP
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-				rd.forward(request, response);
-				
-				System.out.println("ko");
-			}
+			System.out.println("ok");
+			//RequestDispatcher rd = request.getRequestDispatcher("/");
+			//rd.forward(request, response);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			request.setAttribute("erreur", "Mot de passe incorrect");
+			// Transfert de l'affichage à la JSP
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			rd.forward(request, response);
+			
+			System.out.println("ko");
+			
 			e.printStackTrace();
 		}
 		
