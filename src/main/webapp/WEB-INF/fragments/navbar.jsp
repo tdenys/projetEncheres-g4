@@ -7,6 +7,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <!-- Ajouter le menu ici -->
+  	<form method="post" action="index">
+  		<input type="hidden" name="dc" value="1">
+    	<button type="submit">Se déconnecter</a>
+    </form>
   </div>
 </nav>
