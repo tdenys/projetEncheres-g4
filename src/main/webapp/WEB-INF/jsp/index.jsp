@@ -9,26 +9,28 @@
 
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 
-	<div class="row text-center">
+	<div class="row text-center" style="margin-top: 10px;">
 		<div class="col">
 			<h5>Liste des enchères</h5>
 		</div>
 	</div>
 	
-	<div class="row">
-		<form method="POST" action="">
+	<form method="POST" action="">
+		<div class="row">
 			<!-- FORMULAIRE -->
 			<div class="col-lg-8">
 				<b>Filtres :</b>
 				
 				<!-- RECHERCHE NOM -->
-				<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" aria-describedby="Le nom de l'article contient" required>
-			
+				<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" placeholder="Le nom de l'article contient" required>
+				<br/>
+				
 				<!-- CATEGORIE -->
 				<label for="rechercheNom">Catégorie : </label>
 				<select class="form-control" id="rechercheNom">
 			      <option value="1">Catégorie 1</option>
 			    </select>
+			    <br/>
 			    
 			    <div class="row">
 			    	<div class="col">
@@ -37,6 +39,7 @@
 					    	<input class="form-check-input" type="radio" name="type" id="radio1" value="achats" checked>
 							<label class="form-check-label" for="radio1">Achats</label>
 						</div>
+						<br/>
 						<!-- CHECKBOX -->
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" id="encheresOuvertes" name="encheresOuvertes" value="encheresOuvertes">
@@ -54,9 +57,10 @@
 			    	<div class="col">
 				    	<!-- RADIOS BUTTONS -->
 				    	<div class="form-check">
-					    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes" checked>
+					    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes">
 							<label class="form-check-label" for="radio2">Mes ventes</label>
 						</div>
+						<br/>
 						<!-- CHECKBOX -->
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours" value="mesVentesEnCours" disabled>
@@ -77,11 +81,13 @@
 			</div>
 			
 			<!-- RECHERCHER -->
-			<div class="col-lg-4">
-				<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light" value="Rechercher">
+			<div class="col-lg-4 text-center">
+				<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light" value="Rechercher" style="margin-top: 50px;">
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
+	
+	<hr/>
 	
 	<!-- RESULATATS DE RECHERCHE -->
 	<div class="row">
