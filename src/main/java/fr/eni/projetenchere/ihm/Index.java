@@ -28,15 +28,23 @@ public class Index extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session2 = request.getSession();
+		System.out.println(session2.getAttribute("pseudo"));
 		String dc = null;
 		dc = request.getParameter("dc");
 		if("1".equals(dc)) {
 			HttpSession session = request.getSession();
 			session.removeAttribute("pseudo");
 			session.removeAttribute("estAdministrateur");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			rd.forward(request, response);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-		rd.forward(request, response);
+		String co = null;
+		co = request.getParameter("co");
+		if("1".equals(co)) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }
