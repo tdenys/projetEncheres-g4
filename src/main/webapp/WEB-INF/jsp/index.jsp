@@ -7,6 +7,8 @@
 <% erreur =  (String)request.getAttribute("erreur"); %>
 <body style="margin-left: 10px; margin-right: 10px;">
 
+	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
+
 	<div class="row text-center">
 		<div class="col">
 			<h5>Liste des enchères</h5>
@@ -16,7 +18,7 @@
 	<div class="row">
 		<form method="POST" action="">
 			<!-- FORMULAIRE -->
-			<div class="col">
+			<div class="col-lg-8">
 				<b>Filtres :</b>
 				
 				<!-- RECHERCHE NOM -->
@@ -75,8 +77,8 @@
 			</div>
 			
 			<!-- RECHERCHER -->
-			<div class="col">
-				<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light">
+			<div class="col-lg-4">
+				<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light" value="Rechercher">
 			</div>
 		</form>
 	</div>
@@ -86,7 +88,7 @@
 		<div class="col">
 			
 			<div class="card" style="width: 18rem;">
-			  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" />
+			  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" width="18rem" />
 			  <div class="card-body">
 			    <h5 class="card-title">Titre du produit</h5>
 			    <p class="card-text">
