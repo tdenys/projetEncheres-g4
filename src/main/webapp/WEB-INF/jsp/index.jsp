@@ -31,34 +31,43 @@
 			    <div class="row">
 			    	<div class="col">
 				    	<!-- RADIOS BUTTONS -->
-					    <input class="form-check-input" type="radio" name="type" id="radio1" value="achats" checked>
-						<label class="form-check-label" for="radio1">Achats</label>
-						
+				    	<div class="form-check">
+					    	<input class="form-check-input" type="radio" name="type" id="radio1" value="achats" checked>
+							<label class="form-check-label" for="radio1">Achats</label>
+						</div>
 						<!-- CHECKBOX -->
-						<input class="form-check-input" type="checkbox" id="encheresOuvertes" name="encheresOuvertes" value="encheresOuvertes">
-						<label class="form-check-label" for="encheresOuvertes">Enchères ouvertes</label>
-						
-						<input class="form-check-input" type="checkbox" id="mesEncheres" name="mesEncheres" value="mesEncheres">
-						<label class="form-check-label" for="mesEncheres">Mes enchères</label>
-						
-						<input class="form-check-input" type="checkbox" id="mesEncheresRemportees" name="mesEncheresRemportees" value="mesEncheresRemportees">
-						<label class="form-check-label" for="mesEncheresRemportees">Mes Encheres Remportees</label>
-  
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="encheresOuvertes" name="encheresOuvertes" value="encheresOuvertes">
+							<label class="form-check-label" for="encheresOuvertes">Enchères ouvertes</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="mesEncheres" name="mesEncheres" value="mesEncheres">
+							<label class="form-check-label" for="mesEncheres">Mes enchères</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="mesEncheresRemportees" name="mesEncheresRemportees" value="mesEncheresRemportees">
+							<label class="form-check-label" for="mesEncheresRemportees">Mes Encheres Remportees</label>
+  						</div>
 			    	</div>
 			    	<div class="col">
 				    	<!-- RADIOS BUTTONS -->
-					    <input class="form-check-input" type="radio" name="type" id="radio2" value="ventes" checked>
-						<label class="form-check-label" for="radio2">Mes ventes</label>
-						
+				    	<div class="form-check">
+					    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes" checked>
+							<label class="form-check-label" for="radio2">Mes ventes</label>
+						</div>
 						<!-- CHECKBOX -->
-						<input class="form-check-input" type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours" value="mesVentesEnCours">
-						<label class="form-check-label" for="mesVentesEnCours">Mes ventes en cours</label>
-						
-						<input class="form-check-input" type="checkbox" id="ventesNonDebutees" name="ventesNonDebutees" value="ventesNonDebutees">
-						<label class="form-check-label" for="ventesNonDebutees">Ventes non débutées</label>
-						
-						<input class="form-check-input" type="checkbox" id="ventesTerminees" name="ventesTerminees" value="ventesTerminees">
-						<label class="form-check-label" for="ventesTerminees">Ventes terminées</label>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours" value="mesVentesEnCours" disabled>
+							<label class="form-check-label" for="mesVentesEnCours">Mes ventes en cours</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="ventesNonDebutees" name="ventesNonDebutees" value="ventesNonDebutees" disabled>
+							<label class="form-check-label" for="ventesNonDebutees">Ventes non débutées</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="ventesTerminees" name="ventesTerminees" value="ventesTerminees" disabled>
+							<label class="form-check-label" for="ventesTerminees">Ventes terminées</label>
+			    		</div>
 			    	</div>
 			    </div>
 			    
@@ -70,6 +79,26 @@
 				<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light">
 			</div>
 		</form>
+	</div>
+	
+	<!-- RESULATATS DE RECHERCHE -->
+	<div class="row">
+		<div class="col">
+			
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" />
+			  <div class="card-body">
+			    <h5 class="card-title">Titre du produit</h5>
+			    <p class="card-text">
+			    	Prix : 000€<br/>
+			    	Fin de l'enchère : 00/00/0000<br/>
+			    	<br/>
+			    	Vendeur : <a href="">nom</a>
+			    </p>
+			  </div>
+			</div>
+			
+		</div>
 	</div>
 
 </body>
