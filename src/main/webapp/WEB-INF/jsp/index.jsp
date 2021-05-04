@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/fragments/head.jsp"/>
-	
+	<%! String erreur; %>
+	<% erreur =  (String)request.getAttribute("erreur"); %>
 	<body style="margin: 25px;">
 	
 		<div class="row text-left">
@@ -30,11 +31,11 @@
 				
 				<!-- Affichage message d'erreur -->
 				<%
-					if(request.getParameter("erreur")!=null)
+					if(erreur != null)
 					{
 				%>
 				<div class="alert alert-danger" role="alert">
-				  <% System.out.println(request.getParameter("erreur")); %>
+				  <%= erreur %>
 				</div>
 				<%
 					}

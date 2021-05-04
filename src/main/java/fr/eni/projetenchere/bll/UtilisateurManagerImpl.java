@@ -8,18 +8,31 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
 	
-	public Utilisateur getUtilisateurByPseudoAndMDP(String pseudo, String MDP) throws Exception{
-		Utilisateur u1;
+	public Utilisateur getUtilisateurByPseudoAndMDP(String login, String MDP) throws Exception{
+		Utilisateur u1 = new Utilisateur();
+		
 		try {
-			u1 = DAO.getUtilisateurByPseudo(pseudo);
-			if(u1.getMot_de_passe().equals(MDP)) {
-				return u1;
-			}else {
-				throw new Exception("Mauvais mot de passe !");
-			}
+			u1 = DAO.getUtilisateurByPseudo(login);
 		} catch (Exception e) {
-			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
+			e.printStackTrace();
 		}
+		
+		if(u1 == null) {
+			try {
+				u1 = DAO.getUtilisateurByEmail(login);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(u1 == null) {
+			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
+		}else if(MDP.equals(u1.getMot_de_passe())) {
+			return u1;
+		}else {
+			throw new Exception("Mauvais mot de passe !");
+		}
+		
 	}
 
 }

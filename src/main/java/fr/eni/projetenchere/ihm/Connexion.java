@@ -54,7 +54,7 @@ public class Connexion extends HttpServlet {
 			//rd.forward(request, response);
 			
 		} catch (Exception e) {
-			request.setAttribute("erreur", "Mot de passe incorrect");
+			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage à la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
