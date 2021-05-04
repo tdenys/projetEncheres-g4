@@ -80,7 +80,7 @@
 				
 		</form>
 		
-		<!-- Affichage message d'erreur -->
+		<!-- Affichage du message d'erreur -->
 		<%
 			if(erreur != null){
 		%>
