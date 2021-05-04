@@ -60,7 +60,7 @@
 					<input type="text" class="form-control" id="ville" name="ville" required>
 					
 					<!-- CONFIRAMATION MOT DE PASSE -->
-					<label for="motDePasseConfirmation">Confiramation : </label>
+					<label for="motDePasseConfirmation">Confirmation : </label>
 					<input type="password" class="form-control" id="motDePasseConfirmation" name="motDePasseConfirmation" required>
 					
 				</div>
