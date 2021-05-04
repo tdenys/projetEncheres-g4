@@ -8,12 +8,17 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
 	
-	public Utilisateur getUtilisateurByPseudoAndMDP(String pseudo, String MDP) throws Exception {
-		Utilisateur u1  = DAO.getUtilisateurByPseudo(pseudo);
-		if(u1.getMot_de_passe().equals(MDP)) {
-			return u1;
-		}else {
-			return null;
+	public Utilisateur getUtilisateurByPseudoAndMDP(String pseudo, String MDP) throws Exception{
+		Utilisateur u1;
+		try {
+			u1 = DAO.getUtilisateurByPseudo(pseudo);
+			if(u1.getMot_de_passe().equals(MDP)) {
+				return u1;
+			}else {
+				throw new Exception("Mauvais mot de passe !");
+			}
+		} catch (Exception e) {
+			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
 		}
 	}
 
