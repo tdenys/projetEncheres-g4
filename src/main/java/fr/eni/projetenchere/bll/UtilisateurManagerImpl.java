@@ -21,7 +21,12 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		}
 		
 		MessageDigest md = MessageDigest.getInstance("MD5");
-		String mdpEncode = md.digest(MDP.getBytes()).toString();
+		byte[] digest = md.digest(MDP.getBytes());
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(String.format("%02x", b & 0xff));
+		}
+		String mdpEncode = sb.toString();
 		
 		if(u1 == null) {
 			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
@@ -46,10 +51,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			throw new Exception("Les 2 mots de passe ne correspondent pas !");
 		}
 		MessageDigest md = MessageDigest.getInstance("MD5");
-		String mdp = md.digest(mots_de_passe.getBytes()).toString();
-		System.out.println(mdp);
+		byte[] digest = md.digest(mots_de_passe.getBytes());
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(String.format("%02x", b & 0xff));
+		}
+		String mdpEncode = sb.toString();
 		
-		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdp, 100, false);
+		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdpEncode, 100, false);
 		DAO.insertUtilisateur(u1);
 		
 		return u1;
