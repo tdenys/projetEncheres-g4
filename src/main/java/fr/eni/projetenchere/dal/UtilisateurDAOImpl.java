@@ -23,6 +23,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_PSEUDO_OR_EMAIL);
 			stmt.setString(1, pseudo);
+			stmt.setString(2, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
