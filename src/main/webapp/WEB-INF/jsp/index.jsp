@@ -7,11 +7,7 @@
 	<% erreur =  (String)request.getAttribute("erreur"); %>
 	<body style="margin: 25px;">
 	
-		<div class="row text-left">
-			<div class="col">
-				<h1>ENI - Enchères</h1>
-			</div>
-		</div>
+		<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 	
 		<div class="row text-center">
 			<div class="col">
