@@ -10,10 +10,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	public Utilisateur getUtilisateurByPseudoAndMDP(String pseudo, String MDP) throws Exception {
 		Utilisateur u1  = DAO.getUtilisateurByPseudo(pseudo);
-		if(u1.getMot_de_passe() == MDP) {
+		if(u1.getMot_de_passe().equals(MDP)) {
 			return u1;
 		}else {
-			throw new Exception("Erreur BLL: getUtilisateurByPseudoAndMDP");
+			return null;
 		}
 	}
 

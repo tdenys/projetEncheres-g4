@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetenchere.dal.ConnectionProvider;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
@@ -20,6 +19,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		
 		Utilisateur u = null;
 		try(Connection cnx = ConnectionProvider.getConnection()){
+			System.out.println("test");
 			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_PSEUDO);
 			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
