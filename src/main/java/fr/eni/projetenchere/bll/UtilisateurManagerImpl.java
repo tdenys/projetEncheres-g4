@@ -1,7 +1,7 @@
 package fr.eni.projetenchere.bll;
 
 import java.nio.charset.StandardCharsets;
-
+import java.security.MessageDigest;
 
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
@@ -19,7 +19,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String mdpEncode = StandardCharsets.UTF_8.encode(MDP).toString();
+		
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		String mdpEncode = md.digest(MDP.getBytes()).toString();
+		
 		if(u1 == null) {
 			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
 		}else if(mdpEncode.equals(u1.getMot_de_passe())) {
@@ -42,8 +45,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
 			throw new Exception("Les 2 mots de passe ne correspondent pas !");
 		}
-		
-		String mdp = StandardCharsets.UTF_8.encode(mots_de_passe).toString();
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		String mdp = md.digest(mots_de_passe.getBytes()).toString();
 		System.out.println(mdp);
 		
 		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdp, 100, false);
