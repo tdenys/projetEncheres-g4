@@ -63,7 +63,6 @@ public class Connexion extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 }
