@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
+<%! String erreur; %>
+<% erreur =  (String)request.getAttribute("erreur"); %>
 <body style="margin-left: 10px; margin-right: 10px;">
 	
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
@@ -67,7 +69,7 @@
 				
 			</div>
 			
-			<div class="row">
+			<div class="row text-center">
 				<div class="col">
 					<input type="submit" class="btn btn-lg btn-dark text-light" value="Créer" />
 				</div>
@@ -77,6 +79,22 @@
 			</div>
 				
 		</form>
+		
+		<!-- Affichage message d'erreur -->
+		<%
+			if(erreur != null){
+		%>
+		<div class="row">
+			<div class="col">
+				<div style="margin-top: 10px;" class="alert alert-danger" role="alert">
+				  <%= erreur %>
+				</div>
+			</div>
+		</div>
+		<%
+			}
+		%>
+		
 
 </body>
 </html>
