@@ -20,7 +20,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		
 		Utilisateur u = null;
 		try(Connection cnx = ConnectionProvider.getConnection()){
-			System.out.println("test");
 			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_PSEUDO);
 			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
@@ -41,7 +40,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		
 		Utilisateur u = null;
 		try(Connection cnx = ConnectionProvider.getConnection()){
-			System.out.println("test");
 			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_EMAIL);
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
