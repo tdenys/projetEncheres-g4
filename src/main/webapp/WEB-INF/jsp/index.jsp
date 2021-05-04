@@ -88,7 +88,7 @@
 		<div class="col">
 			
 			<div class="card" style="width: 18rem;">
-			  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" />
+			  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" width="18rem" />
 			  <div class="card-body">
 			    <h5 class="card-title">Titre du produit</h5>
 			    <p class="card-text">
