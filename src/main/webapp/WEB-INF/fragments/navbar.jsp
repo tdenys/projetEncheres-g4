@@ -7,9 +7,16 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  	<%
+		if(session.getAttribute("pseudo") != null)
+		{
+	%>
   	<form method="post" action="index">
   		<input type="hidden" name="dc" value="1">
     	<button type="submit">Se déconnecter</a>
     </form>
+    <%
+		}
+	%>
   </div>
 </nav>

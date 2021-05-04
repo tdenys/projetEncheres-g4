@@ -30,7 +30,7 @@ public class Connexion extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 		rd.forward(request, response);
 	}
 
@@ -52,7 +52,7 @@ public class Connexion extends HttpServlet {
 		
 	        HttpSession session = request.getSession();
 	        session.setAttribute("pseudo", theUser.getPseudo());
-	        session.setAttribute("estAdminstrateur", theUser.isAdministrateur());
+	        session.setAttribute("estAdministrateur", theUser.isAdministrateur());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/"); 
 			rd.forward(request, response);

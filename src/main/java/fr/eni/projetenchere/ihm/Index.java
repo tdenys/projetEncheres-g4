@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Index
@@ -30,7 +31,9 @@ public class Index extends HttpServlet {
 		String dc = null;
 		dc = request.getParameter("dc");
 		if("1".equals(dc)) {
-			/* vider la session */
+			HttpSession session = request.getSession();
+			session.removeAttribute("pseudo");
+			session.removeAttribute("estAdministrateur");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		rd.forward(request, response);
