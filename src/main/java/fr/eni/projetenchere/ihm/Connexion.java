@@ -48,7 +48,7 @@ public class Connexion extends HttpServlet {
 		Utilisateur theUser;
 		try {
 			theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
-			
+		
 			System.out.println("ok");
 			//RequestDispatcher rd = request.getRequestDispatcher("/");
 			//rd.forward(request, response);
@@ -58,7 +58,6 @@ public class Connexion extends HttpServlet {
 			// Transfert de l'affichage à la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
-			
 			System.out.println("ko");
 			
 			e.printStackTrace();
