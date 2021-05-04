@@ -61,7 +61,12 @@ public class Inscription extends HttpServlet {
 		
 		// Verification de l'existence en base
 		try {
-			manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);	
+			manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);
+			
+			//Transfert vers l'accueil
+			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage a la JSP
@@ -70,11 +75,6 @@ public class Inscription extends HttpServlet {
 			
 			e.printStackTrace();
 		}
-		
-		//Transfert vers l'accueil
-		//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-		rd.forward(request, response);
 	}
 	
 }
