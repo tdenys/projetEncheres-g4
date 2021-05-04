@@ -8,7 +8,7 @@
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 		
 		<!-- Formulaire d'inscription -->
-		<form method="POST" action="/Inscription" >
+		<form method="POST" action="Inscription" >
 		
 			<div class="row">
 				<div class="col text-center">
