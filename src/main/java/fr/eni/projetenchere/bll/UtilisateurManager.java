@@ -9,9 +9,9 @@ public class UtilisateurManager {
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
 	
 	public Utilisateur getUtilisateurByPseudoAndMDP(String pseudo, String MDP) throws Exception {
-		Utilisateur u  = DAO.getUtilisateurByPseudo(pseudo);
-		if(u.getMot_de_passe() == MDP) {
-			return u;
+		Utilisateur u1  = DAO.getUtilisateurByPseudo(pseudo);
+		if(u1.getMot_de_passe() == MDP) {
+			return u1;
 		}else {
 			throw new Exception("Erreur BLL: getUtilisateurByPseudoAndMDP");
 		}
