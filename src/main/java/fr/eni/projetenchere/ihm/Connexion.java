@@ -17,7 +17,7 @@ import fr.eni.projetenchere.bo.Utilisateur;
 /**
  * Servlet implementation class Connexion
  */
-@WebServlet("/Connexion")
+@WebServlet("/connexion")
 public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
