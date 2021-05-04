@@ -12,7 +12,7 @@
 		<div class="row text-center" style="margin-top: 10px;">
 			<div class="col">
 				<!-- Formulaire de connexion -->
-				<form method="post" action="Connexion">
+				<form method="post" action="connexion">
 					<!-- USER -->
 					<label for="user">Identifiant</label>
 					<input type="text" required class="form-control" id="user" name="user">
