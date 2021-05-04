@@ -10,5 +10,5 @@ public interface UtilisateurDAO {
 	
 	public void insertUtilisateur(Utilisateur u) throws Exception;
 
-	Utilisateur getUtilisateurByPseudoOrEmail(String pseudo) throws Exception;
+	public Utilisateur getUtilisateurByPseudoOrEmail(String pseudo) throws Exception;
 }
