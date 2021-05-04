@@ -60,7 +60,7 @@ public class Connexion extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage à la JSP
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 			rd.forward(request, response);
 			
 			e.printStackTrace(); 
