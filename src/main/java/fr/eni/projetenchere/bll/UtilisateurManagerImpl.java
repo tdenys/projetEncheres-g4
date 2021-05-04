@@ -43,20 +43,20 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			String rue, String code_postal, String ville, String mots_de_passe, String mots_de_passe_confirmation)
 			throws Exception {
 		
-		if(!pseudo.matches("^[a-zA-Z0-9]*$")) {
-			throw new Exception("Le pseudo ne peut contenir que des caractères alphanuméric !");
-		}
-		
-		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
-			throw new Exception("Les 2 mots de passe ne correspondent pas !");
-		}
-		
 		if(DAO.getUtilisateurByPseudo(pseudo) != null) {
 			throw new Exception("Pseudo déjà existant !");
 		}
 		
 		if(DAO.getUtilisateurByEmail(email) != null) {
 			throw new Exception("Email déjà existant !");
+		}
+		
+		if(!pseudo.matches("^[a-zA-Z0-9]*$")) {
+			throw new Exception("Le pseudo ne peut contenir que des caractères alphanuméric !");
+		}
+		
+		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
+			throw new Exception("Les 2 mots de passe ne correspondent pas !");
 		}
 		
 		MessageDigest md = MessageDigest.getInstance("MD5");
