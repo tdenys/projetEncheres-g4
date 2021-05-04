@@ -63,7 +63,7 @@ public class Connexion extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
 			
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		
 	}

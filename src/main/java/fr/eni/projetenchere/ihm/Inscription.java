@@ -70,7 +70,7 @@ public class Inscription extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/");
 			rd.forward(request, response);
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage a la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
