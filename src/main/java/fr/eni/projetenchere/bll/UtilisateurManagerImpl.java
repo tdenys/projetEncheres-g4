@@ -1,5 +1,8 @@
 package fr.eni.projetenchere.bll;
 
+import java.nio.charset.StandardCharsets;
+
+
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
 import fr.eni.projetenchere.dal.UtilisateurDAOFactory;
@@ -16,15 +19,35 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		String mdpEncode = StandardCharsets.UTF_8.encode(MDP).toString();
 		if(u1 == null) {
 			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
-		}else if(MDP.equals(u1.getMot_de_passe())) {
+		}else if(mdpEncode.equals(u1.getMot_de_passe())) {
 			return u1;
 		}else {
 			throw new Exception("Mauvais mot de passe !");
 		}
 		
+	}
+
+	@Override
+	public Utilisateur insertUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String mots_de_passe, String mots_de_passe_confirmation)
+			throws Exception {
+		
+		if(!pseudo.matches("^[a-zA-Z0-9]*$")) {
+			throw new Exception("Le pseudo ne peut contenir que des caractères alphanuméric !");
+		}
+		
+		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
+			throw new Exception("Les 2 mots de passe ne correspondent pas !");
+		}
+		
+		String mdp = StandardCharsets.UTF_8.encode(mots_de_passe).toString();
+		System.out.println(mdp);
+		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdp, 100, false);
+		
+		return u1;
 	}
 
 }
