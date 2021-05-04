@@ -42,7 +42,7 @@
 		
 		<div class="row text-center">
 			<div class="col">
-				<!-- Bouton création de compte -->
+				<!-- Bouton de création de compte -->
 				<a href="${pageContext.request.contextPath}/inscription" class="btn btn-lg btn-dark text-light">Créer un compte</a>
 			</div>
 		</div>
