@@ -19,18 +19,18 @@
 				<form method="post" action="Connexion">
 					<!-- USER -->
 					<label for="user">Identifiant</label>
-					<input type="text" class="form-control" id="user" name="user">
+					<input type="text" required class="form-control" id="user" name="user">
 					
 					<!-- PASSWORD -->
 					<label for="password">Mot de passe</label>
-					<input type="password" class="form-control" id="password" name="password">
+					<input type="password" required class="form-control" id="password" name="password">
 					
 					<!-- Affichage message d'erreur -->
 					<%
 						if(erreur != null)
 						{
 					%>
-					<div class="alert alert-danger" role="alert">
+					<div style="margin-top: 10px;" class="alert alert-danger" role="alert">
 					  <%= erreur %>
 					</div>
 					<%
