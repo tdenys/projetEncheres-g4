@@ -5,11 +5,11 @@
 	<jsp:include page="/WEB-INF/fragments/head.jsp"/>
 	<%! String erreur; %>
 	<% erreur =  (String)request.getAttribute("erreur"); %>
-	<body style="margin: 25px;">
+	<body style="margin-left: 10px; margin-right: 10px;">
 	
 		<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 	
-		<div class="row text-center">
+		<div class="row text-center" style="margin-top: 10px;">
 			<div class="col">
 				<!-- Formulaire de connexion -->
 				<form method="post" action="Connexion">

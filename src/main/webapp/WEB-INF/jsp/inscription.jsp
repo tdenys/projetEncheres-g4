@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
-<body style="margin: 25px;">
+<body style="margin-left: 10px; margin-right: 10px;">
 	
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 		
 		<!-- Formulaire d'inscription -->
-		<form method="POST" action="Inscription" >
+		<form method="POST" action="Inscription" style="margin-top: 10px;">
 		
 			<div class="row">
 				<div class="col text-center">
