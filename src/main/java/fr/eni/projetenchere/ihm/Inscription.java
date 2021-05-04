@@ -60,7 +60,7 @@ public class Inscription extends HttpServlet {
 		motDePasse = request.getParameter("motDePasse");
 		motDePasseConfirmation = request.getParameter("motDePasseConfirmation");
 		
-		// Verification de l'existence en base
+		// Verification de l'existence en base 
 		try {
 			manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);
 			

@@ -54,7 +54,7 @@ public class Connexion extends HttpServlet {
 	        session.setAttribute("pseudo", theUser.getPseudo());
 	        session.setAttribute("estAdminstrateur", theUser.isAdministrateur());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/");
+			RequestDispatcher rd = request.getRequestDispatcher("/"); 
 			rd.forward(request, response);
 			
 		} catch (Exception e) {
