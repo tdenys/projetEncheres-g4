@@ -12,6 +12,7 @@ import fr.eni.projetenchere.bo.Utilisateur;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	private String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+	private String GET_UTILISATEUR_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
 	private String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	@Override
@@ -30,6 +31,27 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		catch(Exception e) {
 			throw new Exception(GET_UTILISATEUR_BY_PSEUDO);
+		}
+		
+		return u;
+	}
+	
+	@Override
+	public Utilisateur getUtilisateurByEmail(String email) throws Exception {
+		
+		Utilisateur u = null;
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			System.out.println("test");
+			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_EMAIL);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+			}
+		}
+		catch(Exception e) {
+			throw new Exception(GET_UTILISATEUR_BY_EMAIL);
 		}
 		
 		return u;
