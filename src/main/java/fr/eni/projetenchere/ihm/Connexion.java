@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.UtilisateurManager;
 import fr.eni.projetenchere.bll.UtilisateurManagerFact;
@@ -29,7 +30,7 @@ public class Connexion extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
 		rd.forward(request, response);
 	}
 
@@ -44,21 +45,23 @@ public class Connexion extends HttpServlet {
 		user = request.getParameter("user");
 		password = request.getParameter("password");
 		
-		// Vérification de l'existance en base
+		// Vérification de l'existance en base        
 		Utilisateur theUser;
 		try {
 			theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
 		
-			System.out.println("ok");
-			//RequestDispatcher rd = request.getRequestDispatcher("/");
-			//rd.forward(request, response);
+	        HttpSession session = request.getSession();
+	        session.setAttribute("pseudo", theUser.getPseudo());
+	        session.setAttribute("estAdminstrateur", theUser.isAdministrateur());
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/");
+			rd.forward(request, response);
 			
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage à la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
-			System.out.println("ko");
 			
 			e.printStackTrace();
 		}

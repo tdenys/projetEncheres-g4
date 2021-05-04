@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.UtilisateurManager;
 import fr.eni.projetenchere.bll.UtilisateurManagerFact;
@@ -63,9 +64,11 @@ public class Inscription extends HttpServlet {
 		try {
 			manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);
 			
-			//Transfert vers l'accueil
-			//RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+	        HttpSession session = request.getSession();
+	        session.setAttribute("pseudo", pseudo);
+	        session.setAttribute("estAdminstrateur", false);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
