@@ -5,4 +5,6 @@ import fr.eni.projetenchere.bo.Utilisateur;
 public interface UtilisateurDAO {
 
 	public Utilisateur getUtilisateurByPseudo(String pseudo) throws Exception;
+	
+	public void insertUtilisateur(Utilisateur u) throws Exception;
 }
