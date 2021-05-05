@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
 <body>
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
-	<div style="margin-left: 10px; margin-right: 10px;">
+	<div class="text-center" style="margin-left: 10px; margin-right: 10px;">
 	
 		<h6 style="margin-top: 25px;">Pseudo : ${ u.pseudo }</h6>
 		<p class="text-justify" style="margin-left: 25%; margin-right: 25%;">
