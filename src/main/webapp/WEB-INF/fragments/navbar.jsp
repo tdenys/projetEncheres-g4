@@ -10,21 +10,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 	<c:if test="${!empty utilisateur}">
-		<div>
-			<form method="get" action="profil">
-			  	<input type="hidden" name="p" value="${utilisateur.pseudo}">
-			    <button class="btn" type="submit">Mon profil</a>
-			</form>
-		</div>
-	
+		<a class="btn" href="${pageContext.request.contextPath}/profil/?p=${utilisateur.pseudo}">Mon profil</a>
     	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter</a>
     </c:if>
     
 	<c:if test="${empty utilisateur}">
-	  	<form method="post" action="index">
-	  		<input type="hidden" name="co" value="1">
-	    	<button class="btn" type="submit">Se connecter</a>
-	    </form>
+	  	<a class="btn" href="${pageContext.request.contextPath}/?co=1">Se connecter</a>
     </c:if>
     
   </div>
