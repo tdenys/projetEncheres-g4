@@ -9,7 +9,7 @@
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 		
 		<!-- Formulaire d'inscription -->
-		<form method="POST" action="inscription" style="margin-top: 10px;">
+		<form method="POST" action="${pageContext.request.contextPath}/inscription" style="margin-top: 10px;">
 		
 			<div class="row">
 				<div class="col text-center">

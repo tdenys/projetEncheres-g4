@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	
-	<form method="POST" action="">
+	<form method="POST" action="${pageContext.request.contextPath}/">
 		<div class="row">
 			<!-- FORMULAIRE -->
 			<div class="col-lg-8">
