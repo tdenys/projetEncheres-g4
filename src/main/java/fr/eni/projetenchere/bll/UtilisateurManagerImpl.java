@@ -11,6 +11,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
 	
+	//Utilisé pour l'inscription d'un utilisateur
+	@Override
 	public Utilisateur getUtilisateurByPseudoAndMDP(String login, String MDP) throws Exception{
 		Utilisateur u1 = new Utilisateur();
 		
@@ -34,8 +36,35 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			return u1;
 		}else {
 			throw new Exception("Mauvais mot de passe !");
+		}	
+	}
+	
+	@Override
+	public Utilisateur getUtilisateurByPseudo(String pseudo) throws Exception {
+		Utilisateur u = new Utilisateur();
+		
+		try {
+			u = DAO.getUtilisateurByPseudo(pseudo);
+		} catch(Exception e) {
+			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
+		}
+			
+		return u;
+	}
+	
+	
+	/*
+	 * Return true si l'utilisateur connecté veut regarder son profil ou false s'il veut voir celui d'un autre utilisateur	
+	*/
+	@Override
+	public boolean isConnectedUser(String pseudoActuelle, String pseudoAVerifier) throws Exception {
+		boolean isConnectedUser = false;
+		
+		if(pseudoActuelle.equals(pseudoAVerifier)) {
+			isConnectedUser = true;
 		}
 		
+		return isConnectedUser;
 	}
 
 	@Override
