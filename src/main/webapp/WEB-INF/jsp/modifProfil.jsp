@@ -42,7 +42,7 @@
 				
 				<!-- MOT DE PASSE -->
 				<label for="nouveauMotDePasse">Nouveau mot de passe : </label>
-				<input type="password" class="form-control" id="nouveauMotDePasse" name="nouveauMotDePasse" required>
+				<input type="password" class="form-control" id="nouveauMotDePasse" name="nouveauMotDePasse">
 				
 			</div>
 			
@@ -68,7 +68,7 @@
 				
 				<!-- CONFIRAMATION MOT DE PASSE -->
 				<label for="motDePasseConfirmation">Confirmation : </label>
-				<input type="password" class="form-control" id="motDePasseConfirmation" name="motDePasseConfirmation" required>
+				<input type="password" class="form-control" id="motDePasseConfirmation" name="motDePasseConfirmation">
 				
 			</div>
 			
