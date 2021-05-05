@@ -12,4 +12,6 @@ public interface UtilisateurManager {
 
 	boolean isConnectedUser(String pseudoActuelle, String pseudoAVerifier) throws Exception;
 
+	public Utilisateur updateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String motDePasseActuel, String nouveauMotDePasse, String motDePasseConfirmation, String pseudoActuel) throws Exception;
+
 }

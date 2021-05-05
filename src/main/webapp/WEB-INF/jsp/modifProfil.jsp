@@ -44,7 +44,7 @@
 				<label for="nouveauMotDePasse">Nouveau mot de passe : </label>
 				<input type="password" class="form-control" id="nouveauMotDePasse" name="nouveauMotDePasse">
 				
-				<p>Crédits : ${u.credit}</p>
+				<p>Crédits : ${utilisateur.credit}</p>
 				
 			</div>
 			

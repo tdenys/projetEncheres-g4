@@ -12,7 +12,8 @@ public interface UtilisateurDAO {
 	
 	public void insertUtilisateur(Utilisateur u) throws Exception;
 
-	public Utilisateur updateUtilisateur(Utilisateur u) throws Exception;
+	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception;
 
 	public void removeUtilisateur(Utilisateur u) throws Exception;
+
 }

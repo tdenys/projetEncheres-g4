@@ -103,7 +103,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public Utilisateur updateUtilisateur(Utilisateur u) throws Exception {
+	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
 			stmt.setString(1, u.getPseudo());
@@ -115,7 +115,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(7, u.getCode_postal());
 			stmt.setString(8, u.getVille());
 			stmt.setString(9, u.getMot_de_passe());
-			stmt.setString(10, u.getPseudo());
+			stmt.setString(10, ancienPseudo);
 
 			stmt.executeUpdate();
 		}
