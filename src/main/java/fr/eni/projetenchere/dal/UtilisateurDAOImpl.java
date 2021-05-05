@@ -79,7 +79,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	@Override
 	public void insertUtilisateur(Utilisateur u) throws Exception {
-		System.out.println("Utilisateur: " + u.toString());
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(INSERT_UTILISATEUR);
 			stmt.setString(1, u.getPseudo());
