@@ -13,14 +13,14 @@
 		if(session.getAttribute("pseudo") != null)
 		{
 	%>
-	<form method="get" action="profil">
-  		<input type="hidden" name="p" value="<%= session.getAttribute("pseudo") %>">
-    	<button type="submit">Mon profil</a>
-    </form>
-  	<form method="post" action="index">
-  		<input type="hidden" name="dc" value="1">
-    	<button type="submit">Se déconnecter</a>
-    </form>
+	<div>
+		<form method="get" action="profil">
+		  	<input type="hidden" name="p" value="<%= session.getAttribute("pseudo") %>">
+		    <button class="btn" type="submit">Mon profil</a>
+		</form>
+	</div>
+	
+    <a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter</a>
     <%
 		}
 	%>
@@ -30,7 +30,7 @@
 	%>
   	<form method="post" action="index">
   		<input type="hidden" name="co" value="1">
-    	<button type="submit">Se connecter</a>
+    	<button class="btn" type="submit">Se connecter</a>
     </form>
     <%
 		}

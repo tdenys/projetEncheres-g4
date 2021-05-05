@@ -22,20 +22,19 @@ public class IndexServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-		rd.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dc = null;
 		dc = request.getParameter("dc");
-		if("1".equals(dc)) {
+		if(dc != null) {
 			HttpSession session = request.getSession();
-			session.removeAttribute("pseudo");
-			session.removeAttribute("estAdministrateur");
+			session.invalidate();
+			response.sendRedirect(request.getContextPath() + "/");
+		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
 		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String co = null;
 		co = request.getParameter("co");
 		if("1".equals(co)) {
