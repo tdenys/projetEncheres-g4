@@ -30,16 +30,14 @@
 						<input type="submit" class="btn btn-dark text-light" value="Connexion"/>	
 					</form>
 					
-				</div>
-			</div>
-			
-			<div class="row text-center">
-				<div class="col">
-					<!-- Bouton de création de compte -->
-					<a href="${pageContext.request.contextPath}/inscription" class="btn btn-lg btn-dark text-light">Créer un compte</a>
+					<div class="row text-center">
+						<div class="col">
+							<!-- Bouton de création de compte -->
+							<a href="${pageContext.request.contextPath}/inscription" class="btn btn-dark text-light">Créer un compte</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		
 	</body>
 </html>
