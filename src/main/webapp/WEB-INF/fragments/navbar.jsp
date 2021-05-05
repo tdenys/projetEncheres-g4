@@ -10,12 +10,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 	<c:if test="${!empty utilisateur}">
-		<a class="btn" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}">Mon profil</a>
-    	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter</a>
+		<a class="btn" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}"><i class="fa-lg fas fa-user-cog"></i></a>
+    	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
     </c:if>
     
 	<c:if test="${empty utilisateur}">
-	  	<a class="btn" href="${pageContext.request.contextPath}/?co=1">Se connecter</a>
+	  	<a class="btn" href="${pageContext.request.contextPath}/?co=1">Se connecter <i class="fas fa-sign-in-alt"></i></a>
     </c:if>
     
   </div>
