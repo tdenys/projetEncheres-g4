@@ -13,6 +13,10 @@
 		if(session.getAttribute("pseudo") != null)
 		{
 	%>
+	<form method="get" action="profil">
+  		<input type="hidden" name="p" value="<%= session.getAttribute("pseudo") %>">
+    	<button type="submit">Mon profil</a>
+    </form>
   	<form method="post" action="index">
   		<input type="hidden" name="dc" value="1">
     	<button type="submit">Se déconnecter</a>

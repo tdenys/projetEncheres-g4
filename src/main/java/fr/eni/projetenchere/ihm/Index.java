@@ -28,8 +28,6 @@ public class Index extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session2 = request.getSession();
-		System.out.println(session2.getAttribute("pseudo"));
 		String dc = null;
 		dc = request.getParameter("dc");
 		if("1".equals(dc)) {
