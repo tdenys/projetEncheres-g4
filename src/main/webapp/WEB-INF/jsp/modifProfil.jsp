@@ -64,7 +64,7 @@
 				<label for="ville">Ville : </label>
 				<input type="text" class="form-control" id="ville" name="ville" value="${utilisateur.ville}" required>
 				
-				<br/><br/>
+				<br/><br/><br/>
 				
 				<!-- CONFIRAMATION MOT DE PASSE -->
 				<label for="motDePasseConfirmation">Confirmation : </label>
