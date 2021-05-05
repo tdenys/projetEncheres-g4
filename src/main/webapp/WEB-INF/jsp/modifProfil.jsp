@@ -55,7 +55,7 @@
 				<input type="text" class="form-control" id="nom" name="nom" value="${utilisateur.nom}" maxlength="30" required>
 				
 				<!-- EMAIL -->
-				<label for="email">Email* : </label>
+				<label for="email">Email* : </label> 
 				<input type="email" class="form-control" id="email" name="email" value="${utilisateur.email}" maxlength="50" required>
 				
 				<!-- RUE -->
