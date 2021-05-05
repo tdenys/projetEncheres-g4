@@ -1,7 +1,7 @@
 package fr.eni.projetenchere.bll;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
@@ -22,13 +22,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			e.printStackTrace();
 		}
 		
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		byte[] digest = md.digest(MDP.getBytes());
-		StringBuffer sb = new StringBuffer();
-		for (byte b : digest) {
-			sb.append(String.format("%02x", b & 0xff));
-		}
-		String mdpEncode = sb.toString();
+		String mdpEncode = crypt(MDP);
 		
 		if(u1 == null) {
 			throw new Exception("Identifiant ou mot de passe incorrect !");
@@ -87,19 +81,71 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
 			throw new Exception("Les 2 mots de passe ne correspondent pas !");
 		}
-		
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		byte[] digest = md.digest(mots_de_passe.getBytes());
-		StringBuffer sb = new StringBuffer();
-		for (byte b : digest) {
-			sb.append(String.format("%02x", b & 0xff));
-		}
-		String mdpEncode = sb.toString();
+	
+		String mdpEncode = crypt(mots_de_passe);
 		
 		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdpEncode, 100, false);
 		DAO.insertUtilisateur(u1);
 		
 		return u1;
+	}
+	
+	@Override
+	public Utilisateur updateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String code_postal, String ville, String motDePasseActuel, String nouveauMotDePasse, String motDePasseConfirmation, String ancienPseudo)
+			throws Exception {
+		
+		String motDePasseAMettre;
+		String ancienEmail;
+		String ancienMotDePasse;
+		
+		/* mot de passe avant modif */
+		ancienMotDePasse = DAO.getUtilisateurByPseudo(ancienPseudo).getMot_de_passe();
+		
+		/* test si pseudo unique */
+		if(!pseudo.equals(ancienPseudo) && DAO.getUtilisateurByPseudo(pseudo) != null) {
+			throw new Exception("Pseudo déjà existant !");
+		}
+		
+		/* test si email unique */
+		ancienEmail = DAO.getUtilisateurByPseudo(ancienPseudo).getEmail();
+		if(!email.equals(ancienEmail) && DAO.getUtilisateurByEmail(email) != null) {
+			throw new Exception("Email déjà existant !");
+		}
+		
+		/* cryptage du nouveau mdp */
+		motDePasseActuel = crypt(motDePasseActuel);
+		
+		/* test si mdp saisi est egal au mdp de l'user */
+		if(!ancienMotDePasse.equals(motDePasseActuel)) {
+			throw new Exception("Mot de passe incorrect !");
+		}
+		
+		/* si il a ete modifier, cryptage + verif si les 2 ok */
+		if(!nouveauMotDePasse.isEmpty()) {
+			if(!nouveauMotDePasse.equals(motDePasseConfirmation)) {
+				throw new Exception("Les 2 mots de passe ne correspondent pas !");
+			}
+			motDePasseAMettre = crypt(nouveauMotDePasse);
+		}else {
+			motDePasseAMettre = ancienMotDePasse;
+		}
+		
+		/* envoi de l'utilisateur avec un nouveau parametre*/
+		Utilisateur u1 = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseAMettre, 0, false);
+		DAO.updateUtilisateur(u1, ancienPseudo);
+		
+		return u1;
+	}
+	
+	private String crypt(String text) throws NoSuchAlgorithmException {
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		byte[] digest = md.digest(text.getBytes());
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(String.format("%02x", b & 0xff));
+		}
+		return sb.toString();
 	}
 
 }
