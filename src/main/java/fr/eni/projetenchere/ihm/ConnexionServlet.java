@@ -50,8 +50,7 @@ public class ConnexionServlet extends HttpServlet {
 			theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
 		
 	        HttpSession session = request.getSession();
-	        session.setAttribute("pseudo", theUser.getPseudo());
-	        session.setAttribute("estAdministrateur", theUser.isAdministrateur());		
+	        session.setAttribute("utilisateur", theUser);	
 	
 	        response.sendRedirect(request.getContextPath() + "/"); 
 	        

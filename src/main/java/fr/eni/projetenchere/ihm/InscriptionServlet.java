@@ -61,11 +61,10 @@ public class InscriptionServlet extends HttpServlet {
 		
 		// Verification de l'existence en base 
 		try {
-			manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);
+			Utilisateur utilisateur = manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, ville, codePostal, motDePasse, motDePasseConfirmation);
 			
 	        HttpSession session = request.getSession();
-	        session.setAttribute("pseudo", pseudo);
-	        session.setAttribute("estAdminstrateur", false);
+	        session.setAttribute("utilisateur", utilisateur);	
 			
 	        response.sendRedirect(request.getContextPath() + "/"); 
 	        
