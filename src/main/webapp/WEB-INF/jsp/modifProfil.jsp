@@ -84,6 +84,17 @@
 		</div>
 			
 	</form>
+	
+	<!-- Affichage du message d'erreur -->
+	<c:if test="${!empty erreur}">
+		<div class="row">
+			<div class="col">
+				<div style="margin-top: 10px;" class="alert alert-danger" role="alert">
+				  ${ erreur }
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 </body>
 </html>
