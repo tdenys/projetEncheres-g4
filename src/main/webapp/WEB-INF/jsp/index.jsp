@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
-<%! String erreur; %>
-<% erreur =  (String)request.getAttribute("erreur"); %>
 <body style="margin-left: 10px; margin-right: 10px;">
 
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
