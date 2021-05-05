@@ -8,7 +8,7 @@
 
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 	
-	<!-- Formulaire d'inscription -->
+	<!-- Formulaire de modification -->
 	<form method="POST" action="${pageContext.request.contextPath}/profil/modifier" style="margin-top: 10px;">
 	
 		<div class="row">
