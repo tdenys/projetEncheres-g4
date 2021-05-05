@@ -15,6 +15,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private String GET_UTILISATEUR_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
 	private String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
+			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?";
+	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
 	
 	@Override
 	public Utilisateur getUtilisateurByPseudoOrEmail(String pseudo) throws Exception {
@@ -96,6 +99,42 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		catch(Exception e) {
 			throw new Exception(INSERT_UTILISATEUR);
+		}
+	}
+	
+	@Override
+	public Utilisateur updateUtilisateur(Utilisateur u) throws Exception {
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
+			stmt.setString(4, u.getEmail());
+			stmt.setString(5, u.getTelephone());
+			stmt.setString(6, u.getRue());
+			stmt.setString(7, u.getCode_postal());
+			stmt.setString(8, u.getVille());
+			stmt.setString(9, u.getMot_de_passe());
+			stmt.setString(10, u.getPseudo());
+
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_UTILISATEUR);
+		}
+		
+		return u;
+	}
+
+	@Override
+	public void removeUtilisateur(Utilisateur u) throws Exception {
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(DELETE_UTILISATEUR);
+			stmt.setString(1, u.getPseudo());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception("DELETE_UTILISATEUR");
 		}
 	}
 	
