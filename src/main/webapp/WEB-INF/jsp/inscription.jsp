@@ -22,23 +22,23 @@
 				
 					<!-- PSEUDO -->
 					<label for="pseudo">Pseudo : </label>
-					<input type="text" class="form-control" id="pseudo" name="pseudo" required>
+					<input type="text" class="form-control" id="pseudo" maxlength="30" name="pseudo" required>
 					
 					<!-- PRENOM -->
 					<label for="prenom">Prénom : </label>
-					<input type="text" class="form-control" id="prenom" name="prenom" required>
+					<input type="text" class="form-control" id="prenom" name="prenom" maxlength="30" required>
 					
 					<!-- TELEPHONE -->
 					<label for="telephone">Téléphone : </label>
-					<input type="tel" class="form-control" id="telephone" name="telephone" required>
+					<input type="tel" class="form-control" id="telephone" name="telephone" maxlength="15" required>
 					
 					<!-- CODE POSTAL -->
 					<label for="codePostal">Code postal : </label>
-					<input type="text" class="form-control" id="codePostal" name="codePostal" required>
+					<input type="text" class="form-control" id="codePostal" name="codePostal" maxlength="10" required>
 					
 					<!-- MOT DE PASSE -->
 					<label for="motDePasse">Mot de passe : </label>
-					<input type="password" class="form-control" id="motDePasse" name="motDePasse" required>
+					<input type="password" class="form-control" id="motDePasse" name="motDePasse" maxlength="30" required>
 					
 				</div>
 				
@@ -46,19 +46,19 @@
 				
 					<!-- NOM -->
 					<label for="nom">Nom : </label>
-					<input type="text" class="form-control" id="nom" name="nom" required>
+					<input type="text" class="form-control" id="nom" name="nom" maxlength="30" required>
 					
 					<!-- EMAIL -->
 					<label for="email">Email : </label>
-					<input type="email" class="form-control" id="email" name="email" required>
+					<input type="email" class="form-control" id="email" name="email" maxlength="50" required>
 					
 					<!-- RUE -->
 					<label for="rue">Rue : </label>
-					<input type="text" class="form-control" id="rue" name="rue" required>
+					<input type="text" class="form-control" id="rue" name="rue" maxlength="30" required>
 					
 					<!-- VILLE -->
 					<label for="ville">Ville : </label>
-					<input type="text" class="form-control" id="ville" name="ville" required>
+					<input type="text" class="form-control" id="ville" name="ville" maxlength="50" required>
 					
 					<!-- CONFIRAMATION MOT DE PASSE -->
 					<label for="motDePasseConfirmation">Confirmation : </label>
