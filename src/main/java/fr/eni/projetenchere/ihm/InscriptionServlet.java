@@ -18,14 +18,13 @@ import fr.eni.projetenchere.bo.Utilisateur;
  * Servlet implementation class Inscription
  */
 @WebServlet("/inscription")
-public class Inscription extends HttpServlet {
+public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private UtilisateurManager manager = UtilisateurManagerFact.getInstance();
 	
-    public Inscription() {
+    public InscriptionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,8 +74,6 @@ public class Inscription extends HttpServlet {
 			// Transfert de l'affichage a la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
 			rd.forward(request, response);
-			
-			e.printStackTrace();
 		}
 	}
 	

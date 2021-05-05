@@ -19,14 +19,13 @@ import fr.eni.projetenchere.bo.Utilisateur;
  * Servlet implementation class Connexion
  */
 @WebServlet("/connexion")
-public class Connexion extends HttpServlet {
+public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UtilisateurManager manager = UtilisateurManagerFact.getInstance();
        
-    public Connexion() {
+    public ConnexionServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,8 +60,6 @@ public class Connexion extends HttpServlet {
 			// Transfert de l'affichage à la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 			rd.forward(request, response);
-			
-			e.printStackTrace(); 
 		}
 		
 	}
