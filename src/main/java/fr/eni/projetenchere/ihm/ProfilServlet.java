@@ -40,7 +40,6 @@ public class ProfilServlet extends HttpServlet {
 				request.setAttribute("isProfil", false);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp");

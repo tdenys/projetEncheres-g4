@@ -22,19 +22,19 @@
 			
 				<!-- PSEUDO -->
 				<label for="pseudo">Pseudo : </label>
-				<input type="text" class="form-control" id="pseudo" name="pseudo" value="${u.pseudo}" required>
+				<input type="text" class="form-control" id="pseudo" name="pseudo" value="${utilisateur.pseudo}" required>
 				
 				<!-- PRENOM -->
 				<label for="prenom">Prénom : </label>
-				<input type="text" class="form-control" id="prenom" name="prenom" value="${u.prenom}" required>
+				<input type="text" class="form-control" id="prenom" name="prenom" value="${utilisateur.prenom}" required>
 				
 				<!-- TELEPHONE -->
 				<label for="telephone">Téléphone : </label>
-				<input type="tel" class="form-control" id="telephone" name="telephone" value="${u.telephone}" required>
+				<input type="tel" class="form-control" id="telephone" name="telephone" value="${utilisateur.telephone}" required>
 				
 				<!-- CODE POSTAL -->
 				<label for="codePostal">Code postal : </label>
-				<input type="text" class="form-control" id="codePostal" name="codePostal" value="${u.code_postal}" required>
+				<input type="text" class="form-control" id="codePostal" name="codePostal" value="${utilisateur.code_postal}" required>
 				
 				<!-- MOT DE PASSE -->
 				<label for="motDePasseActuel">Mot de passe actuel : </label>
@@ -50,19 +50,19 @@
 			
 				<!-- NOM -->
 				<label for="nom">Nom : </label>
-				<input type="text" class="form-control" id="nom" name="nom" value="${u.nom}" required>
+				<input type="text" class="form-control" id="nom" name="nom" value="${utilisateur.nom}" required>
 				
 				<!-- EMAIL -->
 				<label for="email">Email : </label>
-				<input type="email" class="form-control" id="email" name="email" value="${u.email}" required>
+				<input type="email" class="form-control" id="email" name="email" value="${utilisateur.email}" required>
 				
 				<!-- RUE -->
 				<label for="rue">Rue : </label>
-				<input type="text" class="form-control" id="rue" name="rue" value="${u.rue}" required>
+				<input type="text" class="form-control" id="rue" name="rue" value="${utilisateur.rue}" required>
 				
 				<!-- VILLE -->
 				<label for="ville">Ville : </label>
-				<input type="text" class="form-control" id="ville" name="ville" value="${u.ville}" required>
+				<input type="text" class="form-control" id="ville" name="ville" value="${utilisateur.ville}" required>
 				
 				<br/><br/>
 				

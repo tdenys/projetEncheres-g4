@@ -22,7 +22,7 @@
 	
 	<!-- Si c'est mon compte j'affiche le bouton modifier -->
 	<c:if test="${isProfil}">
-		<a href="" class="btn btn-lg btn-dark btn-light">Modifier</a>
+		<a href="${pageContext.request.contextPath}/profil/modifier" class="btn btn-lg btn-dark btn-light">Modifier</a>
 	</c:if>
 
 </body>
