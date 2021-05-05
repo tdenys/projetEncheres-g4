@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
-<body style="margin-left: 10px; margin-right: 10px;">
-	
+<body>
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
+	<div style="margin-left: 10px; margin-right: 10px;">
 		
 		<!-- Formulaire d'inscription -->
 		<form method="POST" action="${pageContext.request.contextPath}/inscription" style="margin-top: 10px;">
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 		</c:if>
-		
+	</div>
 
 </body>
 </html>
