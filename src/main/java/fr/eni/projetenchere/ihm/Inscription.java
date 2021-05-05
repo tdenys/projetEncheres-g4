@@ -68,9 +68,9 @@ public class Inscription extends HttpServlet {
 	        session.setAttribute("pseudo", pseudo);
 	        session.setAttribute("estAdminstrateur", false);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/");
-			rd.forward(request, response);
-		} catch (Exception e) { 
+	        response.sendRedirect(request.getContextPath() + "/"); 
+	        
+		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage a la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");

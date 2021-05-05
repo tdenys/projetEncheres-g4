@@ -52,11 +52,10 @@ public class Connexion extends HttpServlet {
 		
 	        HttpSession session = request.getSession();
 	        session.setAttribute("pseudo", theUser.getPseudo());
-	        session.setAttribute("estAdministrateur", theUser.isAdministrateur());
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/"); 
-			rd.forward(request, response);
-			
+	        session.setAttribute("estAdministrateur", theUser.isAdministrateur());		
+	
+	        response.sendRedirect(request.getContextPath() + "/"); 
+	        
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
 			// Transfert de l'affichage à la JSP
