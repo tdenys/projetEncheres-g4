@@ -10,12 +10,12 @@
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 	
 	<h6 style="margin-top: 25px;">Pseudo : ${ u.pseudo }</h6>
-	<p>
+	<p class="text-justify">
 		Nom : ${ u.nom }<br/>
 		Prénom : ${ u.prenom }<br/>
-		Email : ${ u.email }><br/>
+		Email : ${ u.email }<br/>
 		Téléphone : ${ u.telephone }<br/>
-		Rue : ${ u.rue }><br/>
+		Rue : ${ u.rue }<br/>
 		Code Postal : ${ u.code_postal }<br/>
 		Ville : ${ u.ville }<br/>
 	</p>
