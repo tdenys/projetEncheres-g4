@@ -39,7 +39,7 @@
 					<!-- MOT DE PASSE -->
 					<label for="motDePasse">Mot de passe : </label>
 					<input type="password" class="form-control" id="motDePasse" name="motDePasse" maxlength="30" required>
-					
+					 
 				</div>
 				
 				<div class="col">
