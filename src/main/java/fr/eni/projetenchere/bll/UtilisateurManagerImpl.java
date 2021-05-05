@@ -31,11 +31,11 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		String mdpEncode = sb.toString();
 		
 		if(u1 == null) {
-			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
+			throw new Exception("Identifiant ou mot de passe incorrect !");
 		}else if(mdpEncode.equals(u1.getMot_de_passe())) {
 			return u1;
 		}else {
-			throw new Exception("Mauvais mot de passe !");
+			throw new Exception("Identifiant ou mot de passe incorrect !");
 		}	
 	}
 	

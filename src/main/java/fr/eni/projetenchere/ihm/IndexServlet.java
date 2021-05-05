@@ -23,11 +23,15 @@ public class IndexServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dc = null;
+		String co = null;
 		dc = request.getParameter("dc");
+		co = request.getParameter("co");
 		if(dc != null) {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect(request.getContextPath() + "/");
+		}else if("1".equals(co)) {
+			response.sendRedirect(request.getContextPath() + "/connexion");
 		}else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
@@ -35,12 +39,7 @@ public class IndexServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String co = null;
-		co = request.getParameter("co");
-		if("1".equals(co)) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
-			rd.forward(request, response);
-		}
+		
 	}
 
 }
