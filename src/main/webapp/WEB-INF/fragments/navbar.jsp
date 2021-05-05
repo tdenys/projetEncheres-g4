@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 	<c:if test="${!empty utilisateur}">
-		<a class="btn" href="${pageContext.request.contextPath}/profil/?p=${utilisateur.pseudo}">Mon profil</a>
+		<a class="btn" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}">Mon profil</a>
     	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter</a>
     </c:if>
     
