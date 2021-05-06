@@ -64,6 +64,28 @@ public class ArticleManagerImpl implements ArticleManager {
 		return listeResult; 
 	}
 	
+	@Override
+	public Article updateArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
+			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception {
+		
+		//Validation des saisies utilisateur
+		datesValides(dateDebutEnchere, dateFinEnchere);
+		stringValide(description, "Description"); 
+		
+		//on récupère l'id du vendeur de l'article
+		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
+		
+		//création de l'article à insérer
+		Article articleAUpdate = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, numCategorie);
+		
+		return articleDAO.updateArticle(articleAUpdate);
+	}
+	
+	@Override
+	public void removeArticle(Article article) throws Exception {
+		articleDAO.removeArticle(article);
+	}
+	
 	private void datesValides(Date dateDebut, Date dateFin) throws Exception {
 		if(dateDebut.after(dateFin)) {
 			throw new Exception("La date de début ne peut pas être supérieur à la date de fin.");
