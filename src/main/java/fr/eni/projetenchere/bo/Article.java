@@ -33,7 +33,7 @@ public class Article{
 			Date date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
 		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = date_debut_encheres;
+		this.date_debut_encheres = date_debut_encheres; 
 		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;

@@ -23,7 +23,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, numVendeur, numCategorie);
 		
 		
-		return articleDAO.insertArticle(articleAInserer);
+		return articleDAO.insertArticle(articleAInserer); 
 	}
 	
 	
