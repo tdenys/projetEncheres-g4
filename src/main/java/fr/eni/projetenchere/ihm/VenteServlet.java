@@ -73,17 +73,19 @@ public class VenteServlet extends HttpServlet {
 			String ville = request.getParameter("ville");
 		
 			Article a = articleManager.insertArticle(pseudo, nom, description, dateDebut, dateFin, prix, no_categorie);
-			request.setAttribute("success", "Ajout réussi");
+			
+			response.sendRedirect(request.getContextPath() + "/");
 		}
 		catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
+			try {
+				doGet(request, response);
+			} catch (ServletException e1) {
+			} catch (IOException e1) {
+			}
 		}
 		
-		try {
-			doGet(request, response);
-		} catch (ServletException e) {
-		} catch (IOException e) {
-		}
+		
 	}
 
 }
