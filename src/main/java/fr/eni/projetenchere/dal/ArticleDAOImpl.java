@@ -111,7 +111,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public void removeArticle(Article a) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_ARTICLE);
-			stmt.setString(1, a.getNom_article());
+			stmt.setInt(1, a.getNo_article());
 			stmt.executeUpdate();
 		}
 		catch(Exception e) {
