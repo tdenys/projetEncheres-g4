@@ -1,5 +1,6 @@
 package fr.eni.projetenchere.bll.article;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,6 @@ public class ArticleManagerImpl implements ArticleManager {
 	
 	@Override
 	public List<Article> getAll() throws Exception {
-
 		return articleDAO.getAll();
 	}
 	
@@ -50,6 +50,24 @@ public class ArticleManagerImpl implements ArticleManager {
         if(str.contains("<")) {
         	throw new Exception(type + " incorrect"); 
 		}
+	}
+	
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception{
+		List<Article> listeDeBase = articleDAO.getAll();
+		List<Article> listeResult = new ArrayList<Article>();
+		for( Article a : listeDeBase ) {
+			if(categorie != 0) {
+				if(filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
+	            	listeResult.add(a);
+	            }
+			}else {
+				if(filtres.contains(a.getNom_article())) {
+	            	listeResult.add(a);
+	            }
+			}
+            
+        }
+		return listeResult;
 	}
 	
 }
