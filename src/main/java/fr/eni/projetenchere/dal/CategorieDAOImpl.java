@@ -40,6 +40,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				c = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
+				result.add(c);
 			}
 		}
 		catch(Exception e) {
