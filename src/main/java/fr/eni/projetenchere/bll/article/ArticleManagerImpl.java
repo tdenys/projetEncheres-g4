@@ -27,7 +27,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		
 		//Validation des saisies utilisateur
 		datesValides(dateDebutEnchere, dateFinEnchere);
-		stringValide(description, "Description");
+		stringValide(description, "Description"); 
 		
 		//on récupère l'id du vendeur de l'article
 		int numVendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur).getNo_utilisateurs();
