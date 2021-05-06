@@ -18,6 +18,7 @@
 			<div class="row">
 				<!-- FORMULAIRE -->
 				<div class="col-lg-8">
+				
 					<b>Filtres :</b>
 					
 					<!-- RECHERCHE NOM -->
