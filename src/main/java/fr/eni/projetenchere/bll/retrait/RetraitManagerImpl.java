@@ -11,7 +11,7 @@ public class RetraitManagerImpl implements RetraitManager{
 	private RetraitDAO retraitDAO = RetraitDAOFactory.getRetraitDAO();
 	
 	@Override
-	public Retrait getRetraitByIdArticle(int numArticle) {
+	public Retrait getRetraitByIdArticle(int numArticle) throws Exception {
 		
 		return retraitDAO.getRetraitById(numArticle);
 	}
