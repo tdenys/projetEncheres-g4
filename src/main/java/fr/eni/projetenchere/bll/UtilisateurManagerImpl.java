@@ -16,8 +16,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	//Expression régulière pour tester la validité d'un email
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	
-	public static final Pattern VALID_NOM_OR_PRENOM_REGEX = Pattern.compile("^[A-Z][A-Za-z\\é\\è\\ê\\-]+$", Pattern.CASE_INSENSITIVE);
-	
 	//Utilisé pour l'inscription d'un utilisateur
 	@Override
 	public Utilisateur getUtilisateurByPseudoAndMDP(String login, String MDP) throws Exception{
@@ -78,6 +76,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		validateSimpleString(nom, "Nom");
 		validateSimpleString(prenom, "Prénom");
 		validateSimpleString(ville, "Libellé ville");
+		validateSimpleString(telephone, "Téléphone");
+		validateSimpleString(rue, "Libellé rue");
+		validateSimpleString(code_postal, "Code postal");
 		
 		if(DAO.getUtilisateurByPseudo(pseudo) != null) {
 			throw new Exception("Pseudo déjà existant !");
@@ -117,7 +118,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		validateSimpleString(nom, "Nom");
 		validateSimpleString(prenom, "Prénom");
 		validateSimpleString(ville, "Libellé ville");
-		
+		validateSimpleString(telephone, "Téléphone");
+		validateSimpleString(rue, "Libellé rue");
+		validateSimpleString(code_postal, "Code postal");
+
 		
 		/* mot de passe avant modif */
 		ancienMotDePasse = DAO.getUtilisateurByPseudo(ancienPseudo).getMot_de_passe();
@@ -176,10 +180,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	}
 	
 	private void validateSimpleString(String str, String type) throws Exception {
-        Matcher matcher = VALID_NOM_OR_PRENOM_REGEX.matcher(str);
-        if(!matcher.find()) {
+        if(str.contains("<")) {
         	throw new Exception(type + " incorrect"); 
-        }
+		}
 	}
 	
 	
