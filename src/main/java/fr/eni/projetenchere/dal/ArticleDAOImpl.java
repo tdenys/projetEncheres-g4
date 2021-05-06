@@ -56,13 +56,13 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 	
 	@Override
-	public Article insertArticle(Article a) throws Exception {
+	public Article insertArticle(Article a) throws Exception {	
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(INSERT_ARTICLE,Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, a.getNom_article());
 			stmt.setString(2, a.getDescription());
-			stmt.setDate(3, (Date) a.getDate_debut_encheres());
-			stmt.setDate(4, (Date) a.getDate_fin_encheres());
+			stmt.setDate(3, new java.sql.Date(a.getDate_debut_encheres().getTime()));
+			stmt.setDate(4, new java.sql.Date(a.getDate_fin_encheres().getTime()));
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
 			stmt.setInt(7, a.getNo_utilisateur());

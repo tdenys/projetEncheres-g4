@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,6 +31,8 @@ public class VenteServlet extends HttpServlet {
 	
 	private CategorieManager categorieManager = CategorieManagerFact.getInstance();
 	private ArticleManager articleManager = ArticleManagerFact.getInstance();
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
        
     public VenteServlet() {
         super();
@@ -66,8 +69,8 @@ public class VenteServlet extends HttpServlet {
 			String description = request.getParameter("description");
 			int no_categorie = Integer.parseInt(request.getParameter("categorie"));
 			int prix = Integer.parseInt(request.getParameter("prix"));
-			Date dateDebut = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("debutEnchere"));
-			Date dateFin = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("finEnchere"));
+			Date dateDebut = formatter.parse(request.getParameter("debutEnchere"));
+			Date dateFin = formatter.parse(request.getParameter("finEnchere"));
 			String rue = request.getParameter("rue");
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
