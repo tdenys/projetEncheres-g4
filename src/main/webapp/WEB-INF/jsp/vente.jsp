@@ -90,17 +90,6 @@
 			</div>
 		</c:if>
 		
-		<!-- Affichage du message de success -->
-		<c:if test="${!empty success}">
-			<div class="row">
-				<div class="col">
-					<div style="margin-top: 10px;" class="alert alert-success" role="alert">
-					  ${ success }
-					</div>
-				</div>
-			</div>
-		</c:if>
-		
 	</div>
 
 </body>
