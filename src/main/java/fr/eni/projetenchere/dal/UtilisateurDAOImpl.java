@@ -134,7 +134,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.executeUpdate();
 		}
 		catch(Exception e) {
-			throw new Exception("DELETE_UTILISATEUR");
+			throw new Exception(DELETE_UTILISATEUR);
 		}
 	}
 	
