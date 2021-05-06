@@ -25,8 +25,8 @@
 					<br/>
 					
 					<!-- CATEGORIE -->
-					<label for="rechercheNom">Catégorie : </label>
-					<select class="form-control" id="rechercheNom">
+					<label for="categorie">Catégorie : </label>
+					<select class="form-control" id="categorie">
 				      <option value="1">Catégorie 1</option>
 				    </select>
 				    <br/>
