@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetenchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class Index
  */
@@ -33,6 +35,9 @@ public class IndexServlet extends HttpServlet {
 		}else if("1".equals(co)) {
 			response.sendRedirect(request.getContextPath() + "/connexion");
 		}else {
+			Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
+			request.setAttribute("u", u);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
 		}
