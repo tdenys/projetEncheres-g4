@@ -89,32 +89,34 @@ public class IndexServlet extends HttpServlet {
 		boolean param2 = false;
 		boolean param3 = false;
 		if(type != null) {
-			if("Achats".equals(type)) {		
-				if(!request.getParameter("encheresOuvertes").isEmpty()) {
+			if(type.equals("achats")) {
+				if(request.getParameter("encheresOuvertes") != null) {
 					param1 = true;
 				}		
-				if(!request.getParameter("mesEncheres").isEmpty()) {
+				if(request.getParameter("mesEncheres") != null) {
 					param2 = true;
 				}
-				if(!request.getParameter("mesEncheresRemportees").isEmpty()) {
+				if(request.getParameter("mesEncheresRemportees") != null) {
 					param3 = true;
 				}
 			}
 			else {
-				if(!request.getParameter("mesVentesEnCours").isEmpty()) {
+				if(request.getParameter("mesVentesEnCours") != null) {
 					param1 = true;
 				}
-				if(!request.getParameter("ventesNonDebutees").isEmpty()) {
+				if(request.getParameter("ventesNonDebutees") != null) {
 					param2 = true;
 				}
-				if(!request.getParameter("ventesTerminees").isEmpty()) {
+				if(request.getParameter("ventesTerminees") != null) {
 					param3 = true;
 				}
 			}
 		}
 		
+		request.setAttribute("nom",nom);
+		request.setAttribute("cat",no_categorie);
+		
 		List<Article> listeArticles;
-		System.out.println(nom+no_categorie+type+param1+param2+param3);
 		try {
 			listeArticles = articleManager.getAllWithFilter(nom, no_categorie, type, param1, param2, param3);
 			request.setAttribute("listeArticles",listeArticles);

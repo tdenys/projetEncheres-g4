@@ -22,7 +22,7 @@
 					<b>Filtres :</b>
 					
 					<!-- RECHERCHE NOM -->
-					<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" placeholder="Le nom de l'article contient">
+					<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" value="${nom}" placeholder="Le nom de l'article contient">
 					<br/>
 					
 					<!-- CATEGORIE -->
@@ -30,7 +30,12 @@
 					<select class="form-control" name="categorie" id="categorie">
 						<option value="0">Tous</option>
 						<c:forEach var="c" items="${listeCategories}">
-					     	<option value="${c.no_categorie}">${c.libelle}</option>
+							<c:if test="${c.no_categorie == cat}">
+					     		<option value="${c.no_categorie}" selected>${c.libelle}</option>
+					     	</c:if>
+					     	<c:if test="${c.no_categorie != cat}">
+					     		<option value="${c.no_categorie}">${c.libelle}</option>
+					     	</c:if>
 					     </c:forEach>
 				    </select>
 				    <br/>
@@ -105,7 +110,7 @@
 					    <h5 class="card-title">${c.nom_article}</h5>
 					    <p class="card-text">
 					    	Prix : ${c.prix_vente}<br/>
-					    	Fin de l'enchère : ${c.prix_vente}<br/>
+					    	Fin de l'enchère : ${c.date_fin_encheres}<br/>
 					    	<br/>
 					    	Vendeur : <a href="/profil?p=${c.utilisateur.pseudo}">${c.utilisateur.pseudo}</a>
 					    </p>
