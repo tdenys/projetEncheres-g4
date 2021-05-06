@@ -45,13 +45,19 @@ public class ArticleManagerImpl implements ArticleManager {
 		List<Article> listeResult = new ArrayList<Article>();
 		for( Article a : listeDeBase ) {
 			if(categorie != 0) {
-				if(!filtres.isEmpty() && filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
-		            listeResult.add(a);
-				} else if(a.getNo_categorie() == categorie) {
-		            listeResult.add(a);
+				if(!filtres.isEmpty()) {
+					if(filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
+		            	listeResult.add(a);
+		            }
+				}else {
+					if(a.getNo_categorie() == categorie) {
+		            	listeResult.add(a);
+		            }
 				}
-			}else if(a.getNom_article().contains(filtres)){
-	            listeResult.add(a);
+			}else {
+				if(a.getNom_article().contains(filtres)) {
+	            	listeResult.add(a);
+	            }
 			}
             
         }
