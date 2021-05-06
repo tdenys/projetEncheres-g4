@@ -28,14 +28,20 @@ public class InscriptionServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
-		rd.forward(request, response);
+		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		if(u != null) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			response.sendRedirect(request.getContextPath() + "/connexion");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		// Création des champs a recuperer
+		// Crï¿½ation des champs a recuperer
 		String pseudo = null; 
 		String nom = null; 
 		String prenom = null; 
@@ -70,7 +76,7 @@ public class InscriptionServlet extends HttpServlet {
 	        
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
-			// Transfert de l'affichage a la JSP
+			// Transfert de l'affichage aï¿½la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
 			rd.forward(request, response);
 		}

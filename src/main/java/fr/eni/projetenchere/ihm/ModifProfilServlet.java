@@ -25,8 +25,14 @@ public class ModifProfilServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifProfil.jsp");
-		rd.forward(request, response);
+		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		if(u != null) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifProfil.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			response.sendRedirect(request.getContextPath() + "/connexion");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
