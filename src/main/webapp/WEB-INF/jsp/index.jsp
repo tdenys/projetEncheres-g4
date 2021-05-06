@@ -112,7 +112,7 @@
 					    	Prix : ${c.prix_vente}<br/>
 					    	Fin de l'enchère : ${c.date_fin_encheres}<br/>
 					    	<br/>
-					    	Vendeur : <a href="/profil?p=${c.utilisateur.pseudo}">${c.utilisateur.pseudo}</a>
+					    	Vendeur : <a href="${pageContext.request.contextPath}/profil?p=${c.utilisateur.pseudo}">${c.utilisateur.pseudo}</a>
 					    </p>
 					  </div>
 					</div>
