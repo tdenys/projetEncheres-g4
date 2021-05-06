@@ -11,7 +11,7 @@ public class Article{
 	private int prix_initial;
 	private int prix_vente;
 	private int no_utilisateur;
-	private int no_categorie;
+	private int no_categorie; 
 	
 	public Article() {
 	}
