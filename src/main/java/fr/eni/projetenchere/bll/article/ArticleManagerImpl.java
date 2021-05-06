@@ -40,7 +40,7 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 	
 	private void datesValides(Date dateDebut, Date dateFin) throws Exception {
-		if(dateFin.after(dateDebut)) {
+		if(dateDebut.after(dateFin)) {
 			throw new Exception("La date de début ne peut pas être supérieur à la date de fin.");
 		}
 		
