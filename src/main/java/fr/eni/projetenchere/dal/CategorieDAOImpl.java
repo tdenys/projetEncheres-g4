@@ -8,7 +8,7 @@ import java.util.List;
 
 import fr.eni.projetenchere.bo.Categorie;
 
-public class CategorieDAOImpl implements CategorieDAO {
+public class CategorieDAOImpl implements CategorieDAO { 
 	
 	private String GET_CATEGORIE_BY_ID = "SELECT * FROM CATEGORIES WHERE NO_CATEGORIE = ?";
 	private String GET_ALL_CATEGORIES = "SELECT * FROM CATEGORIES";
