@@ -81,7 +81,7 @@
 					<input type="submit" class="btn btn-lg btn-success" value="Enregistrer" />
 				</div>
 				<div class="col">
-					<a href="" class="btn btn-lg btn-danger">Supprimer mon compte</a>
+					<a href="${pageContext.request.contextPath}/profil/modifier?sup=1" class="btn btn-lg btn-danger">Supprimer mon compte</a>
 				</div>
 			</div>
 				
