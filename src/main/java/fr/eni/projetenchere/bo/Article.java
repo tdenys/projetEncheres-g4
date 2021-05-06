@@ -2,7 +2,7 @@ package fr.eni.projetenchere.bo;
 
 import java.sql.Date;
 
-public class Article_vendu {
+public class Article{
 	private int no_article;
 	private String nom_article;
 	private String description;
@@ -13,10 +13,10 @@ public class Article_vendu {
 	private int no_utilisateur;
 	private int no_categorie;
 	
-	public Article_vendu() {
+	public Article() {
 	}
 
-	public Article_vendu(int no_article, String nom_article, String description, Date date_debut_encheres,
+	public Article(int no_article, String nom_article, String description, Date date_debut_encheres,
 			Date date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
 		this.no_article = no_article;
 		this.nom_article = nom_article;
