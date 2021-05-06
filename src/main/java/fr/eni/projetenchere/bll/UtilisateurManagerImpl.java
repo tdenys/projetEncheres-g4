@@ -2,6 +2,8 @@ package fr.eni.projetenchere.bll;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
@@ -10,6 +12,9 @@ import fr.eni.projetenchere.dal.UtilisateurDAOFactory;
 public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
+	
+	//Expression régulière pour tester la validité d'un email
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	
 	//Utilisé pour l'inscription d'un utilisateur
 	@Override
@@ -66,6 +71,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			String rue, String code_postal, String ville, String mots_de_passe, String mots_de_passe_confirmation)
 			throws Exception {
 		
+		//Vérification de la validité de l'email
+		validateEmail(email);
+		
 		if(DAO.getUtilisateurByPseudo(pseudo) != null) {
 			throw new Exception("Pseudo déjà existant !");
 		}
@@ -98,6 +106,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		String motDePasseAMettre;
 		String ancienEmail;
 		String ancienMotDePasse;
+		
+		//Vérification de la validité de l'email
+		validateEmail(email);
 		
 		/* mot de passe avant modif */
 		ancienMotDePasse = DAO.getUtilisateurByPseudo(ancienPseudo).getMot_de_passe();
@@ -146,6 +157,13 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			sb.append(String.format("%02x", b & 0xff));
 		}
 		return sb.toString();
+	}
+	
+	private void validateEmail(String emailStr) throws Exception {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        if(!matcher.find()) {
+        	throw new Exception("Email incorrect"); 
+        }
 	}
 
 }
