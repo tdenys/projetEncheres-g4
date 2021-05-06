@@ -36,7 +36,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, numVendeur, numCategorie);
 		
 		
-		return articleDAO.insertArticle(articleAInserer); 
+		return articleDAO.insertArticle(articleAInserer);
 	}
 	
 	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception{
