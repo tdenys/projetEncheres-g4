@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Utilisateur;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	
@@ -19,6 +20,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 	private String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	
+	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO(); 
+	
 	@Override
 	public Article getArticleById(int id) throws Exception {
 		Article a = null;
@@ -27,7 +30,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
-				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
+				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
+				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, rs.getInt("no_categorie"));
 			}
 		}
 		catch(Exception e) {
@@ -45,7 +49,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			PreparedStatement stmt = cnx.prepareStatement(GET_ALL_ARTICLE);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_utilisateur"), rs.getInt("no_categorie"));
+				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
+				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, rs.getInt("no_categorie"));
 				result.add(a);
 			}
 		}
@@ -65,7 +70,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setDate(4, new java.sql.Date(a.getDate_fin_encheres().getTime()));
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
-			stmt.setInt(7, a.getNo_utilisateur());
+			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
 			stmt.setInt(8, a.getNo_categorie());
 			int nbRows = stmt.executeUpdate();
 			if (nbRows == 1) {
@@ -91,7 +96,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setDate(4, (Date) a.getDate_fin_encheres());
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
-			stmt.setInt(7, a.getNo_utilisateur());
+			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
 			stmt.setInt(8, a.getNo_categorie());
 			stmt.setInt(9, a.getNo_article());
 			stmt.executeUpdate();

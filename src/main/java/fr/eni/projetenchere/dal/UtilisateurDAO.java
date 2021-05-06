@@ -16,4 +16,6 @@ public interface UtilisateurDAO {
 
 	public void removeUtilisateur(Utilisateur u) throws Exception;
 
+	Utilisateur getUtilisateurById(int id) throws Exception;
+
 }

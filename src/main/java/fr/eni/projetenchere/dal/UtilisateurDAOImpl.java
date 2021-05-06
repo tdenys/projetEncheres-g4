@@ -11,6 +11,7 @@ import fr.eni.projetenchere.bo.Utilisateur;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
+	private String GET_UTILISATEUR_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private String GET_UTILISATEUR_BY_PSEUDO_OR_EMAIL = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private String GET_UTILISATEUR_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
@@ -18,6 +19,26 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?";
 	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
+	
+	@Override
+	public Utilisateur getUtilisateurById(int id) throws Exception {
+		
+		Utilisateur u = null;
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_BY_ID);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+						rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
+			}
+		}
+		catch(Exception e) {
+			throw new Exception(GET_UTILISATEUR_BY_PSEUDO_OR_EMAIL);
+		}
+		
+		return u;
+	}
 	
 	@Override
 	public Utilisateur getUtilisateurByPseudoOrEmail(String pseudo) throws Exception {

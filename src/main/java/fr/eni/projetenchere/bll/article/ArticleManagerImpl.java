@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.ArticleDAOFactory;
 import fr.eni.projetenchere.dal.UtilisateurDAO;
@@ -30,10 +31,10 @@ public class ArticleManagerImpl implements ArticleManager {
 		stringValide(description, "Description"); 
 		
 		//on récupère l'id du vendeur de l'article
-		int numVendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur).getNo_utilisateurs();
+		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
 		
 		//création de l'article à insérer
-		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, numVendeur, numCategorie);
+		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, numCategorie);
 		
 		
 		return articleDAO.insertArticle(articleAInserer);
@@ -44,9 +45,16 @@ public class ArticleManagerImpl implements ArticleManager {
 		List<Article> listeResult = new ArrayList<Article>();
 		for( Article a : listeDeBase ) {
 			if(categorie != 0) {
-				if(filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
-	            	listeResult.add(a);
-	            }
+				if(!filtres.isEmpty()) {
+					if(filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
+		            	listeResult.add(a);
+		            }
+				}
+				else {
+					if(a.getNo_categorie() == categorie) {
+		            	listeResult.add(a);
+		            }
+				}
 			}else {
 				if(a.getNom_article().contains(filtres)) {
 	            	listeResult.add(a);

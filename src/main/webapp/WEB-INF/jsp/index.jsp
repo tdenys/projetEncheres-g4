@@ -22,13 +22,16 @@
 					<b>Filtres :</b>
 					
 					<!-- RECHERCHE NOM -->
-					<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" placeholder="Le nom de l'article contient" required>
+					<input type="text" class="form-control" id="rechercheNom" name="rechercheNom" placeholder="Le nom de l'article contient">
 					<br/>
 					
 					<!-- CATEGORIE -->
 					<label for="categorie">Catégorie : </label>
-					<select class="form-control" id="categorie">
-				      <option value="1">Catégorie 1</option>
+					<select class="form-control" name="categorie" id="categorie">
+						<option value="0">Tous</option>
+						<c:forEach var="c" items="${listeCategories}">
+					     	<option value="${c.no_categorie}">${c.libelle}</option>
+					     </c:forEach>
 				    </select>
 				    <br/>
 				    
@@ -93,24 +96,42 @@
 		
 		<!-- RESULATATS DE RECHERCHE -->
 		<div class="row" style="margin: 10px;">
-			<div class="col">
+			<c:forEach var="c" items="${listeArticles}">
+				<div class="col">
+					
+					<div class="card" style="width: 18rem;">
+					  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" width="18rem" />
+					  <div class="card-body">
+					    <h5 class="card-title">${c.nom_article}</h5>
+					    <p class="card-text">
+					    	Prix : ${c.prix_vente}<br/>
+					    	Fin de l'enchère : ${c.prix_vente}<br/>
+					    	<br/>
+					    	Vendeur : <a href="/profil?p=${c.utilisateur.pseudo}">${c.utilisateur.pseudo}</a>
+					    </p>
+					  </div>
+					</div>
 				
-				<div class="card" style="width: 18rem;">
-				  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" width="18rem" />
-				  <div class="card-body">
-				    <h5 class="card-title">Titre du produit</h5>
-				    <p class="card-text">
-				    	Prix : 000€<br/>
-				    	Fin de l'enchère : 00/00/0000<br/>
-				    	<br/>
-				    	Vendeur : <a href="">nom</a>
-				    </p>
-				  </div>
 				</div>
-				
-			</div>
+			</c:forEach>
+			<c:if test="${empty listeArticles}">
+				<div style="margin-top: 10px;" class="alert alert-warning" role="alert">
+				  Aucune enchère ne correspond à la recherche
+				</div>
+			</c:if>
 		</div>
 	</div>
+	
+	<!-- Affichage du message d'erreur -->
+	<c:if test="${!empty erreur}">
+		<div class="row text-center">
+			<div class="col">
+				<div style="margin-top: 10px;" class="alert alert-danger" role="alert">
+				  ${ erreur }
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 </body>
 </html>
