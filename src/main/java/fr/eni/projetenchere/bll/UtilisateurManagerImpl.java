@@ -13,10 +13,12 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
 	
-	//Expression rÈguliËre pour tester la validitÈ d'un email
+	//Expression r√©guli√®re pour tester la validit√© d'un email
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	
-	//UtilisÈ pour l'inscription d'un utilisateur
+	public static final Pattern VALID_NOM_OR_PRENOM_REGEX = Pattern.compile("^[A-Z][A-Za-z\\√©\\√®\\√™\\-]+$", Pattern.CASE_INSENSITIVE);
+	
+	//Utilis√© pour l'inscription d'un utilisateur
 	@Override
 	public Utilisateur getUtilisateurByPseudoAndMDP(String login, String MDP) throws Exception{
 		Utilisateur u1 = new Utilisateur();
@@ -45,7 +47,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		try {
 			u = DAO.getUtilisateurByPseudo(pseudo);
 		} catch(Exception e) {
-			throw new Exception("Le compte utilisateur n'a pas ÈtÈ trouvÈ.");
+			throw new Exception("Le compte utilisateur n'a pas √©t√© trouv√©.");
 		}
 			
 		return u;
@@ -53,7 +55,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	
 	/*
-	 * Return true si l'utilisateur connectÈ veut regarder son profil ou false s'il veut voir celui d'un autre utilisateur	
+	 * Return true si l'utilisateur connect√© veut regarder son profil ou false s'il veut voir celui d'un autre utilisateur	
 	*/
 	@Override
 	public boolean isConnectedUser(String pseudoActuelle, String pseudoAVerifier) throws Exception {
@@ -71,19 +73,22 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			String rue, String code_postal, String ville, String mots_de_passe, String mots_de_passe_confirmation)
 			throws Exception {
 		
-		//VÈrification de la validitÈ de l'email
+		//V√©rification du formulaire
 		validateEmail(email);
+		validateSimpleString(nom, "Nom");
+		validateSimpleString(prenom, "Pr√©nom");
+		validateSimpleString(ville, "Libell√© ville");
 		
 		if(DAO.getUtilisateurByPseudo(pseudo) != null) {
-			throw new Exception("Pseudo dÈj‡ existant !");
+			throw new Exception("Pseudo d√©j√† existant !");
 		}
 		
 		if(DAO.getUtilisateurByEmail(email) != null) {
-			throw new Exception("Email dÈj‡ existant !");
+			throw new Exception("Email d√©j√† existant !");
 		}
 		
 		if(!pseudo.matches("^[a-zA-Z0-9]*$")) {
-			throw new Exception("Le pseudo ne peut contenir que des caractËres alphanumÈric !");
+			throw new Exception("Le pseudo ne peut contenir que des caract√®res alphanum√©ric !");
 		}
 		
 		if(!mots_de_passe.equals(mots_de_passe_confirmation)) {
@@ -107,21 +112,25 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		String ancienEmail;
 		String ancienMotDePasse;
 		
-		//VÈrification de la validitÈ de l'email
+		//V√©rification du formulaire
 		validateEmail(email);
+		validateSimpleString(nom, "Nom");
+		validateSimpleString(prenom, "Pr√©nom");
+		validateSimpleString(ville, "Libell√© ville");
+		
 		
 		/* mot de passe avant modif */
 		ancienMotDePasse = DAO.getUtilisateurByPseudo(ancienPseudo).getMot_de_passe();
 		
 		/* test si pseudo unique */
 		if(!pseudo.equals(ancienPseudo) && DAO.getUtilisateurByPseudo(pseudo) != null) {
-			throw new Exception("Pseudo dÈj‡ existant !");
+			throw new Exception("Pseudo d√©j√† existant !");
 		}
 		
 		/* test si email unique */
 		ancienEmail = DAO.getUtilisateurByPseudo(ancienPseudo).getEmail();
 		if(!email.equals(ancienEmail) && DAO.getUtilisateurByEmail(email) != null) {
-			throw new Exception("Email dÈj‡ existant !");
+			throw new Exception("Email d√©j√† existant !");
 		}
 		
 		/* cryptage du nouveau mdp */
@@ -165,5 +174,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
         	throw new Exception("Email incorrect"); 
         }
 	}
+	
+	private void validateSimpleString(String str, String type) throws Exception {
+        Matcher matcher = VALID_NOM_OR_PRENOM_REGEX.matcher(str);
+        if(!matcher.find()) {
+        	throw new Exception(type + " incorrect"); 
+        }
+	}
+	
+	
 
 }
