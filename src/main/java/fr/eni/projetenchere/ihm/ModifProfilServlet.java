@@ -26,7 +26,21 @@ public class ModifProfilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		if(u != null) {
+		
+		
+		String sup = "0";
+		sup = request.getParameter("sup");
+		
+		if("1".equals(sup)) {
+			try {
+				manager.removeUtilisateur(u);
+				
+				request.getSession().invalidate();
+				response.sendRedirect(request.getContextPath() + "/");
+			} catch (Exception e) {
+				request.setAttribute("erreur", e.getMessage());
+			}
+		} else if(u != null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifProfil.jsp");
 			rd.forward(request, response);
 		}
