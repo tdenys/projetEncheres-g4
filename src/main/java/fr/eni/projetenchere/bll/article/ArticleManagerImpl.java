@@ -46,7 +46,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		for( Article a : listeDeBase ) {
 			if(categorie != 0) {
 				if(!filtres.isEmpty()) {
-					if(filtres.contains(a.getNom_article()) && a.getNo_categorie() == categorie) {
+					if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase()) && a.getNo_categorie() == categorie) {
 		            	listeResult.add(a);
 		            }
 				}else {
@@ -55,7 +55,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		            }
 				}
 			}else {
-				if(a.getNom_article().contains(filtres)) {
+				if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase())) {
 	            	listeResult.add(a);
 	            }
 			}
