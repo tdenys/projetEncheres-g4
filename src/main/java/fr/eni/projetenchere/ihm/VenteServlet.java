@@ -18,8 +18,11 @@ import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
 import fr.eni.projetenchere.bll.categorie.CategorieManager;
 import fr.eni.projetenchere.bll.categorie.CategorieManagerFact;
+import fr.eni.projetenchere.bll.retrait.RetraitManager;
+import fr.eni.projetenchere.bll.retrait.RetraitManagerFact;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
@@ -31,6 +34,7 @@ public class VenteServlet extends HttpServlet {
 	
 	private CategorieManager categorieManager = CategorieManagerFact.getInstance();
 	private ArticleManager articleManager = ArticleManagerFact.getInstance();
+	private RetraitManager retraitManager = RetraitManagerFact.getInstance();
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
        
@@ -76,6 +80,7 @@ public class VenteServlet extends HttpServlet {
 			String ville = request.getParameter("ville");
 		
 			Article a = articleManager.insertArticle(pseudo, nom, description, dateDebut, dateFin, prix, no_categorie);
+			Retrait r = retraitManager.insertRetrait(a.getNo_article(), rue, codePostal, ville);
 			
 			response.sendRedirect(request.getContextPath() + "/");
 		}

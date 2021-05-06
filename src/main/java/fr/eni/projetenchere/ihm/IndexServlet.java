@@ -73,6 +73,9 @@ public class IndexServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		request.setAttribute("u", u);
+		
 		// Get All Catégories
 		List<Categorie> listeCategories =  new ArrayList<>();
 		try {
