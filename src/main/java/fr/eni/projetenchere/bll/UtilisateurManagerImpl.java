@@ -162,6 +162,11 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		return u1;
 	}
 	
+	@Override
+	public void removeUtilisateur(Utilisateur u) throws Exception {
+		DAO.removeUtilisateur(u);
+	}
+	
 	private String crypt(String text) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		byte[] digest = md.digest(text.getBytes());
@@ -184,7 +189,5 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
         	throw new Exception(type + " incorrect"); 
 		}
 	}
-	
-	
 
 }
