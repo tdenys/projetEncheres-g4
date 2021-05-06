@@ -29,7 +29,7 @@ public class InscriptionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		if(u != null) {
+		if(u == null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
 			rd.forward(request, response);
 		}
