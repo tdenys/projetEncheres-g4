@@ -3,6 +3,8 @@ package fr.eni.projetenchere.bll.retrait;
 import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.dal.ArticleDAO;
 import fr.eni.projetenchere.dal.ArticleDAOFactory;
+import fr.eni.projetenchere.dal.RetraitDAO;
+import fr.eni.projetenchere.dal.RetraitDAOFactory;
 
 public class RetraitManagerImpl implements RetraitManager{
 
@@ -43,9 +45,9 @@ public class RetraitManagerImpl implements RetraitManager{
 	}
 	
 	@Override
-	public Retrait removeRetrait(int numArticle) throws Exception {
+	public void removeRetrait(Retrait retrait) throws Exception {
 		
-		return retraitDAO.removeRetrait(numArticle);
+		retraitDAO.removeRetrait(retrait);
 	}
 	
 	private void stringValide(String str, String type) throws Exception {

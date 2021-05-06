@@ -10,6 +10,6 @@ public interface RetraitManager {
 
 	public Retrait updateRetrait(int numArticle, String rue, String codePostal, String ville) throws Exception;
 
-	public Retrait removeRetrait(int numArticle) throws Exception;
+	void removeRetrait(Retrait retrait) throws Exception;
 	
 }
