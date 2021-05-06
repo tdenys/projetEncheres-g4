@@ -61,7 +61,7 @@ public class ArticleManagerImpl implements ArticleManager {
 			}
             
         }
-		return listeResult;
+		return listeResult; 
 	}
 	
 	private void datesValides(Date dateDebut, Date dateFin) throws Exception {
