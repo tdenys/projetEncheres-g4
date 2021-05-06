@@ -12,6 +12,7 @@
   	<ul class="navbar-nav mr-auto"></ul>
 
 	<c:if test="${!empty utilisateur}">
+		<a class="btn" href="${pageContext.request.contextPath}/vente">Vendre un article</a>
 		<a class="btn" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}"><i class="fa-lg fas fa-user-cog"></i></a>
     	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
     </c:if>
