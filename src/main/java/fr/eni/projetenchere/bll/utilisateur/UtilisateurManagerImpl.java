@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.bll;
+package fr.eni.projetenchere.bll.utilisateur;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

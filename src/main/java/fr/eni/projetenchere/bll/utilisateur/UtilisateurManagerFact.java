@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.bll;
+package fr.eni.projetenchere.bll.utilisateur;
 
 public class UtilisateurManagerFact {
 	

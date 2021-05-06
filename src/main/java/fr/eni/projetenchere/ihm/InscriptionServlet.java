@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.projetenchere.bll.UtilisateurManager;
-import fr.eni.projetenchere.bll.UtilisateurManagerFact;
+import fr.eni.projetenchere.bll.utilisateur.UtilisateurManager;
+import fr.eni.projetenchere.bll.utilisateur.UtilisateurManagerFact;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**

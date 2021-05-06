@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.bll;
+package fr.eni.projetenchere.bll.utilisateur;
 
 import fr.eni.projetenchere.bo.Utilisateur;
 
