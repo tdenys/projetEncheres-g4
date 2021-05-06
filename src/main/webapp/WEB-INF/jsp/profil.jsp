@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
 <body>
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
-	<div class="text-center" style="margin-left: 10px; margin-right: 10px;">
+	<div class="text-center bg-light" style="margin-left: 10px; margin-right: 10px;">
 	
 		<h6 style="margin-top: 25px;">Pseudo : ${ u.pseudo }</h6>
 		<p class="text-justify" style="margin-left: 25%; margin-right: 25%;">
@@ -22,7 +22,7 @@
 		
 		<!-- Si c'est mon compte j'affiche le bouton modifier -->
 		<c:if test="${isProfil}">
-			<a href="${pageContext.request.contextPath}/profil/modifier" class="btn btn-lg btn-dark btn-light">Modifier</a>
+			<a href="${pageContext.request.contextPath}/profil/modifier" class="btn btn-lg btn-dark text-light">Modifier</a>
 		</c:if>
 		
 	</div>

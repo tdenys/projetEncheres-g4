@@ -6,15 +6,15 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
 <body>
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
-		<div style="margin-left: 10px; margin-right: 10px;">
+		<div style="margin-left: 10px; margin-right: 10px;" class="bg-light">
 
 		<div class="row text-center" style="margin-top: 10px;">
 			<div class="col">
-				<h5>Liste des enchères</h5>
+				<h2 style="font-family: cursive;">Liste des enchères</h2>
 			</div>
 		</div>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/">
+		<form method="POST" action="${pageContext.request.contextPath}/" style="margin: 10px;">
 			<div class="row">
 				<!-- FORMULAIRE -->
 				<div class="col-lg-8">
@@ -89,7 +89,7 @@
 		<hr/>
 		
 		<!-- RESULATATS DE RECHERCHE -->
-		<div class="row">
+		<div class="row" style="margin: 10px;">
 			<div class="col">
 				
 				<div class="card" style="width: 18rem;">

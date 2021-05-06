@@ -6,14 +6,14 @@
 <jsp:include page="/WEB-INF/fragments/head.jsp"/>
 <body>
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
-	<div style="margin-left: 10px; margin-right: 10px;">
+	<div class="bg-light" style="margin-left: 10px; margin-right: 10px;">
 		
 		<!-- Formulaire d'inscription -->
-		<form method="POST" action="${pageContext.request.contextPath}/inscription" style="margin-top: 10px;">
+		<form method="POST" action="${pageContext.request.contextPath}/inscription" style="margin: 10px;">
 		
 			<div class="row">
 				<div class="col text-center">
-					<h6>Mon profil</h6>
+					<h2 style="font-family: cursive;">Mon profil</h2>
 				</div>
 			</div>
 			

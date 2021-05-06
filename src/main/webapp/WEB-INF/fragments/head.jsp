@@ -22,4 +22,11 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/js/mdb.min.js"></script>
 
+	<style>
+		body{
+			background-image: url('https://i0.hippopx.com/photos/164/964/28/background-board-brown-carpentry-preview.jpg');
+			background-size: cover;
+		}
+	</style>
+
 </head>

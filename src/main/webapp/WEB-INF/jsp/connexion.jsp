@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<jsp:include page="/WEB-INF/fragments/head.jsp"/>
-	<body style="background-image: url('https://i0.hippopx.com/photos/164/964/28/background-board-brown-carpentry-preview.jpg'); background-size: cover;">
+	<body>
 		<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 		<div style="margin-left: 25%; margin-right: 25%;">
 			<div class="row text-center bg-light" style="margin-top: 100px;">
