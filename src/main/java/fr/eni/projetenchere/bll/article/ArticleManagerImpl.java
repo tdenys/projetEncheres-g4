@@ -12,8 +12,8 @@ public class ArticleManagerImpl implements ArticleManager {
 
 	@Override
 	public Article insertArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
-			Date dateFinEnchere, int prixInitial) throws Exception {
-
+			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
