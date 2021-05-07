@@ -6,18 +6,18 @@ public class Enchere {
 	private int no_enchere;
 	private Date date_enchere;
 	private int montant_enchere;
-	private int no_article;
-	private int no_utilisateur;
+	private Article article;
+	private Utilisateur utilisateur;
 	
 	public Enchere() {
 	}
 
-	public Enchere(int no_enchere, Date date_enchere, int montant_enchere, int no_article, int no_utilisateur) {
+	public Enchere(int no_enchere, Date date_enchere, int montant_enchere, Article article, Utilisateur utilisateur) {
 		this.no_enchere = no_enchere;
 		this.date_enchere = date_enchere;
 		this.montant_enchere = montant_enchere;
-		this.no_article = no_article;
-		this.no_utilisateur = no_utilisateur;
+		this.article = article;
+		this.utilisateur = utilisateur;
 	}
 
 	public int getNo_enchere() {
@@ -44,26 +44,26 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 	}
 
-	public int getNo_article() {
-		return no_article;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setNo_article(int no_article) {
-		this.no_article = no_article;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
-	public int getNo_utilisateur() {
-		return no_utilisateur;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setNo_utilisateur(int no_utilisateur) {
-		this.no_utilisateur = no_utilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	@Override
 	public String toString() {
 		return "Enchere [no_enchere=" + no_enchere + ", date_enchere=" + date_enchere + ", montant_enchere="
-				+ montant_enchere + ", no_article=" + no_article + ", no_utilisateur=" + no_utilisateur + "]";
+				+ montant_enchere + ", article=" + article + ", utilisateur=" + utilisateur + "]";
 	}
 	
 }
