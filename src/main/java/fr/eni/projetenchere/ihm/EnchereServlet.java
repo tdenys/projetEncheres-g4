@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
+import fr.eni.projetenchere.bll.enchere.EnchereManager;
+import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
@@ -62,7 +65,7 @@ public class EnchereServlet extends HttpServlet {
 			// Récupération des champs
 			int proposition = Integer.parseInt(request.getParameter("proposition"));
 		
-			Enchere e = enchereManager.insertEnchere(proposition, u, a);
+			Enchere e = enchereManager.insertEnchere(proposition, a, u);
 			request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
 
 		}
