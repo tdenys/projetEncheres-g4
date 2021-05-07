@@ -109,7 +109,7 @@
 		
 		<hr/>
 		
-		<!-- RESULATATS DE RECHERCHE -->
+		<!-- RESULATATS DE RECHERCHE --> 
 		<div class="row" style="margin: 10px;">
 			<c:forEach var="a" items="${listeArticles}">
 				<div class="col">
