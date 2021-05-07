@@ -20,6 +20,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?";
 	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
+	private String UPDATE_UTILISATEUR_WITH_CREDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
+			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ? WHERE pseudo = ?";
 	
 	@Override
 	public Utilisateur getUtilisateurById(int id) throws Exception {
@@ -51,7 +53,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(2, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
-				u = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
+				u = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"),
 						rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getBoolean("administrateur"));
 			}
 		}
@@ -105,7 +107,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	@Override
 	public void insertUtilisateur(Utilisateur u) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
-			PreparedStatement stmt = cnx.prepareStatement(INSERT_UTILISATEUR);
+			PreparedStatement stmt = cnx.prepareStatement(INSERT_UTILISATEUR,Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getNom());
 			stmt.setString(3, u.getPrenom());
@@ -117,7 +119,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(9, u.getMot_de_passe());
 			stmt.setInt(10, u.getCredit());
 			stmt.setBoolean(11, u.isAdministrateur());
-			stmt.executeUpdate();
+			int nbRows = stmt.executeUpdate();
+			if (nbRows == 1) {
+				ResultSet rs = stmt.getGeneratedKeys();
+				if (rs.next()) {
+					u.setNo_utilisateurs(rs.getInt(1));
+				}
+			}
 		}
 		catch(Exception e) {
 			throw new Exception(INSERT_UTILISATEUR);
@@ -149,9 +157,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur updateUtilisateur(Connection cnx, Utilisateur u, String ancienPseudo) throws Exception {
+	public Utilisateur updateUtilisateurWithCredit(Connection cnx, Utilisateur u) throws Exception {
 		try{
-			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR_WITH_CREDIT);
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getNom());
 			stmt.setString(3, u.getPrenom());
@@ -161,12 +169,13 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(7, u.getCode_postal());
 			stmt.setString(8, u.getVille());
 			stmt.setString(9, u.getMot_de_passe());
-			stmt.setString(10, ancienPseudo);
+			stmt.setInt(10, u.getCredit());
+			stmt.setString(11, u.getPseudo());
 
 			stmt.executeUpdate();
 		}
 		catch(Exception e) {
-			throw new Exception(UPDATE_UTILISATEUR);
+			throw new Exception(UPDATE_UTILISATEUR_WITH_CREDIT);
 		}
 		
 		return u;

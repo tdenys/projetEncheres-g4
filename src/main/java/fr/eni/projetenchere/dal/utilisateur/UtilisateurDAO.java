@@ -19,6 +19,7 @@ public interface UtilisateurDAO {
 	public Utilisateur getUtilisateurById(int id) throws Exception;
 	
 	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception;
-	public Utilisateur updateUtilisateur(Connection cnx, Utilisateur u, String ancienPseudo) throws Exception;
+
+	public Utilisateur updateUtilisateurWithCredit(Connection cnx, Utilisateur u) throws Exception;
 
 }

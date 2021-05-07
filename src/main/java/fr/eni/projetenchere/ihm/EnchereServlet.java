@@ -73,7 +73,6 @@ public class EnchereServlet extends HttpServlet {
 			
 			// Récupération des champs
 			int proposition = Integer.parseInt(request.getParameter("proposition"));
-			System.out.println("Prop : "+proposition);
 			Enchere e = enchereManager.insertEnchere(proposition, a, u);
 			request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
 

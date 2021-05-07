@@ -33,12 +33,10 @@ public class EnchereManagerImpl implements EnchereManager {
 		Enchere en = null;
 		
 		if(article.getPrix_vente() < montant_enchere && (credit_actuel_nouvel_utilisateur - montant_enchere) >= 0) {
-			System.out.println("IF OK");
 			try {
 				// l'utilisateur qui avait encherie recupère ses credit
 				Utilisateur ancien_utilisateur = enchereDAO.getUtilisateurLastEnchere(cnx, article.getNo_article());
 				if(ancien_utilisateur != null) {
-					System.out.println(ancien_utilisateur.toString());
 					int credit_actuel_ancien_utilisateur = ancien_utilisateur.getCredit();
 					ancien_utilisateur.setCredit(credit_actuel_ancien_utilisateur + article.getPrix_vente());
 				}
@@ -47,15 +45,13 @@ public class EnchereManagerImpl implements EnchereManager {
 				nouvel_utilisateur.setCredit(credit_actuel_nouvel_utilisateur - montant_enchere);
 				
 				// maj du nouvel utilisateur avec les credit en moins
-				utilisateurDAO.updateUtilisateur(cnx, nouvel_utilisateur, nouvel_utilisateur.getPseudo());
+				utilisateurDAO.updateUtilisateurWithCredit(cnx, nouvel_utilisateur);
 				
 				// maj de l'article dans la bdd
 				article.setPrix_vente(montant_enchere);
 				articleDAO.updateArticle(cnx, article);
 				
 				// insert de l'enchere
-				int id_nouvel_utilisateur= utilisateurDAO.getUtilisateurByPseudo(nouvel_utilisateur.getPseudo()).getNo_utilisateurs();
-				nouvel_utilisateur.setNo_utilisateurs(id_nouvel_utilisateur);
 				en = new Enchere(new Date(), montant_enchere, article, nouvel_utilisateur);
 				enchereDAO.insertEnchere(cnx, en);
 				cnx.commit();
