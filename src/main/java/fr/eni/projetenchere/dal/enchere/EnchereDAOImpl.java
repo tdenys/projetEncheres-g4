@@ -71,6 +71,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 		return null;
 	}
 	
+	@Override
 	public Utilisateur getUtilisateurLastEnchere(int no_article) throws Exception {
 		Utilisateur u = null;
 		try(Connection cnx = ConnectionProvider.getConnection()){
