@@ -23,6 +23,11 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 	
 	@Override
+	public Article getById(int id) throws Exception {
+		return articleDAO.getArticleById(id);
+	}
+	
+	@Override
 	public Article insertArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
 			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception {
 		

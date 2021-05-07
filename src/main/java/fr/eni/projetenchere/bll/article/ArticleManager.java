@@ -16,6 +16,9 @@ public interface ArticleManager {
 	
 	void removeArticle(Article article) throws Exception;
 
-	Article updateArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
+	Article updateArticle(String pseudoVendeur, String nomArticle,
+	 String description, Date dateDebutEnchere,
 			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception;
+
+	Article getById(int id) throws Exception;
 }
