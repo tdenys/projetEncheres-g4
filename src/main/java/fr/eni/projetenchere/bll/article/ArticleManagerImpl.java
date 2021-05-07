@@ -28,7 +28,8 @@ public class ArticleManagerImpl implements ArticleManager {
 		
 		//Validation des saisies utilisateur
 		datesValides(dateDebutEnchere, dateFinEnchere);
-		stringValide(description, "Description"); 
+		stringValide(description, "Description");
+		prixInitialValide(prixInitial);
 		
 		//on récupère l'id du vendeur de l'article
 		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
@@ -96,6 +97,12 @@ public class ArticleManagerImpl implements ArticleManager {
 	private void stringValide(String str, String type) throws Exception {
         if(str.contains("<")) {
         	throw new Exception(type + " incorrect"); 
+		}
+	}
+	
+	private void prixInitialValide(int prix) throws Exception {
+		if(prix <= 0) {
+			throw new Exception("Le prix saisi est incorrect");
 		}
 	}
 	
