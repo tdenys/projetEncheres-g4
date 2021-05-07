@@ -108,6 +108,27 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 	
 	@Override
+	public Article updateArticle(Connection cnx, Article a) throws Exception {
+		try(cnx){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_ARTICLE);
+			stmt.setString(1, a.getNom_article());
+			stmt.setString(2, a.getDescription());
+			stmt.setDate(3, (Date) a.getDate_debut_encheres());
+			stmt.setDate(4, (Date) a.getDate_fin_encheres());
+			stmt.setInt(5, a.getPrix_initial());
+			stmt.setInt(6, a.getPrix_vente());
+			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
+			stmt.setInt(8, a.getNo_categorie());
+			stmt.setInt(9, a.getNo_article());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_ARTICLE);
+		}
+		return a;
+	}
+	
+	@Override
 	public void removeArticle(Article a) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_ARTICLE);

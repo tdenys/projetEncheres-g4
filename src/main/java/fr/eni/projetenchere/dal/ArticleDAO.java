@@ -1,5 +1,6 @@
 package fr.eni.projetenchere.dal;
 
+import java.sql.Connection;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
@@ -12,8 +13,9 @@ public interface ArticleDAO {
 	
 	public Article insertArticle(Article a) throws Exception;
 
-	public Article updateArticle(Article a) throws Exception;
-
 	public void removeArticle(Article a) throws Exception;
+
+	public Article updateArticle(Article a) throws Exception;
+	public Article updateArticle(Connection cnx, Article a) throws Exception;
 
 }
