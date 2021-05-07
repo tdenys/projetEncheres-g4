@@ -20,7 +20,7 @@ import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
 
-/**
+/** 
  * Servlet implementation class Index
  */
 @WebServlet("/")
