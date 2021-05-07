@@ -8,12 +8,12 @@ import java.util.List;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Utilisateur;
-import fr.eni.projetenchere.dal.ArticleDAO;
-import fr.eni.projetenchere.dal.ArticleDAOFactory;
+import fr.eni.projetenchere.dal.article.ArticleDAO;
+import fr.eni.projetenchere.dal.article.ArticleDAOFactory;
 import fr.eni.projetenchere.dal.ConnectionProvider;
-import fr.eni.projetenchere.dal.EnchereDAO;
-import fr.eni.projetenchere.dal.UtilisateurDAO;
-import fr.eni.projetenchere.dal.UtilisateurDAOFactory;
+import fr.eni.projetenchere.dal.enchere.EnchereDAO;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
 
 public class EnchereManagerImpl implements EnchereManager {
 	
@@ -61,6 +61,18 @@ public class EnchereManagerImpl implements EnchereManager {
 	@Override
 	public void removeEnchere(Article enchere) throws Exception {
 		articleDAO.removeArticle(article);
+	}
+
+	@Override
+	public Enchere getEnchereByIdArticle(int numArticle) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeEnchere(Enchere e) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
