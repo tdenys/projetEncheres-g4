@@ -1,5 +1,7 @@
 package fr.eni.projetenchere.dal;
 
+import java.sql.Connection;
+
 import fr.eni.projetenchere.bo.Utilisateur;
 
 public interface UtilisateurDAO {
@@ -12,10 +14,11 @@ public interface UtilisateurDAO {
 	
 	public void insertUtilisateur(Utilisateur u) throws Exception;
 
-	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception;
-
 	public void removeUtilisateur(Utilisateur u) throws Exception;
 
-	Utilisateur getUtilisateurById(int id) throws Exception;
+	public Utilisateur getUtilisateurById(int id) throws Exception;
+	
+	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception;
+	public Utilisateur updateUtilisateur(Connection cnx, Utilisateur u, String ancienPseudo) throws Exception;
 
 }

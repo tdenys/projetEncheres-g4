@@ -148,6 +148,30 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 
 	@Override
+	public Utilisateur updateUtilisateur(Connection cnx, Utilisateur u, String ancienPseudo) throws Exception {
+		try(cnx){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
+			stmt.setString(4, u.getEmail());
+			stmt.setString(5, u.getTelephone());
+			stmt.setString(6, u.getRue());
+			stmt.setString(7, u.getCode_postal());
+			stmt.setString(8, u.getVille());
+			stmt.setString(9, u.getMot_de_passe());
+			stmt.setString(10, ancienPseudo);
+
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_UTILISATEUR);
+		}
+		
+		return u;
+	}
+	
+	@Override
 	public void removeUtilisateur(Utilisateur u) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_UTILISATEUR);
