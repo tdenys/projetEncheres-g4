@@ -12,6 +12,8 @@ import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ConnectionProvider;
+import fr.eni.projetenchere.dal.categorie.CategorieDAO;
+import fr.eni.projetenchere.dal.categorie.CategorieDAOFactory;
 import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
 import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAOFactory;
 
@@ -24,6 +26,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	private String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	
 	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO(); 
+	private CategorieDAO categorieDAO = CategorieDAOFactory.getCategorieDAO(); 
 	
 	@Override
 	public Article getArticleById(int id) throws Exception {
@@ -34,7 +37,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
-				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, rs.getInt("no_categorie"));
+				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
+				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie);
 			}
 		}
 		catch(Exception e) {
@@ -53,7 +57,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
-				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, rs.getInt("no_categorie"));
+				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
+				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie);
 				result.add(a);
 			}
 		}
@@ -74,7 +79,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
 			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
-			stmt.setInt(8, a.getNo_categorie());
+			stmt.setInt(8, a.getCategorie().getNo_categorie());
 			int nbRows = stmt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet rs = stmt.getGeneratedKeys();
@@ -100,7 +105,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
 			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
-			stmt.setInt(8, a.getNo_categorie());
+			stmt.setInt(8, a.getCategorie().getNo_categorie());
 			stmt.setInt(9, a.getNo_article());
 			stmt.executeUpdate();
 		}
@@ -112,7 +117,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	
 	@Override
 	public Article updateArticle(Connection cnx, Article a) throws Exception {
-		try(cnx){
+		try{
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE_ARTICLE);
 			stmt.setString(1, a.getNom_article());
 			stmt.setString(2, a.getDescription());
@@ -121,7 +126,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			stmt.setInt(5, a.getPrix_initial());
 			stmt.setInt(6, a.getPrix_vente());
 			stmt.setInt(7, a.getUtilisateur().getNo_utilisateurs());
-			stmt.setInt(8, a.getNo_categorie());
+			stmt.setInt(8, a.getCategorie().getNo_categorie());
 			stmt.setInt(9, a.getNo_article());
 			stmt.executeUpdate();
 		}

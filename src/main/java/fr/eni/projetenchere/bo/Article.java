@@ -11,13 +11,13 @@ public class Article{
 	private int prix_initial;
 	private int prix_vente;
 	private Utilisateur utilisateur;
-	private int no_categorie; 
+	private Categorie categorie; 
 	
 	public Article() {
 	}
 
 	public Article(int no_article, String nom_article, String description, Date date_debut_encheres,
-			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, int no_categorie) {
+			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, Categorie categorie) {
 		this.no_article = no_article;
 		this.nom_article = nom_article;
 		this.description = description;
@@ -26,11 +26,11 @@ public class Article{
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.utilisateur = utilisateur;
-		this.no_categorie = no_categorie;
+		this.categorie = categorie;
 	}
 	
 	public Article(String nom_article, String description, Date date_debut_encheres,
-			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, int no_categorie) {
+			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, Categorie categorie) {
 		this.nom_article = nom_article;
 		this.description = description;
 		this.date_debut_encheres = date_debut_encheres; 
@@ -38,7 +38,7 @@ public class Article{
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
 		this.utilisateur = utilisateur;
-		this.no_categorie = no_categorie;
+		this.categorie = categorie;
 	}
 
 	public int getNo_article() {
@@ -105,12 +105,12 @@ public class Article{
 		this.utilisateur = utilisateur;
 	}
 
-	public int getNo_categorie() {
-		return no_categorie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setNo_categorie(int no_categorie) {
-		this.no_categorie = no_categorie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class Article{
 		return "Article_vendu [no_article=" + no_article + ", nom_article=" + nom_article + ", description="
 				+ description + ", date_debut_encheres=" + date_debut_encheres + ", date_fin_encheres="
 				+ date_fin_encheres + ", prix_initial=" + prix_initial + ", prix_vente=" + prix_vente
-				+ ", no_utilisateur=" + utilisateur.toString() + ", no_categorie=" + no_categorie + "]";
+				+ ", utilisateur=" + utilisateur.toString() + ", categorie=" + categorie.toString() + "]";
 	}
 	
 }

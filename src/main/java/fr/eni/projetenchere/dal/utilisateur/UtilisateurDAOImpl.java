@@ -150,7 +150,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	public Utilisateur updateUtilisateur(Connection cnx, Utilisateur u, String ancienPseudo) throws Exception {
-		try(cnx){
+		try{
 			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getNom());

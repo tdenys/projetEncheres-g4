@@ -13,8 +13,11 @@ import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
 import fr.eni.projetenchere.bll.enchere.EnchereManager;
 import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
+import fr.eni.projetenchere.bll.retrait.RetraitManager;
+import fr.eni.projetenchere.bll.retrait.RetraitManagerFact;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Enchere;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 /**
@@ -26,6 +29,7 @@ public class EnchereServlet extends HttpServlet {
 	
 	private ArticleManager articleManager = ArticleManagerFact.getInstance();
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
+	private RetraitManager retraitManager = RetraitManagerFact.getInstance();
        
     public EnchereServlet() {
         super();
@@ -41,6 +45,8 @@ public class EnchereServlet extends HttpServlet {
 				Article a = articleManager.getById(id);	
 				request.setAttribute("a",a);
 				
+				Retrait r = retraitManager.getRetraitByIdArticle(id);
+				request.setAttribute("r",r);
 				
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());
@@ -62,14 +68,18 @@ public class EnchereServlet extends HttpServlet {
 			Article a = articleManager.getById(id);
 			request.setAttribute("a",a);
 			
+			Retrait r = retraitManager.getRetraitByIdArticle(id);
+			request.setAttribute("r",r);
+			
 			// Récupération des champs
 			int proposition = Integer.parseInt(request.getParameter("proposition"));
-		
+			System.out.println("Prop : "+proposition);
 			Enchere e = enchereManager.insertEnchere(proposition, a, u);
 			request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
 
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			request.setAttribute("erreur", e.getMessage());
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");

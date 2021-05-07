@@ -13,5 +13,5 @@ public interface EnchereDAO {
 	
 	public Enchere getEnchereById(int id) throws Exception;
 
-	public Utilisateur getUtilisateurLastEnchere(int no_article) throws Exception;
+	public Utilisateur getUtilisateurLastEnchere(Connection cnx, int no_article) throws Exception;
 }

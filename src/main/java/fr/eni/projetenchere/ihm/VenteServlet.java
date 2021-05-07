@@ -71,7 +71,7 @@ public class VenteServlet extends HttpServlet {
 			String pseudo = ((Utilisateur) request.getSession().getAttribute("utilisateur")).getPseudo();
 			String nom = request.getParameter("article");
 			String description = request.getParameter("description");
-			int no_categorie = Integer.parseInt(request.getParameter("categorie"));
+			Categorie categorie = categorieManager.getCategorieById(Integer.parseInt(request.getParameter("categorie")));
 			int prix = Integer.parseInt(request.getParameter("prix"));
 			Date dateDebut = formatter.parse(request.getParameter("debutEnchere"));
 			Date dateFin = formatter.parse(request.getParameter("finEnchere"));
@@ -79,7 +79,7 @@ public class VenteServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 		
-			Article a = articleManager.insertArticle(pseudo, nom, description, dateDebut, dateFin, prix, no_categorie);
+			Article a = articleManager.insertArticle(pseudo, nom, description, dateDebut, dateFin, prix, categorie);
 			Retrait r = retraitManager.insertRetrait(a.getNo_article(), rue, codePostal, ville);
 			
 			response.sendRedirect(request.getContextPath() + "/");

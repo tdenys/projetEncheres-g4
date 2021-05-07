@@ -31,22 +31,22 @@
    				<!-- CATEGORIE -->
 				<p>Catégorie : ${a.categorie.libelle}</p>
 				<!-- MEILLEUR OFFRE -->
-				<p>Meilleur offre : ${prix_vente}</p>    
+				<p>Meilleur offre : ${a.prix_vente}</p>    
 			    <!-- MISE A PRIX -->
-				<p>Mise à prix : ${prix_initial}</p>				
+				<p>Mise à prix : ${a.prix_initial}</p>				
 				<!-- FIN ENCHERE -->
-				<p>Fin de l'enchère : ${date_fin_encheres}</p>
+				<p>Fin de l'enchère : ${a.date_fin_encheres}</p>
 				<!-- RETRAIT -->
 				<p class="text-justify">
-					Retrait :
-					${r.rue}
-					${r.code_postal}
+					Retrait :<br/>
+					${r.rue}<br/>
+					${r.code_postal} 
 					${r.ville}
 				</p>
 				<!-- VENDEUR -->
-				<p>Vendeur : </p>
+				<p>Vendeur : ${a.utilisateur.pseudo}</p>
 				<!-- MA PROPOSITION -->
-				<form method="POST" action="${pageContext.request.contextPath}/enchere">
+				<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
 					<!-- PRIX PROPOSE -->
 					<label for="proposition">Ma proposition : </label>
 					<input type="number" class="form-control" id="proposition" name="proposition" required>

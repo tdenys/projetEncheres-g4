@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.article.*;
 import fr.eni.projetenchere.dal.utilisateur.*;
@@ -27,7 +28,7 @@ public class ArticleManagerImpl implements ArticleManager {
 	
 	@Override
 	public Article insertArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
-			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception {
+			Date dateFinEnchere, int prixInitial, Categorie categorie) throws Exception {
 		
 		//Validation des saisies utilisateur
 		datesValides(dateDebutEnchere, dateFinEnchere);
@@ -38,7 +39,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
 		
 		//création de l'article à insérer
-		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, numCategorie);
+		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, categorie);
 		
 		
 		return articleDAO.insertArticle(articleAInserer);
@@ -50,11 +51,11 @@ public class ArticleManagerImpl implements ArticleManager {
 		for( Article a : listeDeBase ) {
 			if(categorie != 0) {
 				if(!filtres.isEmpty()) {
-					if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase()) && a.getNo_categorie() == categorie) {
+					if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase()) && a.getCategorie().getNo_categorie() == categorie) {
 		            	listeResult.add(a);
 		            }
 				}else {
-					if(a.getNo_categorie() == categorie) {
+					if(a.getCategorie().getNo_categorie() == categorie) {
 		            	listeResult.add(a);
 		            }
 				}
@@ -70,7 +71,7 @@ public class ArticleManagerImpl implements ArticleManager {
 	
 	@Override
 	public Article updateArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
-			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception {
+			Date dateFinEnchere, int prixInitial, Categorie categorie) throws Exception {
 		
 		//Validation des saisies utilisateur
 		datesValides(dateDebutEnchere, dateFinEnchere);
@@ -80,7 +81,7 @@ public class ArticleManagerImpl implements ArticleManager {
 		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
 		
 		//création de l'article à insérer
-		Article articleAUpdate = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, numCategorie);
+		Article articleAUpdate = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, categorie);
 		
 		return articleDAO.updateArticle(articleAUpdate);
 	}
