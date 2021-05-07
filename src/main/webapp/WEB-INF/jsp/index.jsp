@@ -143,7 +143,6 @@
 if(document.querySelector('input#radio1')){
 	document.querySelector('input#radio1').addEventListener('click', function(){
 		if(document.querySelector('input#radio1').checked){
-			console.log('yes');
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheres').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
@@ -159,7 +158,6 @@ if(document.querySelector('input#radio1')){
 if(document.querySelector('input#radio2')){
 	document.querySelector('input#radio2').addEventListener('click', function(){
 		if(document.querySelector('input#radio2').checked){
-			console.log('yes 2');
 			document.querySelector('input#encheresOuvertes').disabled = true;
 			document.querySelector('input#mesEncheres').disabled = true;
 			document.querySelector('input#mesEncheresRemportees').disabled = true;
