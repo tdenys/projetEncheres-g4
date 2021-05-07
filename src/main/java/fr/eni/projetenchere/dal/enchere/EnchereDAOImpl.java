@@ -7,12 +7,18 @@ import java.sql.Statement;
 
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Retrait;
+import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ConnectionProvider;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAOFactory;
 
 public class EnchereDAOImpl implements EnchereDAO {
+	
+	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO();
 
 	private String INSERT_ENCHERE = "INSERT INTO ENCHERE(date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";
 	private String GET_ENCHERE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
+	private String GET_LAST_ENCHERE_BY_ARTICLE = "SELECT * FROM ENCHERES WHERE no_article = ? ORDER BY no_enchere DESC LIMIT 1";
 	
 	@Override
 	public Enchere insertEnchere(Enchere e) throws Exception {
@@ -63,6 +69,22 @@ public class EnchereDAOImpl implements EnchereDAO {
 	public Enchere getEnchereById(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Utilisateur getUtilisateurLastEnchere(int no_article) throws Exception {
+		Utilisateur u = null;
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(GET_LAST_ENCHERE_BY_ARTICLE);
+			stmt.setInt(1, no_article);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				u = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
+			}
+		}
+		catch(Exception exception) {
+			throw new Exception(GET_LAST_ENCHERE_BY_ARTICLE);
+		}
+		return u;
 	}
 
 }
