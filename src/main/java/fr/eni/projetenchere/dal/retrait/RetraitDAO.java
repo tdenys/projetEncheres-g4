@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.retrait;
 
 import fr.eni.projetenchere.bo.Retrait;
 

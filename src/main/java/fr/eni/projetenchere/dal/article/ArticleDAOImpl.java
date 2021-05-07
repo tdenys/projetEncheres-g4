@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.article;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,6 +11,9 @@ import java.util.List;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.dal.ConnectionProvider;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
+import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAOFactory;
 
 public class ArticleDAOImpl implements ArticleDAO {
 	

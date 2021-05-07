@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.utilisateur;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	

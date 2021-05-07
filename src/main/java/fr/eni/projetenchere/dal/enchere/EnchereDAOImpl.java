@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.enchere;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Retrait;
+import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class EnchereDAOImpl implements EnchereDAO {
 

@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.article;
 
 import java.sql.Connection;
 import java.util.List;

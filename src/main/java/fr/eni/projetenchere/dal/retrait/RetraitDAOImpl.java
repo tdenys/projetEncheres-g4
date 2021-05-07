@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.retrait;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Retrait;
+import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class RetraitDAOImpl implements RetraitDAO {
 	

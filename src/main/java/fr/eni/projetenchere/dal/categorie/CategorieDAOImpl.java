@@ -1,4 +1,4 @@
-package fr.eni.projetenchere.dal;
+package fr.eni.projetenchere.dal.categorie;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class CategorieDAOImpl implements CategorieDAO { 
 	
