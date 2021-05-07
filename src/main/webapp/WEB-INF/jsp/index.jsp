@@ -111,18 +111,18 @@
 		
 		<!-- RESULATATS DE RECHERCHE -->
 		<div class="row" style="margin: 10px;">
-			<c:forEach var="c" items="${listeArticles}">
+			<c:forEach var="a" items="${listeArticles}">
 				<div class="col">
 					
 					<div class="card" style="width: 18rem;">
 					  <img class="card-img-top" src="https://img.icons8.com/ios/452/picture.png" width="18rem" />
 					  <div class="card-body">
-					    <h5 class="card-title">${c.nom_article}</h5>
+					    <h5 class="card-title"><a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">${a.nom_article}</a></h5>
 					    <p class="card-text">
-					    	Prix : ${c.prix_vente}<br/>
-					    	Fin de l'enchère : ${c.date_fin_encheres}<br/>
+					    	Prix : ${a.prix_vente}<br/>
+					    	Fin de l'enchère : ${a.date_fin_encheres}<br/>
 					    	<br/>
-					    	Vendeur : <a href="${pageContext.request.contextPath}/profil?p=${c.utilisateur.pseudo}">${c.utilisateur.pseudo}</a>
+					    	Vendeur : <a href="${pageContext.request.contextPath}/profil?p=${a.utilisateur.pseudo}">${a.utilisateur.pseudo}</a>
 					    </p>
 					  </div>
 					</div>
