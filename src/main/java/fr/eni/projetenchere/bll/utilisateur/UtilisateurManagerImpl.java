@@ -6,8 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.eni.projetenchere.bo.Utilisateur;
-import fr.eni.projetenchere.dal.UtilisateurDAO;
-import fr.eni.projetenchere.dal.UtilisateurDAOFactory;
+import fr.eni.projetenchere.dal.utilisateur.*;
 
 public class UtilisateurManagerImpl implements UtilisateurManager{
 	

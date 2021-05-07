@@ -3,8 +3,7 @@ package fr.eni.projetenchere.bll.categorie;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Categorie;
-import fr.eni.projetenchere.dal.CategorieDAO;
-import fr.eni.projetenchere.dal.CategorieDAOFactory;
+import fr.eni.projetenchere.dal.categorie.*;
 
 public class CategorieManagerImpl implements CategorieManager {
 

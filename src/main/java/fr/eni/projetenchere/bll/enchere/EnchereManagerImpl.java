@@ -8,13 +8,10 @@ import java.util.List;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Utilisateur;
-import fr.eni.projetenchere.dal.article.ArticleDAO;
-import fr.eni.projetenchere.dal.article.ArticleDAOFactory;
+import fr.eni.projetenchere.dal.article.*;
+import fr.eni.projetenchere.dal.enchere.*;
+import fr.eni.projetenchere.dal.utilisateur.*;
 import fr.eni.projetenchere.dal.ConnectionProvider;
-import fr.eni.projetenchere.dal.enchere.EnchereDAO;
-import fr.eni.projetenchere.dal.enchere.EnchereDAOFactory;
-import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAO;
-import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAOFactory;
 
 public class EnchereManagerImpl implements EnchereManager {
 	

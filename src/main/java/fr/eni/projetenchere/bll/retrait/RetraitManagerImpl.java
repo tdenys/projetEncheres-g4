@@ -1,10 +1,7 @@
 package fr.eni.projetenchere.bll.retrait;
 
 import fr.eni.projetenchere.bo.Retrait;
-import fr.eni.projetenchere.dal.ArticleDAO;
-import fr.eni.projetenchere.dal.ArticleDAOFactory;
-import fr.eni.projetenchere.dal.RetraitDAO;
-import fr.eni.projetenchere.dal.RetraitDAOFactory;
+import fr.eni.projetenchere.dal.retrait.*;
 
 public class RetraitManagerImpl implements RetraitManager{
 

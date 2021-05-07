@@ -6,10 +6,8 @@ import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Utilisateur;
-import fr.eni.projetenchere.dal.ArticleDAO;
-import fr.eni.projetenchere.dal.ArticleDAOFactory;
-import fr.eni.projetenchere.dal.UtilisateurDAO;
-import fr.eni.projetenchere.dal.UtilisateurDAOFactory;
+import fr.eni.projetenchere.dal.article.*;
+import fr.eni.projetenchere.dal.utilisateur.*;
 
 public class ArticleManagerImpl implements ArticleManager {
 	
