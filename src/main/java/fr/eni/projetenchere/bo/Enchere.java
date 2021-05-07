@@ -19,6 +19,13 @@ public class Enchere {
 		this.article = article;
 		this.utilisateur = utilisateur;
 	}
+	
+	public Enchere(Date date_enchere, int montant_enchere, Article article, Utilisateur utilisateur) {
+		this.date_enchere = date_enchere;
+		this.montant_enchere = montant_enchere;
+		this.article = article;
+		this.utilisateur = utilisateur;
+	}
 
 	public int getNo_enchere() {
 		return no_enchere;
