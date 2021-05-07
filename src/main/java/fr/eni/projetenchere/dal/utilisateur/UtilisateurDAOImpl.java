@@ -12,7 +12,7 @@ import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
-	private String GET_UTILISATEUR_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+	private String GET_UTILISATEUR_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?"; 
 	private String GET_UTILISATEUR_BY_PSEUDO_OR_EMAIL = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private String GET_UTILISATEUR_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
