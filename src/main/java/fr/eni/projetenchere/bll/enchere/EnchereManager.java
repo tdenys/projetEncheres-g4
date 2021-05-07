@@ -10,7 +10,7 @@ public interface EnchereManager {
 	
 	public Enchere insertEnchere(int montant_enchere, Article article, Utilisateur utilisateur) throws Exception;
 
-	public Enchere getEnchereByIdArticle(int numArticle) throws Exception;
+	/*public Enchere getEnchereByIdArticle(int numArticle) throws Exception;
 
-	void removeEnchere(Enchere e) throws Exception;
+	void removeEnchere(Enchere e) throws Exception;*/
 }
