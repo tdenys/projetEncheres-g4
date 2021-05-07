@@ -24,7 +24,7 @@ public class ArticleManagerImpl implements ArticleManager {
 	
 	@Override
 	public Article getById(int id) throws Exception {
-		return articleDAO.getArticleById(id);
+		return articleDAO.getArticleById(id); 
 	}
 	
 	@Override

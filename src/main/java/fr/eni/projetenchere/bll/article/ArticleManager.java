@@ -20,5 +20,5 @@ public interface ArticleManager {
 	 String description, Date dateDebutEnchere,
 			Date dateFinEnchere, int prixInitial, int numCategorie) throws Exception;
 
-	Article getById(int id) throws Exception;
+	Article getById(int id) throws Exception; 
 }
