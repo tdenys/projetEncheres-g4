@@ -45,42 +45,52 @@
 					    	<div class="col">
 						    	<!-- RADIOS BUTTONS -->
 						    	<div class="form-check">
-							    	<input class="form-check-input" type="radio" name="type" id="radio1" value="achats" checked>
+						    		<c:if test="${affType1 != 'disabled'}">
+							    		<input class="form-check-input" type="radio" name="type" id="radio1" value="achats" checked>
+									</c:if>
+									<c:if test="${affType1 == 'disabled'}">
+							    		<input class="form-check-input" type="radio" name="type" id="radio1" value="achats">
+									</c:if>
 									<label class="form-check-label" for="radio1">Achats</label>
 								</div>
 								<br/>
 								<!-- CHECKBOX -->
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="encheresOuvertes" name="encheresOuvertes" value="encheresOuvertes">
+									<input class="form-check-input" type="checkbox" id="encheresOuvertes" name="encheresOuvertes" value="encheresOuvertes" ${affParam1} ${affType1}>
 									<label class="form-check-label" for="encheresOuvertes">Enchères ouvertes</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="mesEncheres" name="mesEncheres" value="mesEncheres">
+									<input class="form-check-input" type="checkbox" id="mesEncheres" name="mesEncheres" value="mesEncheres" ${affParam2} ${affType1}>
 									<label class="form-check-label" for="mesEncheres">Mes enchères</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="mesEncheresRemportees" name="mesEncheresRemportees" value="mesEncheresRemportees">
+									<input class="form-check-input" type="checkbox" id="mesEncheresRemportees" name="mesEncheresRemportees" value="mesEncheresRemportees" ${affParam3} ${affType1}>
 									<label class="form-check-label" for="mesEncheresRemportees">Mes Encheres Remportees</label>
 		  						</div>
 					    	</div>
 					    	<div class="col">
 						    	<!-- RADIOS BUTTONS -->
 						    	<div class="form-check">
-							    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes">
+							    	<c:if test="${affType2 != 'disabled'}">
+								    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes" checked>
+									</c:if>
+									<c:if test="${affType2 == 'disabled'}">
+								    	<input class="form-check-input" type="radio" name="type" id="radio2" value="ventes">
+									</c:if>		
 									<label class="form-check-label" for="radio2">Mes ventes</label>
 								</div>
 								<br/>
 								<!-- CHECKBOX -->
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours" value="mesVentesEnCours" disabled>
+									<input class="form-check-input" type="checkbox" id="mesVentesEnCours" name="mesVentesEnCours" value="mesVentesEnCours" ${affParam4} ${affType2}>
 									<label class="form-check-label" for="mesVentesEnCours">Mes ventes en cours</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="ventesNonDebutees" name="ventesNonDebutees" value="ventesNonDebutees" disabled>
+									<input class="form-check-input" type="checkbox" id="ventesNonDebutees" name="ventesNonDebutees" value="ventesNonDebutees" ${affParam5} ${affType2}>
 									<label class="form-check-label" for="ventesNonDebutees">Ventes non débutées</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" id="ventesTerminees" name="ventesTerminees" value="ventesTerminees" disabled>
+									<input class="form-check-input" type="checkbox" id="ventesTerminees" name="ventesTerminees" value="ventesTerminees" ${affParam6} ${affType2}>
 									<label class="form-check-label" for="ventesTerminees">Ventes terminées</label>
 					    		</div>
 					    	</div>

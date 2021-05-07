@@ -65,6 +65,9 @@ public class IndexServlet extends HttpServlet {
 			}
 			request.setAttribute("listeArticles",listeArticles);
 			
+			request.setAttribute("affType1","");
+			request.setAttribute("affType2","disabled");
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
 		}
@@ -91,33 +94,59 @@ public class IndexServlet extends HttpServlet {
 		boolean param1 = false;
 		boolean param2 = false;
 		boolean param3 = false;
+		String affType1 = "";
+		String affType2 = "disabled";
+		String affParam1 = "";
+		String affParam2 = "";
+		String affParam3 = "";
+		String affParam4 = "";
+		String affParam5 = "";
+		String affParam6 = "";
 		if(type != null) {
 			if(type.equals("achats")) {
 				if(request.getParameter("encheresOuvertes") != null) {
 					param1 = true;
+					affParam1 = "checked";
 				}		
 				if(request.getParameter("mesEncheres") != null) {
 					param2 = true;
+					affParam2 = "checked";
 				}
 				if(request.getParameter("mesEncheresRemportees") != null) {
 					param3 = true;
+					affParam3 = "checked";
 				}
+				affType1 = "";
+				affType2 = "disabled";
 			}
 			else {
 				if(request.getParameter("mesVentesEnCours") != null) {
 					param1 = true;
+					affParam4 = "checked";
 				}
 				if(request.getParameter("ventesNonDebutees") != null) {
 					param2 = true;
+					affParam5 = "checked";
 				}
 				if(request.getParameter("ventesTerminees") != null) {
 					param3 = true;
+					affParam6 = "checked";
 				}
+				affType1 = "disabled";
+				affType2 = "";
 			}
 		}
 		
 		request.setAttribute("nom",nom);
 		request.setAttribute("cat",no_categorie);
+		request.setAttribute("affParam1",affParam1);
+		request.setAttribute("affParam2",affParam2);
+		request.setAttribute("affParam3",affParam3);
+		request.setAttribute("affParam4",affParam4);
+		request.setAttribute("affParam5",affParam5);
+		request.setAttribute("affParam6",affParam6);
+		request.setAttribute("affType1",affType1);
+		request.setAttribute("affType2",affType2);
 		
 		List<Article> listeArticles;
 		try {
