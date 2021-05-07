@@ -1,6 +1,6 @@
 package fr.eni.projetenchere.bo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Enchere {
 	private int no_enchere;
