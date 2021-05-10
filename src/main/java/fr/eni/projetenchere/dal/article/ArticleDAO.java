@@ -22,9 +22,5 @@ public interface ArticleDAO {
 	public Article updateArticle(Article a) throws Exception;
 	public Article updateArticle(Connection cnx, Article a) throws Exception;
 
-	//public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
-
-	public boolean haveArticles(Connection cnx, Utilisateur u) throws Exception;
-
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }

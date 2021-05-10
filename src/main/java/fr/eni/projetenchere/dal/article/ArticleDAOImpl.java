@@ -201,43 +201,20 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public boolean haveArticles(Connection cnx, Utilisateur u) throws Exception {
-		ResultSet rs;
-		
-		try {
-			PreparedStatement stmt = cnx.prepareStatement(GET_ARTICLES_BY_UTILISATEUR);
-			stmt.setInt(1, u.getNo_utilisateurs());
-			rs = stmt.executeQuery();
-			System.out.println("rs next");
-		}
-		catch(Exception e) {
-			throw new Exception(GET_ARTICLES_BY_UTILISATEUR);
-		}	
-		return rs.next();
-	}
-
-	@Override
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
 		int nb = 0;
 		
 		try {
-			System.out.println("1");
 			PreparedStatement stmt = cnx.prepareStatement(GET_NB_ARTICLES_BY_UTILISATEUR);
-			System.out.println("2");
 			stmt.setInt(1, u.getNo_utilisateurs());
-			System.out.println("3");
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("4");
 			if(rs.next()) {
-				System.out.println("5");
 				nb = rs.getInt(1);
 			}	
 		}
 		catch(Exception e) {
-			System.out.println("exception : " + e.getMessage());
 			throw new Exception(GET_NB_ARTICLES_BY_UTILISATEUR);
 		}	
-		System.out.println("6");
 		return nb;
 	}
 	
