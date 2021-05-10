@@ -85,7 +85,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie1);
 				result.add(a);
 			}
-		}
+		} 
 		catch(Exception e) {
 			throw new Exception(reqWithFilter);
 		}	
