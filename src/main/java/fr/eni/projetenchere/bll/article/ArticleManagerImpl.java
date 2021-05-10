@@ -46,27 +46,7 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 	
 	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception{
-		List<Article> listeDeBase = articleDAO.getAll();
-		List<Article> listeResult = new ArrayList<Article>();
-		for( Article a : listeDeBase ) {
-			if(categorie != 0) {
-				if(!filtres.isEmpty()) {
-					if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase()) && a.getCategorie().getNo_categorie() == categorie) {
-		            	listeResult.add(a);
-		            }
-				}else {
-					if(a.getCategorie().getNo_categorie() == categorie) {
-		            	listeResult.add(a);
-		            }
-				}
-			}else {
-				if(a.getNom_article().toLowerCase().contains(filtres.toLowerCase())) {
-	            	listeResult.add(a);
-	            }
-			}
-            
-        }
-		return listeResult; 
+		return articleDAO.getAllWithFilter(); 
 	}
 	
 	@Override
