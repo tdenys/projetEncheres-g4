@@ -65,6 +65,12 @@ public class EnchereManagerImpl implements EnchereManager {
 		cnx.close();
 		return en;
 	}
+
+	@Override
+	public List<Enchere> getEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+	
+		return enchereDAO.getEncheresByUtilisateur(cnx, u);
+	}
 	
 	/*@Override
 	public void removeEnchere(Article enchere) throws Exception {

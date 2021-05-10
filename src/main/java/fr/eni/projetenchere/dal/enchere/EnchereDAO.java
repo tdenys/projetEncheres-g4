@@ -1,6 +1,7 @@
 package fr.eni.projetenchere.dal.enchere;
 
 import java.sql.Connection;
+import java.util.List;
 
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -14,4 +15,6 @@ public interface EnchereDAO {
 	public Enchere getEnchereById(int id) throws Exception;
 
 	public Utilisateur getUtilisateurLastEnchere(Connection cnx, int no_article) throws Exception;
+
+	public List<Enchere> getEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }
