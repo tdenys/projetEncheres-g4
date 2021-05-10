@@ -182,8 +182,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 	
 	@Override
-	public void removeUtilisateur(Utilisateur u) throws Exception {
-		try(Connection cnx = ConnectionProvider.getConnection()){
+	public void removeUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+		try {
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_UTILISATEUR);
 			stmt.setString(1, u.getPseudo());
 			stmt.executeUpdate();

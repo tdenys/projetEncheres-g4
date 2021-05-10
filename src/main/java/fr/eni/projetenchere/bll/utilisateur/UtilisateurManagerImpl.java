@@ -3,6 +3,7 @@ package fr.eni.projetenchere.bll.utilisateur;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,6 +11,8 @@ import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
 import fr.eni.projetenchere.bll.enchere.EnchereManager;
 import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
+import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
 import fr.eni.projetenchere.dal.ConnectionProvider;
@@ -181,15 +184,21 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
 		
-		try {
-			if(articleManager.getArticlesByUtilisateur(cnx, u).size() >= 1) {
-				throw new Exception("Impossible de supprimer un compte ayant un article en vente.");
-			}
-			
-			if(enchereManager.getEncheresByUtilisateur(cnx, u).size() >= 1) {
-				throw new Exception("Impossible de supprimer un compte ayant des enchères en cours.");
-			}	
-			DAO.removeUtilisateur(u); 			
+		System.out.println("Utilisateur impl");
+		
+		System.out.println("Resultat articles " + articleManager.getNbArticlesByUtilisateur(cnx, u));
+		
+		if(articleManager.getNbArticlesByUtilisateur(cnx, u) >= 1) {
+			System.out.println("exception : trop d'articles");
+			throw new Exception("Impossible de supprimer un compte ayant un article en vente.");
+		}
+		
+		/*if(enchereManager.getNbEncheresByUtilisateur(cnx, u) >= 1) {
+		throw new Exception("Impossible de supprimer un compte ayant des enchères en cours.");
+		}*/
+		
+		try {	
+			DAO.removeUtilisateur(cnx, u); 			
 			cnx.commit();
 		} catch (Exception e) {
 			cnx.rollback(); 

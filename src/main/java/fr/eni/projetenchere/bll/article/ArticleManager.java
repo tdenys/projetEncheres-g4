@@ -24,5 +24,5 @@ public interface ArticleManager {
 
 	public Article getById(int id) throws Exception; 
 	
-	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
+	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }

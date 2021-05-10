@@ -109,11 +109,13 @@ public class EnchereDAOImpl implements EnchereDAO {
 			PreparedStatement stmt = cnx.prepareStatement(GET_ENCHERES_BY_UTILISATEUR);
 			stmt.setInt(1, utilisateur.getNo_utilisateurs());
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
-				Article article = articleDAO.getArticleById(rs.getInt("no_article"));
-				enchere = new Enchere(rs.getInt("no_enchere"), rs.getDate("date_enchere"), rs.getInt("montant_enchere"), article, utilisateur);
-				result.add(enchere);
-			}
+			//if(rs.next() != false) {
+				while(rs.next()) {
+					Article article = articleDAO.getArticleById(rs.getInt("no_article"));
+					enchere = new Enchere(rs.getInt("no_enchere"), rs.getDate("date_enchere"), rs.getInt("montant_enchere"), article, utilisateur);
+					result.add(enchere);
+				}
+			//}
 		}
 		catch(Exception e) {
 			throw new Exception(GET_ENCHERES_BY_UTILISATEUR);

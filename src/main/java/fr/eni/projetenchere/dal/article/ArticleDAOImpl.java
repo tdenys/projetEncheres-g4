@@ -21,7 +21,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 	
 	private String GET_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	private String GET_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
-	private String GET_ARTICLES_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
+	private String GET_ARTICLES_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE NO_UTILISATEUR = ?";
+	private String GET_NB_ARTICLES_BY_UTILISATEUR = "SELECT COUNT(*) FROM ARTICLES_VENDUS WHERE NO_UTILISATEUR = ?";
 	private String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
@@ -200,24 +201,44 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
-		Article a = null;
-		List<Article> result = new ArrayList<Article>();
+	public boolean haveArticles(Connection cnx, Utilisateur u) throws Exception {
+		ResultSet rs;
 		
-		try(cnx){
+		try {
 			PreparedStatement stmt = cnx.prepareStatement(GET_ARTICLES_BY_UTILISATEUR);
 			stmt.setInt(1, u.getNo_utilisateurs());
-			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
-				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
-				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), u, categorie);
-				result.add(a);
-			}
+			rs = stmt.executeQuery();
+			System.out.println("rs next");
 		}
 		catch(Exception e) {
 			throw new Exception(GET_ARTICLES_BY_UTILISATEUR);
 		}	
-		return result;
+		return rs.next();
+	}
+
+	@Override
+	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+		int nb = 0;
+		
+		try {
+			System.out.println("1");
+			PreparedStatement stmt = cnx.prepareStatement(GET_NB_ARTICLES_BY_UTILISATEUR);
+			System.out.println("2");
+			stmt.setInt(1, u.getNo_utilisateurs());
+			System.out.println("3");
+			ResultSet rs = stmt.executeQuery();
+			System.out.println("4");
+			if(rs.next()) {
+				System.out.println("5");
+				nb = rs.getInt(1);
+			}	
+		}
+		catch(Exception e) {
+			System.out.println("exception : " + e.getMessage());
+			throw new Exception(GET_NB_ARTICLES_BY_UTILISATEUR);
+		}	
+		System.out.println("6");
+		return nb;
 	}
 	
 	

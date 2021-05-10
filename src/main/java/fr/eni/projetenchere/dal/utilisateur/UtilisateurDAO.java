@@ -14,12 +14,12 @@ public interface UtilisateurDAO {
 	
 	public void insertUtilisateur(Utilisateur u) throws Exception;
 
-	public void removeUtilisateur(Utilisateur u) throws Exception;
-
 	public Utilisateur getUtilisateurById(int id) throws Exception;
 	
 	public Utilisateur updateUtilisateur(Utilisateur u, String ancienPseudo) throws Exception;
 
 	public Utilisateur updateUtilisateurWithCredit(Connection cnx, Utilisateur u) throws Exception;
+
+	public void removeUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 
 }
