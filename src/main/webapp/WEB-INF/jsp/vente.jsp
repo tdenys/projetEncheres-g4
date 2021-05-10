@@ -68,7 +68,7 @@
 					
 					<div class="row">
 						<div class="col">
-							<input type="submit" class="btn btn-dark text-light" name="enregistrer" value="Enregistrer" />
+							<input type="submit" class="btn btn-dark text-light" name="enregistrer" value="Enregistrer" /> 
 						</div>
 						<div class="col">
 							<a href="" class="btn btn-dark text-light">Annuler</a>

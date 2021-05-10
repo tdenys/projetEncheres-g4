@@ -69,7 +69,7 @@
 					</form>
 				</c:if>
 				<c:if test="${termine}">
-					<a href="" class="btn btn-dark text-light">Retour</a>
+					<a href="" class="btn btn-dark text-light">Retour</a> 
 				</c:if>
 				    
 			</div>
