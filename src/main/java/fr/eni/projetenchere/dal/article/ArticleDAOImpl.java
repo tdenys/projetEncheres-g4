@@ -71,14 +71,14 @@ public class ArticleDAOImpl implements ArticleDAO {
 	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3) throws Exception {
 		Article a = null;
 		List<Article> result = new ArrayList<Article>();
-		String reqWithFilter = GET_ALL_ARTICLE + "WHERE (? IS NOT NULL AND nom_article like %?%) AND (? IS NOT NULL AND no_categorie = ?)";
+		String reqWithFilter = "SELECT * FROM ARTICLES_VENDUS WHERE (? = ' ' OR nom_article LIKE ?) AND (? = 0 OR no_categorie = ?)";
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(reqWithFilter);
-			ResultSet rs = stmt.executeQuery();
 			stmt.setString(1, filtres);
-			stmt.setString(2, filtres);
-			stmt.setInt(1, categorie);
-			stmt.setInt(2, categorie);
+			stmt.setString(2, "%"+filtres+"%");
+			stmt.setInt(3, categorie);
+			stmt.setInt(4, categorie);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
 				Categorie categorie1 = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
