@@ -112,7 +112,7 @@
 		<!-- RESULATATS DE RECHERCHE --> 
 		<div class="row" style="margin: 10px;">
 			<c:forEach var="a" items="${listeArticles}">
-				<div class="col-sm-4">
+				<div class="col-sm-4" style="margin-top: 20px;">
 					
 					<div class="card" style="width: 18rem;">
 					  <img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" /> 
@@ -150,6 +150,76 @@
 
 </body>
 <script>
+if(document.querySelector('input#encheresOuvertes')){
+	document.querySelector('input#encheresOuvertes').addEventListener('click', function(){
+		if(document.querySelector('input#encheresOuvertes').checked){
+			document.querySelector('input#encheresOuvertes').disabled = false;
+			document.querySelector('input#mesEncheresRemportees').disabled = true;
+			document.querySelector('input#mesEncheres').disabled = true;
+		}else{
+			document.querySelector('input#encheresOuvertes').disabled = false;
+			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#mesEncheres').disabled = false;
+		}
+	});
+	document.querySelector('input#mesEncheresRemportees').addEventListener('click', function(){
+		if(document.querySelector('input#mesEncheresRemportees').checked){
+			document.querySelector('input#encheresOuvertes').disabled = true;
+			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#mesEncheres').disabled = false;
+		}else{
+			document.querySelector('input#encheresOuvertes').disabled = false;
+			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#mesEncheres').disabled = false;
+		}
+	});
+	document.querySelector('input#mesEncheres').addEventListener('click', function(){
+		if(document.querySelector('input#mesEncheres').checked){
+			document.querySelector('input#encheresOuvertes').disabled = true;
+			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#mesEncheres').disabled = false;
+		}else{
+			document.querySelector('input#encheresOuvertes').disabled = false;
+			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#mesEncheres').disabled = false;
+		}
+	});
+}
+if(document.querySelector('input#mesVentesEnCours')){
+	document.querySelector('input#mesVentesEnCours').addEventListener('click', function(){
+		if(document.querySelector('input#mesVentesEnCours').checked){
+			document.querySelector('input#mesVentesEnCours').disabled = false;
+			document.querySelector('input#ventesNonDebutees').disabled = true;
+			document.querySelector('input#ventesTerminees').disabled = true;
+		}else{
+			document.querySelector('input#mesVentesEnCours').disabled = false;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+		}
+	});
+	document.querySelector('input#ventesNonDebutees').addEventListener('click', function(){
+		if(document.querySelector('input#ventesNonDebutees').checked){
+			document.querySelector('input#mesVentesEnCours').disabled = true;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+		}else{
+			document.querySelector('input#mesVentesEnCours').disabled = false;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+		}
+	});
+	document.querySelector('input#ventesTerminees').addEventListener('click', function(){
+		if(document.querySelector('input#ventesTerminees').checked){
+			document.querySelector('input#mesVentesEnCours').disabled = true;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+		}else{
+			document.querySelector('input#mesVentesEnCours').disabled = false;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+		}
+	});
+}
 if(document.querySelector('input#radio1')){
 	document.querySelector('input#radio1').addEventListener('click', function(){
 		if(document.querySelector('input#radio1').checked){
