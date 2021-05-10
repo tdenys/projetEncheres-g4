@@ -1,18 +1,24 @@
 package fr.eni.projetenchere.bll.article;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.dal.ConnectionProvider;
 import fr.eni.projetenchere.dal.article.*;
+import fr.eni.projetenchere.dal.retrait.RetraitDAO;
+import fr.eni.projetenchere.dal.retrait.RetraitDAOFactory;
 import fr.eni.projetenchere.dal.utilisateur.*;
 
 public class ArticleManagerImpl implements ArticleManager {
 	
 	private ArticleDAO articleDAO = ArticleDAOFactory.getArticleDAO();
+	private RetraitDAO retraitDAO = RetraitDAOFactory.getArticleDAO();
 
 	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO(); 
 	
@@ -27,26 +33,31 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 	
 	@Override
-	public Article insertArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere,
-			Date dateFinEnchere, int prixInitial, Categorie categorie) throws Exception {
-		
-		//Validation des saisies utilisateur
-		datesValides(dateDebutEnchere, dateFinEnchere);
-		stringValide(description, "Description");
-		prixInitialValide(prixInitial);
-		
-		//on récupère l'id du vendeur de l'article
-		Utilisateur vendeur = utilisateurDAO.getUtilisateurByPseudo(pseudoVendeur);
-		
-		//création de l'article à insérer
-		Article articleAInserer = new Article(nomArticle, description, dateDebutEnchere, dateFinEnchere, prixInitial, prixInitial, vendeur, categorie);
-		
-		
-		return articleDAO.insertArticle(articleAInserer);
+	public Article insertArticle(Article a, String rue, String cp, String ville) throws Exception {
+		Connection cnx = ConnectionProvider.getConnection();
+		cnx.setAutoCommit(false);
+		try {
+			//Validation des saisies utilisateur
+			datesValides(a.getDate_debut_encheres(), a.getDate_fin_encheres());
+			stringValide(a.getDescription(), "Description");
+			prixInitialValide(a.getPrix_initial());
+			
+			a = articleDAO.insertArticle(cnx, a);
+			
+			Retrait r = new Retrait(a.getNo_article(), rue, cp, ville);
+			r = retraitDAO.insertRetrait(cnx, r);
+			
+			cnx.commit();
+		} catch (Exception e) {
+			cnx.rollback();
+			throw new Exception(e);
+		}
+		cnx.close();
+		return a;
 	}
 	
 	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception{
-		return articleDAO.getAllWithFilter(); 
+		return articleDAO.getAllWithFilter(filtres, categorie, type, param1, param2, param3); 
 	}
 	
 	@Override

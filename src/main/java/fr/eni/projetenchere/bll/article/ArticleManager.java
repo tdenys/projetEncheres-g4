@@ -10,7 +10,7 @@ public interface ArticleManager {
 	
 	public List<Article> getAll() throws Exception; 
 	
-	public Article insertArticle(String pseudoVendeur, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int prixInitial, Categorie categorie) throws Exception;
+	public Article insertArticle(Article a, String rue, String cp, String ville) throws Exception;
 	
 	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception;
 	
