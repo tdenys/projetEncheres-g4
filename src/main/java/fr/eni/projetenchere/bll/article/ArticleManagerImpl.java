@@ -18,7 +18,7 @@ import fr.eni.projetenchere.dal.utilisateur.*;
 public class ArticleManagerImpl implements ArticleManager {
 	
 	private ArticleDAO articleDAO = ArticleDAOFactory.getArticleDAO();
-	private RetraitDAO retraitDAO = RetraitDAOFactory.getArticleDAO();
+	private RetraitDAO retraitDAO = RetraitDAOFactory.getRetraitDAO();
 
 	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO(); 
 	
