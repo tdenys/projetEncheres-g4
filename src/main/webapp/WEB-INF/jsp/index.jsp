@@ -194,7 +194,7 @@ if(document.querySelector('input#mesVentesEnCours')){
 		}else{
 			document.querySelector('input#mesVentesEnCours').disabled = false;
 			document.querySelector('input#ventesNonDebutees').disabled = false;
-			document.querySelector('input#ventesTerminees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false; 
 		}
 	});
 	document.querySelector('input#ventesTerminees').addEventListener('click', function(){
