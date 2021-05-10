@@ -12,7 +12,7 @@ public interface ArticleDAO {
 	
 	public List<Article> getAll() throws Exception;
 	 
-	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3) throws Exception;
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3, Utilisateur u) throws Exception;
 	
 	public Article insertArticle(Article a) throws Exception;
 	Article insertArticle(Connection cnx, Article a) throws Exception;

@@ -70,16 +70,28 @@ public class ArticleDAOImpl implements ArticleDAO {
 		return result;
 	}
 	
-	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3) throws Exception {
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3, Utilisateur u) throws Exception {
 		Article a = null;
 		List<Article> result = new ArrayList<Article>();
-		String reqWithFilter = "SELECT * FROM ARTICLES_VENDUS WHERE (? = ' ' OR nom_article LIKE ?) AND (? = 0 OR no_categorie = ?)";
+		String reqWithFilter = "SELECT DISTINCT AV.nom_article FROM ARTICLES_VENDUS AV "
+				+ "INNER JOIN ENCHERES E ON E.no_article = AV.no_article "
+				+ "WHERE (? = ' ' OR nom_article LIKE ?) "
+				+ "AND (? = 0 OR no_categorie = ?) "
+				+ "AND (? OR date_fin_encheres > GetDate()) "
+				+ "AND (? OR E.no_utilisateur = ?) "
+				+ "AND (? OR AV.date_fin_encheres < GetDate() AND E.no_utilisateur = ?) "
+				+ "GROUP BY AV.nom_article;";
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(reqWithFilter);
 			stmt.setString(1, filtres);
 			stmt.setString(2, "%"+filtres+"%");
 			stmt.setInt(3, categorie);
 			stmt.setInt(4, categorie);
+			stmt.setBoolean(5, !param1);
+			stmt.setBoolean(6, !param2);
+			stmt.setInt(7, u.getNo_utilisateurs());
+			stmt.setBoolean(8, !param3);
+			stmt.setInt(9, u.getNo_utilisateurs());
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
