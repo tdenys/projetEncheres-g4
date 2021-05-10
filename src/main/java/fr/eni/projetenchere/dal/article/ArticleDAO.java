@@ -11,6 +11,8 @@ public interface ArticleDAO {
 	
 	public List<Article> getAll() throws Exception;
 	
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3) throws Exception;
+	
 	public Article insertArticle(Article a) throws Exception;
 
 	public void removeArticle(Article a) throws Exception;

@@ -68,6 +68,30 @@ public class ArticleDAOImpl implements ArticleDAO {
 		return result;
 	}
 	
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3) throws Exception {
+		Article a = null;
+		List<Article> result = new ArrayList<Article>();
+		String reqWithFilter = GET_ALL_ARTICLE + "WHERE (? IS NOT NULL AND nom_article like %?%) AND (? IS NOT NULL AND no_categorie = ?)";
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(reqWithFilter);
+			ResultSet rs = stmt.executeQuery();
+			stmt.setString(1, filtres);
+			stmt.setString(2, filtres);
+			stmt.setInt(1, categorie);
+			stmt.setInt(2, categorie);
+			while(rs.next()) {
+				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
+				Categorie categorie1 = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
+				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie1);
+				result.add(a);
+			}
+		}
+		catch(Exception e) {
+			throw new Exception(reqWithFilter);
+		}	
+		return result;
+	}
+	
 	@Override
 	public Article insertArticle(Article a) throws Exception {	
 		try(Connection cnx = ConnectionProvider.getConnection()){
