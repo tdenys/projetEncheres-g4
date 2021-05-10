@@ -39,6 +39,8 @@ public class ModifProfilServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/");
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifProfil.jsp");
+				rd.forward(request, response);
 			}
 		} else if(u != null) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifProfil.jsp");
