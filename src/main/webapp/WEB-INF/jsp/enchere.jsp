@@ -58,7 +58,7 @@
 				<!-- VENDEUR -->
 				<p>Vendeur : ${a.utilisateur.pseudo}</p>
 				
-				<c:if test="${!termine}">
+				<c:if test="${!termine && a.utilisateur.pseudo != u.pseudo}">
 					<!-- MA PROPOSITION -->
 					<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
 						<!-- PRIX PROPOSE -->
