@@ -150,7 +150,7 @@ public class IndexServlet extends HttpServlet {
 		
 		List<Article> listeArticles;
 		try {
-			listeArticles = articleManager.getAllWithFilter(nom, no_categorie, type, param1, param2, param3);
+			listeArticles = articleManager.getAllWithFilter(nom, no_categorie, type, param1, param2, param3, u);
 			request.setAttribute("listeArticles",listeArticles);
 		} catch (Exception e) {
 			request.setAttribute("erreur", e.getMessage());
