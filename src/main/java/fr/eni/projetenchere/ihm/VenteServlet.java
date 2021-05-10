@@ -68,7 +68,7 @@ public class VenteServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			
 			// Récupération des champs
-			String pseudo = ((Utilisateur) request.getSession().getAttribute("utilisateur")).getPseudo();
+			Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 			String nom = request.getParameter("article");
 			String description = request.getParameter("description");
 			Categorie categorie = categorieManager.getCategorieById(Integer.parseInt(request.getParameter("categorie")));
@@ -79,8 +79,8 @@ public class VenteServlet extends HttpServlet {
 			String codePostal = request.getParameter("codePostal");
 			String ville = request.getParameter("ville");
 		
-			Article a = articleManager.insertArticle(pseudo, nom, description, dateDebut, dateFin, prix, categorie);
-			Retrait r = retraitManager.insertRetrait(a.getNo_article(), rue, codePostal, ville);
+			Article a = new Article(nom, description, dateDebut, dateFin, prix, prix, utilisateur, categorie);
+			a = articleManager.insertArticle(a, rue, codePostal, ville);
 			
 			response.sendRedirect(request.getContextPath() + "/");
 		}
