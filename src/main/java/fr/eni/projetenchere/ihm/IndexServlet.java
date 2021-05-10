@@ -87,7 +87,7 @@ public class IndexServlet extends HttpServlet {
 		}
 		request.setAttribute("listeCategories",listeCategories);
 		
-		// Récupération des champs
+		// Récupération des champs 
 		String nom = request.getParameter("rechercheNom");
 		int no_categorie = Integer.parseInt(request.getParameter("categorie"));
 		String type = request.getParameter("type");
