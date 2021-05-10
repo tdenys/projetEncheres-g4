@@ -14,7 +14,7 @@ public interface ArticleManager {
 	
 	public Article insertArticle(Article a, String rue, String cp, String ville) throws Exception;
 	
-	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception;
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3, Utilisateur u) throws Exception;
 	
 	void removeArticle(Article article) throws Exception;
 

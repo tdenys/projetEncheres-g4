@@ -56,8 +56,8 @@ public class ArticleManagerImpl implements ArticleManager {
 		return a;
 	}
 	
-	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3 ) throws Exception{
-		return articleDAO.getAllWithFilter(filtres, categorie, type, param1, param2, param3); 
+	public List<Article> getAllWithFilter(String filtres, int categorie, String type, boolean param1, boolean param2, boolean param3, Utilisateur u) throws Exception{
+		return articleDAO.getAllWithFilter(filtres, categorie, type, param1, param2, param3, u); 
 	}
 	
 	@Override
