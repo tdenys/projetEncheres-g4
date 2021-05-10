@@ -21,6 +21,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	
 	private String GET_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	private String GET_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	private String GET_ARTICLES_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE no_utilisateur = ?";
 	private String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
@@ -196,6 +197,27 @@ public class ArticleDAOImpl implements ArticleDAO {
 		catch(Exception e) {
 			throw new Exception(DELETE_ARTICLE);
 		}
+	}
+
+	@Override
+	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+		Article a = null;
+		List<Article> result = new ArrayList<Article>();
+		
+		try(cnx){
+			PreparedStatement stmt = cnx.prepareStatement(GET_ARTICLES_BY_UTILISATEUR);
+			stmt.setInt(1, u.getNo_utilisateurs());
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
+				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), u, categorie);
+				result.add(a);
+			}
+		}
+		catch(Exception e) {
+			throw new Exception(GET_ARTICLES_BY_UTILISATEUR);
+		}	
+		return result;
 	}
 	
 	

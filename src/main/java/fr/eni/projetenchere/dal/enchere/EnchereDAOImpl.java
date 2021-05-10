@@ -106,6 +106,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 		
 		try(cnx){
 			PreparedStatement stmt = cnx.prepareStatement(GET_ENCHERES_BY_UTILISATEUR);
+			stmt.setInt(1, utilisateur.getNo_utilisateurs());
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Article article = articleDAO.getArticleById(rs.getInt("no_article"));

@@ -78,6 +78,11 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 	
 	@Override
+	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+		return articleDAO.getArticlesByUtilisateur(cnx, u);
+	}
+	
+	@Override
 	public void removeArticle(Article article) throws Exception {
 		articleDAO.removeArticle(article);
 	}
@@ -99,6 +104,5 @@ public class ArticleManagerImpl implements ArticleManager {
 		if(prix <= 0) {
 			throw new Exception("Le prix saisi est incorrect");
 		}
-	}
-	
+	}	
 }

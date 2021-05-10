@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Utilisateur;
 
 public interface ArticleDAO {
 
@@ -21,4 +22,5 @@ public interface ArticleDAO {
 	public Article updateArticle(Article a) throws Exception;
 	public Article updateArticle(Connection cnx, Article a) throws Exception;
 
+	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }

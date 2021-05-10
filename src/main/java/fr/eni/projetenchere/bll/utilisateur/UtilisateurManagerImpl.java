@@ -2,15 +2,30 @@ package fr.eni.projetenchere.bll.utilisateur;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.eni.projetenchere.bll.article.ArticleManager;
+import fr.eni.projetenchere.bll.article.ArticleManagerFact;
+import fr.eni.projetenchere.bll.enchere.EnchereManager;
+import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
+import fr.eni.projetenchere.dal.ConnectionProvider;
+import fr.eni.projetenchere.dal.article.ArticleDAO;
+import fr.eni.projetenchere.dal.article.ArticleDAOFactory;
+import fr.eni.projetenchere.dal.enchere.EnchereDAO;
+import fr.eni.projetenchere.dal.enchere.EnchereDAOFactory;
 import fr.eni.projetenchere.dal.utilisateur.*;
 
 public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	private UtilisateurDAO DAO = UtilisateurDAOFactory.getUtilisateurDAO();
+	
+	private ArticleManager articleManager = ArticleManagerFact.getInstance();
+	
+	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
 	
 	//Expression régulière pour tester la validité d'un email
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -163,7 +178,24 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	@Override
 	public void removeUtilisateur(Utilisateur u) throws Exception {
-		DAO.removeUtilisateur(u);
+		Connection cnx = ConnectionProvider.getConnection();
+		cnx.setAutoCommit(false);
+		
+		try {
+			if(articleManager.getArticlesByUtilisateur(cnx, u).size() >= 1) {
+				throw new Exception("Impossible de supprimer un compte ayant un article en vente.");
+			}
+			
+			if(enchereManager.getEncheresByUtilisateur(cnx, u).size() >= 1) {
+				throw new Exception("Impossible de supprimer un compte ayant des enchères en cours.");
+			}	
+			DAO.removeUtilisateur(u); 			
+			cnx.commit();
+		} catch (Exception e) {
+			cnx.rollback(); 
+			throw new Exception(e);
+		}
+		cnx.close(); 
 	}
 	
 	private String crypt(String text) throws NoSuchAlgorithmException {

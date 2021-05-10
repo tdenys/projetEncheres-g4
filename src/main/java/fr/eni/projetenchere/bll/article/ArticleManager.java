@@ -1,10 +1,12 @@
 package fr.eni.projetenchere.bll.article;
 
+import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Utilisateur;
 
 public interface ArticleManager {
 	
@@ -21,4 +23,6 @@ public interface ArticleManager {
 			Date dateFinEnchere, int prixInitial, Categorie categorie) throws Exception;
 
 	public Article getById(int id) throws Exception; 
+	
+	public List<Article> getArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }
