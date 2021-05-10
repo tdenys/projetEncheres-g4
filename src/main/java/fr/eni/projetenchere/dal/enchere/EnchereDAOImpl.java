@@ -27,7 +27,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	private String GET_ENCHERE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	private String GET_LAST_ENCHERE_BY_ARTICLE = "SELECT TOP 1 * FROM ENCHERES WHERE no_article = ? ORDER BY no_enchere DESC";
 	private String GET_ENCHERES_BY_UTILISATEUR = "SELECT * FROM ENCHERES WHERE no_utilisateur = ?";
-	private String GET_UTILISATEUR_WHO_WIN = "SELECT E.no_utilisateur, MAX(E.montant_enchere) max_montant_enchere FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON AV.no_article = E.no_article WHERE E.no_article = ? AND AV.date_fin_encheres >= GetDate() GROUP BY E.no_utilisateur";
+	private String GET_UTILISATEUR_WHO_WIN = "SELECT E.no_utilisateur, MAX(E.montant_enchere) max_montant_enchere FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON AV.no_article = E.no_article WHERE E.no_article = ? AND AV.date_fin_encheres < GetDate() GROUP BY E.no_utilisateur";
 	
 	@Override
 	public Enchere insertEnchere(Enchere e) throws Exception {
