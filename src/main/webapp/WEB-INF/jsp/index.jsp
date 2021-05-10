@@ -115,7 +115,7 @@
 				<div class="col-sm-4">
 					
 					<div class="card" style="width: 18rem;">
-					  <img class="card-img-top" src="http://placeimg.com/400/250/${a.nom_article}" width="18rem" /> 
+					  <img class="card-img-top" src="https://source.unsplash.com/250x200/?product,${a.nom_article}" width="18rem" /> 
 					  <div class="card-body">
 					    <h5 class="card-title"><a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">${a.nom_article}</a></h5>
 					    <p class="card-text">
