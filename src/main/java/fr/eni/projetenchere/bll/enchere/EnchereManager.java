@@ -12,7 +12,7 @@ public interface EnchereManager {
 	
 	public Enchere insertEnchere(int montant_enchere, Article article, Utilisateur utilisateur) throws Exception;
 
-	public List<Enchere> getEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
+	public int getNbEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 	
 	/*public Enchere getEnchereByIdArticle(int numArticle) throws Exception;
 

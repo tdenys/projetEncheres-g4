@@ -184,18 +184,13 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
 		
-		System.out.println("Utilisateur impl");
-		
-		System.out.println("Resultat articles " + articleManager.getNbArticlesByUtilisateur(cnx, u));
-		
 		if(articleManager.getNbArticlesByUtilisateur(cnx, u) >= 1) {
-			System.out.println("exception : trop d'articles");
 			throw new Exception("Impossible de supprimer un compte ayant un article en vente.");
 		}
 		
-		/*if(enchereManager.getNbEncheresByUtilisateur(cnx, u) >= 1) {
-		throw new Exception("Impossible de supprimer un compte ayant des enchères en cours.");
-		}*/
+		if(enchereManager.getNbEncheresByUtilisateur(cnx, u) >= 1) {
+			throw new Exception("Impossible de supprimer un compte ayant des enchères en cours.");
+		}
 		
 		try {	
 			DAO.removeUtilisateur(cnx, u); 			

@@ -67,9 +67,9 @@ public class EnchereManagerImpl implements EnchereManager {
 	}
 
 	@Override
-	public List<Enchere> getEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
+	public int getNbEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
 	
-		return enchereDAO.getEncheresByUtilisateur(cnx, u);
+		return enchereDAO.getNbEncheresByUtilisateur(cnx, u);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	private String INSERT_ENCHERE = "INSERT INTO ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";
 	private String GET_ENCHERE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	private String GET_LAST_ENCHERE_BY_ARTICLE = "SELECT TOP 1 * FROM ENCHERES WHERE no_article = ? ORDER BY no_enchere DESC";
-	private String GET_ENCHERES_BY_UTILISATEUR = "SELECT * FROM ENCHERES WHERE no_utilisateur = ?";
+	private String GET_NB_ENCHERES_BY_UTILISATEUR = "SELECT COUNT(*) FROM ENCHERES WHERE no_utilisateur = ?";
 	private String GET_UTILISATEUR_WHO_WIN = "SELECT E.no_utilisateur, MAX(E.montant_enchere) max_montant_enchere FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON AV.no_article = E.no_article WHERE E.no_article = ? AND AV.date_fin_encheres < GetDate() GROUP BY E.no_utilisateur";
 	
 	@Override
@@ -101,26 +101,21 @@ public class EnchereDAOImpl implements EnchereDAO {
 
 
 	@Override
-	public List<Enchere> getEncheresByUtilisateur(Connection cnx, Utilisateur utilisateur) throws Exception {
-		Enchere enchere = null;
-		List<Enchere> result = new ArrayList<Enchere>();
+	public int getNbEncheresByUtilisateur(Connection cnx, Utilisateur utilisateur) throws Exception {
+		int nb = 0;
 		
-		try{
-			PreparedStatement stmt = cnx.prepareStatement(GET_ENCHERES_BY_UTILISATEUR);
+		try {
+			PreparedStatement stmt = cnx.prepareStatement(GET_NB_ENCHERES_BY_UTILISATEUR);
 			stmt.setInt(1, utilisateur.getNo_utilisateurs());
 			ResultSet rs = stmt.executeQuery();
-			//if(rs.next() != false) {
-				while(rs.next()) {
-					Article article = articleDAO.getArticleById(rs.getInt("no_article"));
-					enchere = new Enchere(rs.getInt("no_enchere"), rs.getDate("date_enchere"), rs.getInt("montant_enchere"), article, utilisateur);
-					result.add(enchere);
-				}
-			//}
+			if(rs.next()) {
+				nb = rs.getInt(1);
+			}	
 		}
 		catch(Exception e) {
-			throw new Exception(GET_ENCHERES_BY_UTILISATEUR);
+			throw new Exception(GET_NB_ENCHERES_BY_UTILISATEUR);
 		}	
-		return result;
+		return nb;
 	}
 	
 	@Override
