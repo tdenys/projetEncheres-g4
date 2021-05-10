@@ -71,6 +71,12 @@ public class EnchereManagerImpl implements EnchereManager {
 	
 		return enchereDAO.getEncheresByUtilisateur(cnx, u);
 	}
+
+	@Override
+	public Utilisateur getUtilisateurWhoWin(int no_article) throws Exception {
+		
+		return enchereDAO.getUtilisateurWhoWin(no_article);
+	}
 	
 	/*@Override
 	public void removeEnchere(Article enchere) throws Exception {

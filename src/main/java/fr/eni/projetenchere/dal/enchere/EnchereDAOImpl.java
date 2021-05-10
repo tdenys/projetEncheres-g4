@@ -27,6 +27,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	private String GET_ENCHERE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	private String GET_LAST_ENCHERE_BY_ARTICLE = "SELECT TOP 1 * FROM ENCHERES WHERE no_article = ? ORDER BY no_enchere DESC";
 	private String GET_ENCHERES_BY_UTILISATEUR = "SELECT * FROM ENCHERES WHERE no_utilisateur = ?";
+	private String GET_UTILISATEUR_WHO_WIN = "SELECT E.no_utilisateur, MAX(E.montant_enchere) max_montant_enchere FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON AV.no_article = E.no_article WHERE E.no_article = ? AND AV.date_fin_encheres >= GetDate() GROUP BY E.no_utilisateur";
 	
 	@Override
 	public Enchere insertEnchere(Enchere e) throws Exception {
@@ -104,7 +105,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 		Enchere enchere = null;
 		List<Enchere> result = new ArrayList<Enchere>();
 		
-		try(cnx){
+		try{
 			PreparedStatement stmt = cnx.prepareStatement(GET_ENCHERES_BY_UTILISATEUR);
 			stmt.setInt(1, utilisateur.getNo_utilisateurs());
 			ResultSet rs = stmt.executeQuery();
@@ -118,6 +119,23 @@ public class EnchereDAOImpl implements EnchereDAO {
 			throw new Exception(GET_ENCHERES_BY_UTILISATEUR);
 		}	
 		return result;
+	}
+	
+	@Override
+	public Utilisateur getUtilisateurWhoWin(int no_article) throws Exception {
+		Utilisateur u = null;
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_WHO_WIN);
+			stmt.setInt(1, no_article);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				u = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
+			}
+		}
+		catch(Exception exception) {
+			throw new Exception(GET_UTILISATEUR_WHO_WIN);
+		}
+		return u;
 	}
 
 }

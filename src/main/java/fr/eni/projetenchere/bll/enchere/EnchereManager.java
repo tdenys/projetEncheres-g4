@@ -17,4 +17,6 @@ public interface EnchereManager {
 	/*public Enchere getEnchereByIdArticle(int numArticle) throws Exception;
 
 	void removeEnchere(Enchere e) throws Exception;*/
+	
+	public Utilisateur getUtilisateurWhoWin(int no_article) throws Exception;
 }
