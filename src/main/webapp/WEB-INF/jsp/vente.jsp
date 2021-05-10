@@ -17,7 +17,7 @@
 		
 		<div class="row" style="margin: 10px;">
 			<div class="col text-center" style="margin: 10px;">
-				<img src="http://placeimg.com/400/400/${a.nom_article}" width="400px"/>
+				<img src="https://source.unsplash.com/random/400x400" width="400px"/>
 			</div>
 			<div class="col text-left" style="margin: 10px;">
 				<form method="POST" action="${pageContext.request.contextPath}/vente">
