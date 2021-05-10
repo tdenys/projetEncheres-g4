@@ -48,6 +48,7 @@ public class VenteServlet extends HttpServlet {
 		if(u != null) {
 			request.setAttribute("u", u);
 			
+			// Récupération des catégories
 			List<Categorie> listeCategories =  new ArrayList<>();
 			try {
 				listeCategories = categorieManager.getAll();

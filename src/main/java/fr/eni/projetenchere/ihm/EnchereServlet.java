@@ -40,13 +40,25 @@ public class EnchereServlet extends HttpServlet {
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		if(u != null) {
 			try {
+				request.setAttribute("u",u);
 				
+				// Récupération de l'article
 				int id = Integer.parseInt(request.getParameter("id"));
 				Article a = articleManager.getById(id);	
 				request.setAttribute("a",a);
 				
+				// Récupération retrait
 				Retrait r = retraitManager.getRetraitByIdArticle(id);
 				request.setAttribute("r",r);
+				
+				// Vérification si la vente est terminée
+				Utilisateur win = enchereManager.getUtilisateurWhoWin(id);
+				request.setAttribute("win",win);
+				boolean termine = true;
+				if(win == null) {
+					termine = false;
+				}
+				request.setAttribute("termine",termine);
 				
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());

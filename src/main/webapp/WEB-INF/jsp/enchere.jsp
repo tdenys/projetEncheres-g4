@@ -20,6 +20,18 @@
 				<img src="https://img.icons8.com/ios/452/picture.png" width="250px"/>
 			</div>
 			<div class="col text-left" style="margin: 10px;">
+			
+				<!-- SI ENCHERE TERMINEE ON AFFICHE LE GAGNANT -->
+				<c:if test="${termine}">
+					<!-- SI J'AI GAGNE -->
+					<c:if test="${win.pseudo == u.pseudo}">
+						<b>Vous avez remporté la vente</b>
+					</c:if>
+					<!-- SI JE N'AI PAS GAGNE -->
+					<c:if test="${win.pseudo != u.pseudo}">
+						<b>${win.pseudo} a remporté la vente</b>
+					</c:if>
+				</c:if>
 				
 				<!-- NOM DE L'ARTICLE -->
 				<p>${a.nom_article}</p>			
@@ -45,14 +57,20 @@
 				</p>
 				<!-- VENDEUR -->
 				<p>Vendeur : ${a.utilisateur.pseudo}</p>
-				<!-- MA PROPOSITION -->
-				<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
-					<!-- PRIX PROPOSE -->
-					<label for="proposition">Ma proposition : </label>
-					<input type="number" class="form-control" id="proposition" name="proposition" required>
-					
-					<input type="submit" class="btn btn-dark text-light" name="encherir" value="Enchérir" />
-				</form>
+				
+				<c:if test="${!termine}">
+					<!-- MA PROPOSITION -->
+					<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
+						<!-- PRIX PROPOSE -->
+						<label for="proposition">Ma proposition : </label>
+						<input type="number" class="form-control" id="proposition" name="proposition" required>
+						
+						<input type="submit" class="btn btn-dark text-light" name="encherir" value="Enchérir" />
+					</form>
+				</c:if>
+				<c:if test="${termine}">
+					<a href="" class="btn btn-dark text-light">Back</a>
+				</c:if>
 				    
 			</div>
 		</div>
