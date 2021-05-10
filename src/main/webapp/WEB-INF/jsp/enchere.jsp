@@ -17,7 +17,7 @@
 		
 		<div class="row" style="margin: 10px;">
 			<div class="col text-center" style="margin: 10px;">
-				<img src="https://img.icons8.com/ios/452/picture.png" width="250px"/>
+				<img src="http://placeimg.com/400/400/${a.categorie.libelle}" width="400px"/>
 			</div>
 			<div class="col text-left" style="margin: 10px;">
 			
@@ -69,7 +69,7 @@
 					</form>
 				</c:if>
 				<c:if test="${termine}">
-					<a href="" class="btn btn-dark text-light">Back</a>
+					<a href="" class="btn btn-dark text-light">Retour</a>
 				</c:if>
 				    
 			</div>
