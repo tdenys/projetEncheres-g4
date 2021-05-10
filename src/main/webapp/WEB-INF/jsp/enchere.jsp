@@ -17,7 +17,7 @@
 		
 		<div class="row" style="margin: 10px;">
 			<div class="col text-center" style="margin: 10px;">
-				<img src="http://placeimg.com/400/250/${a.nom_article}" width="400px"/>
+				<img src="http://placeimg.com/400/400/${a.nom_article}" width="400px"/>
 			</div>
 			<div class="col text-left" style="margin: 10px;">
 			
