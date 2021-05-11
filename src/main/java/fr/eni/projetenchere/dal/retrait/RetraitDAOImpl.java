@@ -86,6 +86,22 @@ public class RetraitDAOImpl implements RetraitDAO {
 	}
 	
 	@Override
+	public Retrait updateRetrait(Connection cnx, Retrait r) throws Exception {
+		try {
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_RETRAIT);
+			stmt.setString(1, r.getRue());
+			stmt.setString(2, r.getCode_postal());
+			stmt.setString(3, r.getVille());
+			stmt.setInt(3, r.getNo_article());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_RETRAIT);
+		}
+		return r;
+	}
+	
+	@Override
 	public void removeRetrait(Retrait r) throws Exception {
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_RETRAIT);
