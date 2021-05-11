@@ -41,7 +41,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			if(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
 				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
-				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie);
+				a = new Article(id, rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie, rs.getBoolean("vendu"));
 			}
 		}
 		catch(Exception e) {
@@ -61,7 +61,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			while(rs.next()) {
 				Utilisateur utilisateur = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));
 				Categorie categorie = categorieDAO.getCategorieById(rs.getInt("no_categorie"));
-				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie);
+				a = new Article(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"), rs.getInt("prix_vente"), utilisateur, categorie, rs.getBoolean("vendu"));
 				result.add(a);
 			}
 		}

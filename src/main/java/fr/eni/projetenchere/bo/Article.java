@@ -18,6 +18,22 @@ public class Article{
 	}
 
 	public Article(int no_article, String nom_article, String description, Date date_debut_encheres,
+			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, Categorie categorie,
+			boolean vendu) {
+		super();
+		this.no_article = no_article;
+		this.nom_article = nom_article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.prix_vente = prix_vente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.vendu = vendu;
+	}
+
+	public Article(int no_article, String nom_article, String description, Date date_debut_encheres,
 			Date date_fin_encheres, int prix_initial, int prix_vente, Utilisateur utilisateur, Categorie categorie) {
 		this.no_article = no_article;
 		this.nom_article = nom_article;
