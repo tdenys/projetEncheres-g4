@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
@@ -22,6 +23,8 @@ import fr.eni.projetenchere.bll.enchere.EnchereManager;
 import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
 import fr.eni.projetenchere.bll.retrait.RetraitManager;
 import fr.eni.projetenchere.bll.retrait.RetraitManagerFact;
+import fr.eni.projetenchere.bll.utilisateur.UtilisateurManager;
+import fr.eni.projetenchere.bll.utilisateur.UtilisateurManagerFact;
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Enchere;
@@ -39,6 +42,7 @@ public class EnchereServlet extends HttpServlet {
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
 	private RetraitManager retraitManager = RetraitManagerFact.getInstance();
 	private CategorieManager categorieManager = CategorieManagerFact.getInstance();
+	private UtilisateurManager utilisateurManager = UtilisateurManagerFact.getInstance();
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
        
@@ -70,17 +74,25 @@ public class EnchereServlet extends HttpServlet {
 				Retrait r = retraitManager.getRetraitByIdArticle(id);
 				request.setAttribute("r",r);
 				
+				Date now = new Date();
+				
 				// Vérification si la vente est terminée
 				Utilisateur win = enchereManager.getUtilisateurWhoWin(a);
 				request.setAttribute("win",win);
 				boolean termine = true;
-				if(win == null) {
+				if(a.getDate_fin_encheres().after(now)) {
 					termine = false;
+				}
+				if(win != null) {
+					// On update l'utilisateur
+					u = utilisateurManager.getUtilisateurById(u.getNo_utilisateurs());
+					HttpSession session = request.getSession();
+					session.setAttribute("utilisateur", u);
 				}
 				request.setAttribute("termine",termine);
 				
+				// Verification si la vente est commencée
 				boolean commence = true;
-				Date now = new Date();
 				if(a.getDate_debut_encheres().after(now)) {
 					commence = false;
 				}
@@ -149,6 +161,14 @@ public class EnchereServlet extends HttpServlet {
 				Enchere e = enchereManager.insertEnchere(proposition, a, u);
 				request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
 			}
+			
+			// Verification si la vente est commencée
+			boolean commence = true;
+			Date now = new Date();
+			if(a.getDate_debut_encheres().after(now)) {
+				commence = false;
+			}
+			request.setAttribute("commence",commence);
 
 		}
 		catch(Exception e){

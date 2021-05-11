@@ -102,7 +102,8 @@
 				
 				<!-- RECHERCHER -->
 				<div class="col-lg-4 text-center">
-					<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light" value="Rechercher" style="margin-top: 50px;">
+					<input type="submit" name="Rechercher" class="btn btn-lg btn-dark text-light" value="Rechercher" style="margin-top: 50px;"><br/>
+					<a class="btn btn-sm btn-dark text-light" href="">Réinitialiser</a>
 				</div>
 			</div>
 		</form>

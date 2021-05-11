@@ -24,7 +24,10 @@
 
 	<style>
 		body{
-			background-image: url('https://i0.hippopx.com/photos/164/964/28/background-board-brown-carpentry-preview.jpg');
+			/*
+				background-image: url('https://i0.hippopx.com/photos/164/964/28/background-board-brown-carpentry-preview.jpg');
+			*/
+			background-image: url("https://source.unsplash.com/1920x1080/?wild");
 			background-size: cover;
 		}
 	</style>

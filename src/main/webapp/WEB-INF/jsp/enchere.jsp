@@ -25,11 +25,15 @@
 				<c:if test="${termine}">
 					<!-- SI J'AI GAGNE -->
 					<c:if test="${win.pseudo == u.pseudo}">
-						<b>Vous avez remporté la vente</b>
+						<div style="margin-top: 10px;" class="alert alert-success" role="alert">
+						  	<b>Vous avez remporté la vente</b>
+						</div>
 					</c:if>
 					<!-- SI JE N'AI PAS GAGNE -->
-					<c:if test="${win.pseudo != u.pseudo}">
-						<b>${win.pseudo} a remporté la vente</b>
+					<c:if test="${win.pseudo != null && win.pseudo != u.pseudo}">
+						<div style="margin-top: 10px;" class="alert alert-success" role="alert">
+						  	<b>${win.pseudo} a remporté la vente</b>
+						</div>
 					</c:if>
 				</c:if>
 				
@@ -124,7 +128,7 @@
 						</div>
 					</div>
 				</c:if>
-				<a href="" class="btn btn-dark text-light">Retour</a>    
+				<a href="${pageContext.request.contextPath}/" class="btn btn-dark text-light">Retour</a>    
 			</div>
 		</div>
 		

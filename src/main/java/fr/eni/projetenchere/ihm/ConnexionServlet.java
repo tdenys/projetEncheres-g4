@@ -72,13 +72,14 @@ public class ConnexionServlet extends HttpServlet {
 			cookieMdp = getCookie(request, "mdp").getValue();
 		}
 		try {
-	        if(saveUserCookies != null && cookiePseudo == null && cookieMdp == null) {
+	        if((saveUserCookies != null && cookiePseudo == null && cookieMdp == null) || (!user.equals(cookiePseudo) && cookiePseudo != null)) {
 	        	theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
 	        	c = new Cookie("pseudo", user);
 	        	c2 = new Cookie("mdp", theUser.getMot_de_passe());
 	        	response.addCookie(c);
 	        	response.addCookie(c2);
-	        }else{
+	        }
+	        else{
 	        	try {
 	        		theUser = manager.getUtilisateurByPseudoAndMDP(user, password);
 	        	}catch(Exception e1) {
