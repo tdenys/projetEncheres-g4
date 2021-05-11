@@ -11,7 +11,8 @@ public class Article{
 	private int prix_initial;
 	private int prix_vente;
 	private Utilisateur utilisateur;
-	private Categorie categorie; 
+	private Categorie categorie;
+	private boolean vendu;
 	
 	public Article() {
 	}
@@ -112,13 +113,21 @@ public class Article{
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+	
+	public boolean isVendu() {
+		return vendu;
+	}
+
+	public void setVendu(boolean vendu) {
+		this.vendu = vendu;
+	}
 
 	@Override
 	public String toString() {
-		return "Article_vendu [no_article=" + no_article + ", nom_article=" + nom_article + ", description="
-				+ description + ", date_debut_encheres=" + date_debut_encheres + ", date_fin_encheres="
-				+ date_fin_encheres + ", prix_initial=" + prix_initial + ", prix_vente=" + prix_vente
-				+ ", utilisateur=" + utilisateur.toString() + ", categorie=" + categorie.toString() + "]";
+		return "Article [no_article=" + no_article + ", nom_article=" + nom_article + ", description=" + description
+				+ ", date_debut_encheres=" + date_debut_encheres + ", date_fin_encheres=" + date_fin_encheres
+				+ ", prix_initial=" + prix_initial + ", prix_vente=" + prix_vente + ", utilisateur=" + utilisateur
+				+ ", categorie=" + categorie + ", vendu=" + vendu + "]";
 	}
 	
 }
