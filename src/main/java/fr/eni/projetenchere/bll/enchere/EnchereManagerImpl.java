@@ -85,7 +85,7 @@ public class EnchereManagerImpl implements EnchereManager {
 			System.out.println("enchere remportée : le vendeur a du etre credité");
 		}
 		
-		return enchereDAO.getUtilisateurWhoWin(a);
+		return enchereDAO.getUtilisateurWhoWin(a); 
 	}
 	
 }
