@@ -8,7 +8,7 @@ public class Article{
 	private String description;
 	private Date date_debut_encheres;
 	private Date date_fin_encheres;
-	private int prix_initial;
+	private int prix_initial; 
 	private int prix_vente;
 	private Utilisateur utilisateur;
 	private Categorie categorie;

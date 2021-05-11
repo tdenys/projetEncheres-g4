@@ -59,7 +59,7 @@ public class EnchereManagerImpl implements EnchereManager {
 			} catch (Exception e) {
 				cnx.rollback();
 				throw new Exception(e);
-			}
+			} 
 		} else {
 			throw new Exception("Une erreur s'est produite");
 		}

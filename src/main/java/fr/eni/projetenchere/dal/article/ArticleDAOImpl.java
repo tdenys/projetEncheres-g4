@@ -215,7 +215,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new Exception(UPDATE_ARTICLE);
 		}
 		return a;
-	}
+	} 
 	
 	@Override
 	public Article updateArticle(Connection cnx, Article a) throws Exception {
