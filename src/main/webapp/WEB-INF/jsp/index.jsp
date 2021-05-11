@@ -169,7 +169,7 @@ if(document.querySelector('input#encheresOuvertes')){
 			document.querySelector('input#encheresOuvertes').disabled = true;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
 			document.querySelector('input#mesEncheres').disabled = false;
-			document.querySelector('input#encheresOuvertes').checked = false;
+			document.querySelector('input#encheresOuvertes').checked = false; 
 		}else{
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;

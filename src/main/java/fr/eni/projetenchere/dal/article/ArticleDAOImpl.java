@@ -127,7 +127,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				stmt.setBoolean(6, !param1);
 				stmt.setInt(7, u.getNo_utilisateurs());
 				stmt.setBoolean(8, !param2);
-				stmt.setBoolean(9, !param3);
+				stmt.setBoolean(9, !param3); 
 			}
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
