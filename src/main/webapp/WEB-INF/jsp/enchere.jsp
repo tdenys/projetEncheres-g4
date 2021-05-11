@@ -68,10 +68,10 @@
 						<label for="rue">Rue : </label>
 						<input type="text" class="form-control" id="rue" maxlength="30" name="rue" value="${r.rue}" required>
 						<!-- CODE POSTAL -->
-						<label for="codePostal">Rue : </label>
+						<label for="codePostal">Code Postal : </label>
 						<input type="text" class="form-control" id="codePostal" maxlength="10" name="codePostal"  value="${r.code_postal}" required>
 						<!-- VILLE -->
-						<label for="ville">Rue : </label>
+						<label for="ville">Ville : </label>
 						<input type="text" class="form-control" id="ville" maxlength="50" name="ville"  value="${r.ville}" required>
 						<!-- SUBMIT -->
 						<input type="submit" class="btn btn-dark text-light" value="Enregistrer" />
