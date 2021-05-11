@@ -76,15 +76,13 @@ public class EnchereManagerImpl implements EnchereManager {
 	@Override
 	public Utilisateur getUtilisateurWhoWin(Article a) throws Exception {
 		Utilisateur vendeur = a.getUtilisateur();
-			
-		if(!a.isVendu()) {
-			articleDAO.updateArticleVendu(a, true);
-		}
 		
-		if(a.getDate_debut_encheres().after(a.getDate_fin_encheres()) && a.getPrix_initial() != a.getPrix_vente()) {
+		System.out.println("Vendeur-> " + a.isVendu() + " " + vendeur.getPseudo());
+		
+		if(!a.isVendu() && (a.getDate_debut_encheres().after(a.getDate_fin_encheres())) && (a.getPrix_initial() != a.getPrix_vente())) {
+			articleDAO.updateArticleVendu(a, true);
 			utilisateurDAO.addCredit(vendeur, a.getPrix_vente());
-		} else {
-			throw new Exception("Cette enchère n'a pas été remportée.");
+			System.out.println("enchere remportée : le vendeur a du etre credité");
 		}
 		
 		return enchereDAO.getUtilisateurWhoWin(a);
