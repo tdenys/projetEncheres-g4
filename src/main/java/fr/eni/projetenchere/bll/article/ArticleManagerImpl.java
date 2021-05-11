@@ -106,5 +106,27 @@ public class ArticleManagerImpl implements ArticleManager {
 		}
 	}
 
+	@Override
+	public void updateArticleAndRetrait(Article a, Retrait r) throws Exception {
+		Connection cnx = ConnectionProvider.getConnection();
+		cnx.setAutoCommit(false);
+		try {
+			//Validation des saisies utilisateur
+			datesValides(a.getDate_debut_encheres(), a.getDate_fin_encheres());
+			stringValide(a.getDescription(), "Description");
+			prixInitialValide(a.getPrix_initial());
+			
+			a = articleDAO.updateArticle(cnx, a);
+			
+			r = retraitDAO.updateRetrait(cnx, r);
+			
+			cnx.commit();
+		} catch (Exception e) {
+			cnx.rollback();
+			throw new Exception(e);
+		}
+		cnx.close();
+	}
+
 
 }

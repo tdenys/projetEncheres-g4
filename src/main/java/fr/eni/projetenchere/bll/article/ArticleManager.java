@@ -6,6 +6,8 @@ import java.util.List;
 
 import fr.eni.projetenchere.bo.Article;
 import fr.eni.projetenchere.bo.Categorie;
+import fr.eni.projetenchere.bo.Enchere;
+import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
 
 public interface ArticleManager {
@@ -25,4 +27,6 @@ public interface ArticleManager {
 	public Article getById(int id) throws Exception; 
 	
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
+	
+	public void updateArticleAndRetrait(Article a, Retrait r) throws Exception;
 }
