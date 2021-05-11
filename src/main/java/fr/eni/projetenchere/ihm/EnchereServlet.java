@@ -71,7 +71,7 @@ public class EnchereServlet extends HttpServlet {
 				request.setAttribute("r",r);
 				
 				// Vérification si la vente est terminée
-				Utilisateur win = enchereManager.getUtilisateurWhoWin(id);
+				Utilisateur win = enchereManager.getUtilisateurWhoWin(a);
 				request.setAttribute("win",win);
 				boolean termine = true;
 				if(win == null) {

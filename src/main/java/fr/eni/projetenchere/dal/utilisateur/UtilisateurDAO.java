@@ -22,4 +22,6 @@ public interface UtilisateurDAO {
 
 	public void removeUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 
+	public void addCredit(Utilisateur vendeur, int prix_vente) throws Exception;
+
 }

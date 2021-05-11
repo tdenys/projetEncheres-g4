@@ -19,6 +19,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?";
+	private String ADD_CREDIT = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur = ?";
 	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
 	private String UPDATE_UTILISATEUR_WITH_CREDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ? WHERE pseudo = ?";
@@ -192,25 +193,22 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new Exception(DELETE_UTILISATEUR);
 		}
 	}
-	
-	/*public List<Utilisateur> getAll() throws Exception {
-		
-		Utilisateur r = null;
-		List<Utilisateur> result = new ArrayList<Utilisateur>();
-		String req = "SELECT * FROM UTILISATEURS";
+
+	@Override
+	public void addCredit(Utilisateur vendeur, int prix_vente) throws Exception {
+		int credit = vendeur.getCredit() + prix_vente;
 		
 		try(Connection cnx = ConnectionProvider.getConnection()){
-			PreparedStatement stmt = cnx.prepareStatement(req);
-			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
-				r = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getTime("heure_Utilisateur"), this.getUtilisateursById(rs.getInt("id")));
-				result.add(r);
-			}
+			PreparedStatement stmt = cnx.prepareStatement(ADD_CREDIT);
+			stmt.setInt(1, credit);
+			stmt.setInt(2, vendeur.getNo_utilisateurs());
+
+			stmt.executeUpdate();
 		}
 		catch(Exception e) {
-			throw new Exception(req);
-		}	
-		return result;
-	}*/
+			throw new Exception(ADD_CREDIT);
+		}
+		
+	}
 	
 }

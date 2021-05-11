@@ -119,11 +119,11 @@ public class EnchereDAOImpl implements EnchereDAO {
 	}
 	
 	@Override
-	public Utilisateur getUtilisateurWhoWin(int no_article) throws Exception {
+	public Utilisateur getUtilisateurWhoWin(Article a) throws Exception {
 		Utilisateur u = null;
 		try(Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = cnx.prepareStatement(GET_UTILISATEUR_WHO_WIN);
-			stmt.setInt(1, no_article);
+			stmt.setInt(1, a.getNo_article());
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				u = utilisateurDAO.getUtilisateurById(rs.getInt("no_utilisateur"));

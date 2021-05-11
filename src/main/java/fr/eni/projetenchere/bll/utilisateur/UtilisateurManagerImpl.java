@@ -68,6 +68,19 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		return u;
 	}
 	
+	@Override
+	public Utilisateur getUtilisateurById(int no_utilisateur) throws Exception {
+		Utilisateur u = new Utilisateur();
+		
+		try {
+			u = DAO.getUtilisateurById(no_utilisateur);
+		} catch(Exception e) {
+			throw new Exception("Le compte utilisateur n'a pas été trouvé.");
+		}
+			
+		return u;
+	}
+	
 	
 	/*
 	 * Return true si l'utilisateur connecté veut regarder son profil ou false s'il veut voir celui d'un autre utilisateur	
@@ -224,5 +237,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
         	throw new Exception(type + " incorrect"); 
 		}
 	}
+
+
 
 }
