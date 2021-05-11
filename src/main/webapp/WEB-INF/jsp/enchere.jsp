@@ -115,10 +115,7 @@
 						<input type="submit" class="btn btn-dark text-light" name="encherir" value="Enchérir" />
 					</form>
 				</c:if>
-				<c:if test="${termine}">
-					<a href="" class="btn btn-dark text-light">Retour</a> 
-				</c:if>
-				    
+				<a href="" class="btn btn-dark text-light">Retour</a>    
 			</div>
 		</div>
 		
