@@ -9,7 +9,7 @@
 	<jsp:include page="/WEB-INF/fragments/navbar.jsp"/>
 	<div class="text-center bg-light" style="margin-left: 10px; margin-right: 10px;">
 	
-		<h6 style="margin-top: 25px;">Pseudo : ${ u.pseudo }</h6>
+		<h2 style="font-family: cursive; margin-top: 25px;">Pseudo : ${ u.pseudo }</h2>
 		<p class="text-justify" style="margin-left: 25%; margin-right: 25%;">
 			Nom : ${ u.nom }<br/>
 			Prénom : ${ u.prenom }<br/>

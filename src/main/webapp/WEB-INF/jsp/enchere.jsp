@@ -16,10 +16,10 @@
 		</div>
 		
 		<div class="row" style="margin: 10px;">
-			<div class="col text-center" style="margin: 10px;">
+			<div class="col-12 col-md-7 text-center" style="margin-bottom: 25px;">
 				<img src="https://source.unsplash.com/400x400/?${a.nom_article}" width="400px"/>
 			</div>
-			<div class="col text-left" style="margin: 10px;">
+			<div class="col col-md-5 text-left">
 			
 				<!-- SI ENCHERE TERMINEE ON AFFICHE LE GAGNANT -->
 				<c:if test="${termine}">
@@ -80,7 +80,7 @@
 				<!-- SI JE SUIS UN ACHETEUR -->
 				<c:if test="${a.utilisateur.pseudo != u.pseudo || a.prix_vente != a.prix_initial}">
 					<!-- NOM DE L'ARTICLE -->
-					<p>${a.nom_article}</p>			
+					<h3 style="margin-bottom: 10px;"><b>${a.nom_article}</b></h3>			
 					<!-- DESCRIPTION -->
 					<p class="text-justify">
 						Description : 

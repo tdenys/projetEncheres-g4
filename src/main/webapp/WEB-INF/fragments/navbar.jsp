@@ -12,13 +12,14 @@
   	<ul class="navbar-nav mr-auto"></ul>
 
 	<c:if test="${!empty utilisateur}">
-		<a class="btn" href="${pageContext.request.contextPath}/vente">Vendre un article</a>
-		<a class="btn" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}"><i class="fa-lg fas fa-user-cog"></i></a>
-    	<a class="btn" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
+		<a class="text-dark">Crédits : ${utilisateur.credit} pts </a>
+		<a style="margin-left: 50px;" class="text-dark" href="${pageContext.request.contextPath}/vente">Vendre un article <i class="fas fa-shopping-cart"></i></a>
+		<a style="margin-left: 30px;" class="text-dark" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}">Profil <i class="fas fa-user-cog"></i></a>
+    	<a style="margin-left: 30px;" class="text-dark" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
     </c:if>
     
 	<c:if test="${empty utilisateur}">
-	  	<a class="btn" href="${pageContext.request.contextPath}/?co=1">Se connecter <i class="fas fa-sign-in-alt"></i></a>
+	  	<a class="text-dark" href="${pageContext.request.contextPath}/?co=1">Se connecter <i class="fas fa-sign-in-alt"></i></a>
     </c:if>
     
   </div>
