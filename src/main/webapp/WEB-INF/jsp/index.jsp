@@ -156,6 +156,8 @@ if(document.querySelector('input#encheresOuvertes')){
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = true;
 			document.querySelector('input#mesEncheres').disabled = false;
+			document.querySelector('input#mesEncheresRemportees').checked = false;
+			document.querySelector('input#mesEncheres').checked = false;
 		}else{
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
@@ -167,6 +169,7 @@ if(document.querySelector('input#encheresOuvertes')){
 			document.querySelector('input#encheresOuvertes').disabled = true;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
 			document.querySelector('input#mesEncheres').disabled = false;
+			document.querySelector('input#encheresOuvertes').checked = false;
 		}else{
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
@@ -180,6 +183,9 @@ if(document.querySelector('input#mesVentesEnCours')){
 			document.querySelector('input#mesVentesEnCours').disabled = false;
 			document.querySelector('input#ventesNonDebutees').disabled = true;
 			document.querySelector('input#ventesTerminees').disabled = true;
+			document.querySelector('input#encheresOuvertes').checked = false;
+			document.querySelector('input#mesEncheresRemportees').checked = false;
+			document.querySelector('input#mesEncheres').checked = false;
 		}else{
 			document.querySelector('input#mesVentesEnCours').disabled = false;
 			document.querySelector('input#ventesNonDebutees').disabled = false;
@@ -191,6 +197,9 @@ if(document.querySelector('input#mesVentesEnCours')){
 			document.querySelector('input#mesVentesEnCours').disabled = true;
 			document.querySelector('input#ventesNonDebutees').disabled = false;
 			document.querySelector('input#ventesTerminees').disabled = true;
+			document.querySelector('input#encheresOuvertes').checked = false;
+			document.querySelector('input#mesEncheresRemportees').checked = false;
+			document.querySelector('input#mesEncheres').checked = false;
 		}else{
 			document.querySelector('input#mesVentesEnCours').disabled = false;
 			document.querySelector('input#ventesNonDebutees').disabled = false;
@@ -202,6 +211,9 @@ if(document.querySelector('input#mesVentesEnCours')){
 			document.querySelector('input#mesVentesEnCours').disabled = true;
 			document.querySelector('input#ventesNonDebutees').disabled = true;
 			document.querySelector('input#ventesTerminees').disabled = false;
+			document.querySelector('input#encheresOuvertes').checked = false;
+			document.querySelector('input#mesEncheresRemportees').checked = false;
+			document.querySelector('input#mesEncheres').checked = false;
 		}else{
 			document.querySelector('input#mesVentesEnCours').disabled = false;
 			document.querySelector('input#ventesNonDebutees').disabled = false;
@@ -215,6 +227,9 @@ if(document.querySelector('input#radio1')){
 			document.querySelector('input#encheresOuvertes').disabled = false;
 			document.querySelector('input#mesEncheres').disabled = false;
 			document.querySelector('input#mesEncheresRemportees').disabled = false;
+			document.querySelector('input#encheresOuvertes').checked = false;
+			document.querySelector('input#mesEncheres').checked = false;
+			document.querySelector('input#mesEncheresRemportees').checked = false;
 			document.querySelector('input#mesVentesEnCours').disabled = true;
 			document.querySelector('input#ventesNonDebutees').disabled = true;
 			document.querySelector('input#ventesTerminees').disabled = true;
@@ -230,12 +245,15 @@ if(document.querySelector('input#radio2')){
 			document.querySelector('input#encheresOuvertes').disabled = true;
 			document.querySelector('input#mesEncheres').disabled = true;
 			document.querySelector('input#mesEncheresRemportees').disabled = true;
-			document.querySelector('input#mesVentesEnCours').disabled = false;
-			document.querySelector('input#ventesNonDebutees').disabled = false;
-			document.querySelector('input#ventesTerminees').disabled = false;
 			document.querySelector('input#encheresOuvertes').checked = false;
 			document.querySelector('input#mesEncheres').checked = false;
 			document.querySelector('input#mesEncheresRemportees').checked = false;
+			document.querySelector('input#mesVentesEnCours').disabled = false;
+			document.querySelector('input#ventesNonDebutees').disabled = false;
+			document.querySelector('input#ventesTerminees').disabled = false;
+			document.querySelector('input#mesVentesEnCours').checked = false;
+			document.querySelector('input#ventesNonDebutees').checked = false;
+			document.querySelector('input#ventesTerminees').checked = false;
 		}
 	});
 }

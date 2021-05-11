@@ -84,6 +84,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				+ "LEFT JOIN ENCHERES E ON E.no_article = AV.no_article "
 				+ "WHERE (? = ' ' OR nom_article LIKE ?) "
 				+ "AND (? = 0 OR no_categorie = ?) "
+				+ "AND (AV.no_utilisateur != ?) "
 				+ "AND (? = 1 OR date_fin_encheres > GetDate()) "
 				+ "AND (? = 1 OR E.no_utilisateur = ?) "
 				+ "AND (? = 1 OR AV.date_fin_encheres < GetDate() AND E.no_utilisateur = ?);";
@@ -92,6 +93,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				+ "LEFT JOIN ENCHERES E ON E.no_article = AV.no_article "
 				+ "WHERE (? = ' ' OR nom_article LIKE ?) "
 				+ "AND (? = 0 OR no_categorie = ?) "
+				+ "AND (AV.no_utilisateur = ?) "
 				+ "AND (? = 1 OR (AV.no_utilisateur = ? AND date_fin_encheres > GetDate())) "
 				+ "AND (? = 1 OR date_debut_encheres > GetDate()) "
 				+ "AND (? = 1 OR date_fin_encheres < GetDate());";
@@ -109,20 +111,22 @@ public class ArticleDAOImpl implements ArticleDAO {
 				stmt.setString(2, "%"+filtres+"%");
 				stmt.setInt(3, categorie);
 				stmt.setInt(4, categorie);
-				stmt.setBoolean(5, !param1);
-				stmt.setBoolean(6, !param2);
-				stmt.setInt(7, u.getNo_utilisateurs());
-				stmt.setBoolean(8, !param3);
-				stmt.setInt(9, u.getNo_utilisateurs());
+				stmt.setInt(5, u.getNo_utilisateurs());
+				stmt.setBoolean(6, !param1);
+				stmt.setBoolean(7, !param2);
+				stmt.setInt(8, u.getNo_utilisateurs());
+				stmt.setBoolean(9, !param3);
+				stmt.setInt(10, u.getNo_utilisateurs());
 			} else {
 				stmt.setString(1, filtres);
 				stmt.setString(2, "%"+filtres+"%");
 				stmt.setInt(3, categorie);
 				stmt.setInt(4, categorie);
-				stmt.setBoolean(5, !param1);
-				stmt.setInt(6, u.getNo_utilisateurs());
-				stmt.setBoolean(7, !param2);
-				stmt.setBoolean(8, !param3);
+				stmt.setInt(5, u.getNo_utilisateurs());
+				stmt.setBoolean(6, !param1);
+				stmt.setInt(7, u.getNo_utilisateurs());
+				stmt.setBoolean(8, !param2);
+				stmt.setBoolean(9, !param3);
 			}
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
