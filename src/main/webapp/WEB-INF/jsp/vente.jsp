@@ -59,11 +59,11 @@
 					<input type="text" class="form-control" id="rue" maxlength="30" name="rue" value="${u.rue }" required>
 					
 					<!-- CODE POSTAL -->
-					<label for="codePostal">Rue : </label>
+					<label for="codePostal">Code postal : </label>
 					<input type="text" class="form-control" id="codePostal" maxlength="10" name="codePostal"  value="${u.code_postal }" required>
 					
 					<!-- VILLE -->
-					<label for="ville">Rue : </label>
+					<label for="ville">Ville : </label>
 					<input type="text" class="form-control" id="ville" maxlength="50" name="ville"  value="${u.ville }" required>
 					
 					<div class="row">
