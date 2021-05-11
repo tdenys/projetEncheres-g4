@@ -45,7 +45,7 @@ public class ArticleManagerImpl implements ArticleManager {
 			a = articleDAO.insertArticle(cnx, a);
 			
 			Retrait r = new Retrait(a.getNo_article(), rue, cp, ville);
-			r = retraitDAO.insertRetrait(cnx, r);
+			r = retraitDAO.insertRetrait(cnx, r);	
 			
 			cnx.commit();
 		} catch (Exception e) {
@@ -107,9 +107,10 @@ public class ArticleManagerImpl implements ArticleManager {
 	}
 
 	@Override
-	public void updateArticleAndRetrait(Article a, Retrait r) throws Exception {
+	public Object[] updateArticleAndRetrait(Article a, Retrait r) throws Exception {
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
+		Object [] result = {null, null};
 		try {
 			//Validation des saisies utilisateur
 			datesValides(a.getDate_debut_encheres(), a.getDate_fin_encheres());
@@ -120,12 +121,17 @@ public class ArticleManagerImpl implements ArticleManager {
 			
 			r = retraitDAO.updateRetrait(cnx, r);
 			
+			result[0] = a;
+			result[1] = r;
+			
 			cnx.commit();
 		} catch (Exception e) {
 			cnx.rollback();
+			e.printStackTrace();
 			throw new Exception(e);
 		}
 		cnx.close();
+		return result;
 	}
 
 

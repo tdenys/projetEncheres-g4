@@ -76,7 +76,7 @@ public class RetraitDAOImpl implements RetraitDAO {
 			stmt.setString(1, r.getRue());
 			stmt.setString(2, r.getCode_postal());
 			stmt.setString(3, r.getVille());
-			stmt.setInt(3, r.getNo_article());
+			stmt.setInt(4, r.getNo_article());
 			stmt.executeUpdate();
 		}
 		catch(Exception e) {
@@ -92,10 +92,11 @@ public class RetraitDAOImpl implements RetraitDAO {
 			stmt.setString(1, r.getRue());
 			stmt.setString(2, r.getCode_postal());
 			stmt.setString(3, r.getVille());
-			stmt.setInt(3, r.getNo_article());
+			stmt.setInt(4, r.getNo_article());
 			stmt.executeUpdate();
 		}
 		catch(Exception e) {
+			e.printStackTrace();
 			throw new Exception(UPDATE_RETRAIT);
 		}
 		return r;

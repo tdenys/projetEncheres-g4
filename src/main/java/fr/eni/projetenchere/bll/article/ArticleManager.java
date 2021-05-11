@@ -28,5 +28,5 @@ public interface ArticleManager {
 	
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 	
-	public void updateArticleAndRetrait(Article a, Retrait r) throws Exception;
+	public Object[] updateArticleAndRetrait(Article a, Retrait r) throws Exception;
 }

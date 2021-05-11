@@ -1,6 +1,11 @@
 package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,11 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.projetenchere.bll.article.ArticleManager;
 import fr.eni.projetenchere.bll.article.ArticleManagerFact;
+import fr.eni.projetenchere.bll.categorie.CategorieManager;
+import fr.eni.projetenchere.bll.categorie.CategorieManagerFact;
 import fr.eni.projetenchere.bll.enchere.EnchereManager;
 import fr.eni.projetenchere.bll.enchere.EnchereManagerFact;
 import fr.eni.projetenchere.bll.retrait.RetraitManager;
 import fr.eni.projetenchere.bll.retrait.RetraitManagerFact;
 import fr.eni.projetenchere.bo.Article;
+import fr.eni.projetenchere.bo.Categorie;
 import fr.eni.projetenchere.bo.Enchere;
 import fr.eni.projetenchere.bo.Retrait;
 import fr.eni.projetenchere.bo.Utilisateur;
@@ -30,6 +38,9 @@ public class EnchereServlet extends HttpServlet {
 	private ArticleManager articleManager = ArticleManagerFact.getInstance();
 	private EnchereManager enchereManager = EnchereManagerFact.getInstance();
 	private RetraitManager retraitManager = RetraitManagerFact.getInstance();
+	private CategorieManager categorieManager = CategorieManagerFact.getInstance();
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
        
     public EnchereServlet() {
         super();
@@ -46,6 +57,14 @@ public class EnchereServlet extends HttpServlet {
 				int id = Integer.parseInt(request.getParameter("id"));
 				Article a = articleManager.getById(id);	
 				request.setAttribute("a",a);
+				
+				// Récupération des catégories
+				List<Categorie> listeCategories =  new ArrayList<>();
+				try {
+					listeCategories = categorieManager.getAll();
+				} catch (Exception e) {
+				}
+				request.setAttribute("listeCategories",listeCategories);
 				
 				// Récupération retrait
 				Retrait r = retraitManager.getRetraitByIdArticle(id);
@@ -76,17 +95,53 @@ public class EnchereServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			
 			Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
+			request.setAttribute("u",u);
+			
+			// Récupération de l'article
 			int id = Integer.parseInt(request.getParameter("id"));
 			Article a = articleManager.getById(id);
 			request.setAttribute("a",a);
 			
+			// Récupération des catégories
+			List<Categorie> listeCategories =  new ArrayList<>();
+			try {
+				listeCategories = categorieManager.getAll();
+			} catch (Exception e) {
+			}
+			request.setAttribute("listeCategories",listeCategories);
+			
+			// Récupération retrait
 			Retrait r = retraitManager.getRetraitByIdArticle(id);
 			request.setAttribute("r",r);
 			
 			// Récupération des champs
-			int proposition = Integer.parseInt(request.getParameter("proposition"));
-			Enchere e = enchereManager.insertEnchere(proposition, a, u);
-			request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
+			if(u.getNo_utilisateurs() == a.getUtilisateur().getNo_utilisateurs()) {
+				// Si je suis vendeur
+				String nom = request.getParameter("article");
+				String description = request.getParameter("description");
+				Categorie categorie = categorieManager.getCategorieById(Integer.parseInt(request.getParameter("categorie")));
+				int prix = Integer.parseInt(request.getParameter("prix"));
+				Date dateDebut = formatter.parse(request.getParameter("debutEnchere"));
+				Date dateFin = formatter.parse(request.getParameter("finEnchere"));
+				String rue = request.getParameter("rue");
+				String codePostal = request.getParameter("codePostal");
+				String ville = request.getParameter("ville");
+				
+				Article new_a = new Article(id, nom, description, dateDebut, dateFin, prix, prix, u, categorie);
+				Retrait new_r = new Retrait(id, rue, codePostal, ville);
+				
+				Object[] tab = articleManager.updateArticleAndRetrait(new_a, new_r);
+				r = (Retrait) tab[1];
+				a = articleManager.getById(id);
+				request.setAttribute("a",a);
+				request.setAttribute("r",r);
+			}
+			else {
+				// Si je suis acheteur
+				int proposition = Integer.parseInt(request.getParameter("proposition"));
+				Enchere e = enchereManager.insertEnchere(proposition, a, u);
+				request.setAttribute("success", "Enchère réussite ! Vos crédits ont été débités");
+			}
 
 		}
 		catch(Exception e){

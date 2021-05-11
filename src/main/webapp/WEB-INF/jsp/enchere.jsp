@@ -33,30 +33,77 @@
 					</c:if>
 				</c:if>
 				
-				<!-- NOM DE L'ARTICLE -->
-				<p>${a.nom_article}</p>			
-				<!-- DESCRIPTION -->
-				<p class="text-justify">
-					Description : 
-					${a.description}
-				</p>
-   				<!-- CATEGORIE -->
-				<p>Catégorie : ${a.categorie.libelle}</p>
-				<!-- MEILLEUR OFFRE -->
-				<p>Meilleur offre : ${a.prix_vente}</p>    
-			    <!-- MISE A PRIX -->
-				<p>Mise à prix : ${a.prix_initial}</p>				
-				<!-- FIN ENCHERE -->
-				<p>Fin de l'enchère : ${a.date_fin_encheres}</p>
-				<!-- RETRAIT -->
-				<p class="text-justify">
-					Retrait :<br/>
-					${r.rue}<br/>
-					${r.code_postal} 
-					${r.ville}
-				</p>
-				<!-- VENDEUR -->
-				<p>Vendeur : ${a.utilisateur.pseudo}</p>
+				<!-- SI JE SUIS LE CRETEUR DE LA VENTE ET QU'AUCUNE ENCHERE A ETE FAITE -->
+				<c:if test="${a.utilisateur.pseudo == u.pseudo && a.prix_vente == a.prix_initial}">
+					<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
+						<!-- NOM DE L'ARTICLE -->
+						<label for="article">Article : </label>
+						<input type="text" class="form-control" id="article" maxlength="30" name="article" value="${a.nom_article}" required>
+						<!-- DESCRIPTION -->
+						<label for="description">Description : </label>
+    					<textarea class="form-control" id="description" maxlength="300" name="description" rows="3">${a.description}</textarea>
+						<!-- CATEGORIE -->
+						<label for="categorie">Catégorie : </label>
+						<select class="form-control" name="categorie" id="categorie">
+							<c:forEach var="c" items="${listeCategories}">
+								<c:if test="${c.no_categorie == a.categorie.no_categorie}">
+						     		<option value="${c.no_categorie}" selected>${c.libelle}</option>
+						     	</c:if>
+						     	<c:if test="${c.no_categorie != a.categorie.no_categorie}">
+						     		<option value="${c.no_categorie}">${c.libelle}</option>
+						     	</c:if>
+						     </c:forEach>
+					    </select>
+						<!-- MISE A PRIX -->
+						<label for="prix">Mise à prix : </label>
+						<input type="number" class="form-control" id="prix" name="prix" value="${a.prix_initial}" required>
+						<!-- DEBUT ENCHERE -->
+						<label for="debutEnchere">Début de l'enchère : </label>
+						<input type="date" class="form-control" id="debutEnchere" name="debutEnchere" value="${a.date_debut_encheres}" required>
+						<!-- FIN ENCHERE -->
+						<label for="finEnchere">Fin de l'enchère : </label>
+						<input type="date" class="form-control" id="finEnchere" name="finEnchere" value="${a.date_fin_encheres}" required>
+						<h5>---------- Retrait ----------</h5>	
+						<!-- RUE -->
+						<label for="rue">Rue : </label>
+						<input type="text" class="form-control" id="rue" maxlength="30" name="rue" value="${r.rue}" required>
+						<!-- CODE POSTAL -->
+						<label for="codePostal">Rue : </label>
+						<input type="text" class="form-control" id="codePostal" maxlength="10" name="codePostal"  value="${r.code_postal}" required>
+						<!-- VILLE -->
+						<label for="ville">Rue : </label>
+						<input type="text" class="form-control" id="ville" maxlength="50" name="ville"  value="${r.ville}" required>
+						<!-- SUBMIT -->
+						<input type="submit" class="btn btn-dark text-light" value="Enregistrer" />
+					</form>
+				</c:if>
+				<!-- SI JE SUIS UN ACHETEUR -->
+				<c:if test="${a.utilisateur.pseudo != u.pseudo || a.prix_vente != a.prix_initial}">
+					<!-- NOM DE L'ARTICLE -->
+					<p>${a.nom_article}</p>			
+					<!-- DESCRIPTION -->
+					<p class="text-justify">
+						Description : 
+						${a.description}
+					</p>
+	   				<!-- CATEGORIE -->
+					<p>Catégorie : ${a.categorie.libelle}</p>
+					<!-- MEILLEUR OFFRE -->
+					<p>Meilleur offre : ${a.prix_vente}</p>    
+				    <!-- MISE A PRIX -->
+					<p>Mise à prix : ${a.prix_initial}</p>				
+					<!-- FIN ENCHERE -->
+					<p>Fin de l'enchère : ${a.date_fin_encheres}</p>
+					<!-- RETRAIT -->
+					<p class="text-justify">
+						Retrait :<br/>
+						${r.rue}<br/>
+						${r.code_postal} 
+						${r.ville}
+					</p>
+					<!-- VENDEUR -->
+					<p>Vendeur : ${a.utilisateur.pseudo}</p>
+				</c:if>
 				
 				<c:if test="${!termine && a.utilisateur.pseudo != u.pseudo}">
 					<!-- MA PROPOSITION -->
