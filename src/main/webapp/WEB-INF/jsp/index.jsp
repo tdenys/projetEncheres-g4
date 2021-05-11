@@ -112,7 +112,7 @@
 		<!-- RESULATATS DE RECHERCHE --> 
 		<div class="row" style="margin: 10px;">
 			<c:forEach var="a" items="${listeArticles}">
-				<div class="col-sm-4" style="margin-top: 20px;">
+				<div class="col-6 col-md-4 col-xl-3" style="margin-top: 20px;">
 					
 					<div class="card" style="width: 18rem;">
 					  <img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" /> 

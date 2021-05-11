@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="row text-center">
-				<div class="col">
+				<div class="col-12 col-md-6">
 				
 					<!-- PSEUDO -->
 					<label for="pseudo">Pseudo : </label>
@@ -42,7 +42,7 @@
 					 
 				</div>
 				
-				<div class="col">
+				<div class="col-12 col-md-6">
 				
 					<!-- NOM -->
 					<label for="nom">Nom : </label>

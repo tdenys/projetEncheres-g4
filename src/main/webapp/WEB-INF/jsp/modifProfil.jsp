@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="row text-center">
-				<div class="col">
+				<div class="col-12 col-md-6">
 				
 					<!-- PSEUDO -->
 					<label for="pseudo">Pseudo* : </label>
@@ -37,18 +37,17 @@
 					<input type="text" class="form-control" id="codePostal" name="codePostal" value="${utilisateur.code_postal}" maxlength="10" required>
 					
 					<!-- MOT DE PASSE -->
-					<label for="motDePasseActuel">Mot de passe actuel* : </label>
-					<input type="password" class="form-control" id="motDePasseActuel" name="motDePasseActuel" maxlength="30" required>
-					
-					<!-- MOT DE PASSE -->
 					<label for="nouveauMotDePasse">Nouveau mot de passe : </label>
 					<input type="password" class="form-control" id="nouveauMotDePasse" name="nouveauMotDePasse" maxlength="30">
 					
-					<p>Crédits : ${utilisateur.credit}</p>
+					<!-- MOT DE PASSE -->
+					<label for="motDePasseActuel">Mot de passe actuel* : </label>
+					<input type="password" class="form-control" id="motDePasseActuel" name="motDePasseActuel" maxlength="30" required>
+					
 					
 				</div>
 				
-				<div class="col">
+				<div class="col-12 col-md-6">
 				
 					<!-- NOM -->
 					<label for="nom">Nom* : </label>
@@ -66,11 +65,11 @@
 					<label for="ville">Ville* : </label>
 					<input type="text" class="form-control" id="ville" name="ville" value="${utilisateur.ville}" maxlength="50" required>
 					
-					<br/><br/><br/>
-					
 					<!-- CONFIRAMATION MOT DE PASSE -->
 					<label for="motDePasseConfirmation">Confirmation : </label>
 					<input type="password" class="form-control" id="motDePasseConfirmation" name="motDePasseConfirmation">
+					
+					<h5 style="margin-top: 25px;">Crédits : ${utilisateur.credit}</h5>
 					
 				</div>
 				
