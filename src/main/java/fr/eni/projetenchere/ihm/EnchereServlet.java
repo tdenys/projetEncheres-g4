@@ -79,6 +79,13 @@ public class EnchereServlet extends HttpServlet {
 				}
 				request.setAttribute("termine",termine);
 				
+				boolean commence = true;
+				Date now = new Date();
+				if(a.getDate_debut_encheres().after(now)) {
+					commence = false;
+				}
+				request.setAttribute("commence",commence);
+				
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
