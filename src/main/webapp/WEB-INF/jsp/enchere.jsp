@@ -105,7 +105,7 @@
 					<p>Vendeur : ${a.utilisateur.pseudo}</p>
 				</c:if>
 				
-				<c:if test="${!termine && a.utilisateur.pseudo != u.pseudo}">
+				<c:if test="${!termine && a.utilisateur.pseudo != u.pseudo && commence}">
 					<!-- MA PROPOSITION -->
 					<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
 						<!-- PRIX PROPOSE -->
@@ -114,6 +114,15 @@
 						
 						<input type="submit" class="btn btn-dark text-light" name="encherir" value="Enchérir" />
 					</form>
+				</c:if>
+				<c:if test="${!commence}">
+					<div class="row">
+						<div class="col">
+							<div style="margin-top: 10px;" class="alert alert-warning" role="alert">
+							  La vente n'a pas encore débuté, un peu de patience :)
+							</div>
+						</div>
+					</div>
 				</c:if>
 				<a href="" class="btn btn-dark text-light">Retour</a>    
 			</div>
