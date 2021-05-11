@@ -17,4 +17,6 @@ public interface UtilisateurManager {
 	public Utilisateur updateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String motDePasseActuel, String nouveauMotDePasse, String motDePasseConfirmation, String pseudoActuel) throws Exception;
 
 	public void removeUtilisateur(Utilisateur u) throws Exception;
+
+	public Utilisateur getUtilisateurByPseudoAndMDPWithCookies(String login, String MDP) throws Exception;
 }

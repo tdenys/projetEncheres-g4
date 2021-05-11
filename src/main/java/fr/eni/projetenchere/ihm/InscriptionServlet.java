@@ -70,7 +70,8 @@ public class InscriptionServlet extends HttpServlet {
 			Utilisateur utilisateur = manager.insertUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, motDePasseConfirmation);
 			
 	        HttpSession session = request.getSession();
-	        session.setAttribute("utilisateur", utilisateur);	
+	        session.setAttribute("utilisateur", utilisateur);
+	        session.setMaxInactiveInterval(300);
 			
 	        response.sendRedirect(request.getContextPath() + "/"); 
 	        

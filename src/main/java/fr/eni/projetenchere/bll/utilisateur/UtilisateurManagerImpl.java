@@ -55,6 +55,26 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		}	
 	}
 	
+	//Utilisé pour l'inscription d'un utilisateur avec cookies
+		@Override
+		public Utilisateur getUtilisateurByPseudoAndMDPWithCookies(String login, String MDP) throws Exception{
+			Utilisateur u1 = new Utilisateur();
+			
+			try {
+				u1 = DAO.getUtilisateurByPseudoOrEmail(login);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			if(u1 == null) {
+				throw new Exception("Identifiant ou mot de passe incorrect !");
+			}else if(MDP.equals(u1.getMot_de_passe())) {
+				return u1;
+			}else {
+				throw new Exception("Identifiant ou mot de passe incorrect !");
+			}	
+		}
+	
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) throws Exception {
 		Utilisateur u = new Utilisateur();

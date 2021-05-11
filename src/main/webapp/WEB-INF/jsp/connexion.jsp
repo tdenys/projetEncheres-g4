@@ -13,11 +13,15 @@
 					<form method="post" action="${pageContext.request.contextPath}/connexion">
 						<!-- USER -->
 						<label for="user">Identifiant</label>
-						<input type="text" required class="form-control" id="user" name="user">
+						<input type="text" required class="form-control" id="user" name="user" value="${pseudo}">
 						
 						<!-- PASSWORD -->
 						<label for="password">Mot de passe</label>
-						<input type="password" required class="form-control" id="password" name="password">
+						<input type="password" required class="form-control" id="password" name="password" value="${mdp}">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="saveUserCookies" name="saveUserCookies" value="saveUserCookies" ${saveUserCookiesOK}>
+							<label class="form-check-label" for="saveUserCookies">Enregistrer ces identifiants</label>
+		  				</div>
 						
 						<!-- Affichage message d'erreur -->
 						<c:if test="${!empty erreur}">
