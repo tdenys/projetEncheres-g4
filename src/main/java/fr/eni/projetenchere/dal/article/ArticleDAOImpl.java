@@ -25,6 +25,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	private String GET_NB_ARTICLES_BY_UTILISATEUR = "SELECT COUNT(*) FROM ARTICLES_VENDUS WHERE NO_UTILISATEUR = ?";
 	private String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
+	private String UPDATE_ARTICLE_VENDU = "UPDATE ARTICLES_VENDUS SET vendu = ? WHERE NO_ARTICLE = ?";
 	private String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
 	
 	private UtilisateurDAO utilisateurDAO = UtilisateurDAOFactory.getUtilisateurDAO(); 
@@ -262,6 +263,20 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new Exception(GET_NB_ARTICLES_BY_UTILISATEUR);
 		}	
 		return nb;
+	}
+
+	@Override
+	public void updateArticleVendu(Article article, boolean vendu) throws Exception {
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_ARTICLE_VENDU);
+			stmt.setBoolean(1, vendu);
+			stmt.setInt(2, article.getNo_article());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception(UPDATE_ARTICLE_VENDU);
+		}
 	}
 	
 	

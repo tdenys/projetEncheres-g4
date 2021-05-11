@@ -21,6 +21,8 @@ public interface ArticleDAO {
 
 	public Article updateArticle(Article a) throws Exception;
 	public Article updateArticle(Connection cnx, Article a) throws Exception;
+	
+	public void updateArticleVendu(Article article,  boolean vendu) throws Exception;
 
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 }

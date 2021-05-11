@@ -76,6 +76,10 @@ public class EnchereManagerImpl implements EnchereManager {
 	@Override
 	public Utilisateur getUtilisateurWhoWin(Article a) throws Exception {
 		Utilisateur vendeur = a.getUtilisateur();
+			
+		if(!a.isVendu()) {
+			articleDAO.updateArticleVendu(a, true);
+		}
 		
 		if(a.getDate_debut_encheres().after(a.getDate_fin_encheres()) && a.getPrix_initial() != a.getPrix_vente()) {
 			utilisateurDAO.addCredit(vendeur, a.getPrix_vente());
@@ -85,22 +89,5 @@ public class EnchereManagerImpl implements EnchereManager {
 		
 		return enchereDAO.getUtilisateurWhoWin(a);
 	}
-	
-	/*@Override
-	public void removeEnchere(Article enchere) throws Exception {
-		articleDAO.removeArticle(article);
-	}
-
-	@Override
-	public Enchere getEnchereByIdArticle(int numArticle) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeEnchere(Enchere e) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}*/
 	
 }
