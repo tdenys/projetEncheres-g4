@@ -127,11 +127,31 @@ public class ArticleManagerImpl implements ArticleManager {
 			cnx.commit();
 		} catch (Exception e) {
 			cnx.rollback();
-			e.printStackTrace();
-			throw new Exception(e);
+			throw new Exception("Problème lors de la mise à jour de l'article ou du retrait");
 		}
 		cnx.close();
 		return result;
+	}
+	
+	@Override
+	public void deleteArticleAndRetrait(Article a, Retrait r) throws Exception {
+		Connection cnx = ConnectionProvider.getConnection();
+		cnx.setAutoCommit(false);
+		try {
+			if((new Date().after(a.getDate_debut_encheres()))) {
+				
+				a = articleDAO.removeArticle(cnx, a);
+				r = retraitDAO.removeRetrait(cnx, r);
+				
+			}else {
+				throw new Exception("Problème lors de la suppression de l'article ou du retrait");
+			}
+			cnx.commit();
+		} catch (Exception e) {
+			cnx.rollback();
+			throw new Exception("Problème lors de la suppression de l'article ou du retrait");
+		}
+		cnx.close();
 	}
 
 }
