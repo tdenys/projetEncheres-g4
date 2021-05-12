@@ -38,7 +38,7 @@ public class AchatManagerImpl implements AchatManager{
 					utilisateurDAO.updateUtilisateurWithCredit(u);
 				}
 				else {
-					throw new Exception("Le nombre de crédit doit etre strictement positif");
+					throw new Exception("Le nombre de crédit doit etre strictement positif"); 
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
