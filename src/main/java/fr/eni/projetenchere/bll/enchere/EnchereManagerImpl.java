@@ -32,6 +32,15 @@ public class EnchereManagerImpl implements EnchereManager {
 		
 		int credit_actuel_nouvel_utilisateur = nouvel_utilisateur.getCredit();
 		Enchere en = null;
+
+		
+		//Controle : l'encherisseur n'a pas un solde suffisant pour encherir
+		if(credit_actuel_nouvel_utilisateur < montant_enchere) {
+			throw new Exception("Votre solde est insuffisant.");
+		//Controle : l'encherisseur n'a pas saisi un montant suffisant pour encherir
+		} else if(article.getPrix_vente() > montant_enchere) {
+			throw new Exception("Veuillez saisir un montant supérieur à la dernière enchère.");
+		}
 		
 		if(article.getPrix_vente() < montant_enchere && (credit_actuel_nouvel_utilisateur - montant_enchere) >= 0) {
 			try {
@@ -60,8 +69,6 @@ public class EnchereManagerImpl implements EnchereManager {
 				cnx.rollback();
 				throw new Exception(e);
 			} 
-		} else {
-			throw new Exception("Une erreur s'est produite");
 		}
 		cnx.close();
 		return en;
