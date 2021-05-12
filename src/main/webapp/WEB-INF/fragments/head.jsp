@@ -27,11 +27,8 @@
 		  color: hsl(324, 70%, 45%);
 		  animation: wheelHueColor 10s infinite;
 		}
-		@supports (background-blend-mode: overlay) {
-		  .background {
-		    background-image: linear-gradient(45deg, white 10%, black 90%);
-		    background-blend-mode: overlay;
-		  }
+		nav i.fa-gavel {
+			animation: hammerMove 5s infinite;
 		}
 		@keyframes wheelHueColor {
 		  from, to { color: hsl(324, 70%, 45%); }
@@ -45,18 +42,13 @@
 		  80%      { color: hsl(252, 65%, 50%); }
 		  90%      { color: hsl(288, 60%, 40%); }
 		}
-		/*@keyframes wheelHueColor {
-		  from, to { color: hsl(0, 100%, 50%); }
-		  10%      { color: hsl(10, 100%, 50%); }
-		  20%      { color: hsl(20, 100%, 50%); }
-		  30%      { color: hsl(30, 100%, 50%); }
-		  40%      { color: hsl(40, 100%, 50%); }
-		  50%      { color: hsl(50, 100%, 50%); }
-		  60%      { color: hsl(40, 100%, 50%); }
-		  70%      { color: hsl(30, 100%, 50%); }
-		  80%      { color: hsl(20, 100%, 50%); }
-		  90%      { color: hsl(10, 100%, 50%); }
-		}*/
+		@keyframes hammerMove{
+		  from, to { transform: rotate(0deg); }
+		  20%      { transform: rotate(0deg); }
+		  50%      { transform: rotate(43deg); }
+		  80%      { transform: rotate(0deg); }
+		  90%      { transform: rotate(0deg); }
+		}
 		body{
 			background-image: url("https://source.unsplash.com/1920x1080/?wild");
 			background-size: cover;
