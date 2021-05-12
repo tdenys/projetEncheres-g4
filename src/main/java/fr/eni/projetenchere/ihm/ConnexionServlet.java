@@ -30,6 +30,9 @@ public class ConnexionServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("success") != null) {
+			request.setAttribute("success", "Le mot de passe à été mis à jour");
+		}
 		String cookiePseudo = null;
 		String cookieMdp = null;
 		if(getCookie(request, "pseudo") != null & getCookie(request, "mdp") != null) {
@@ -111,8 +114,7 @@ public class ConnexionServlet extends HttpServlet {
 			// Transfert de l'affichage à la JSP
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 			rd.forward(request, response);
-		}
-		
+		}		
 	}
 	
 	private static Cookie getCookie( HttpServletRequest request, String nom ) {
