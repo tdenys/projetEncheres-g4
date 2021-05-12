@@ -86,7 +86,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				+ "WHERE (? = ' ' OR nom_article LIKE ?) "
 				+ "AND (? = 0 OR no_categorie = ?) "
 				+ "AND (AV.no_utilisateur != ?) "
-				+ "AND (? = 1 OR date_fin_encheres > GetDate()) "
+				+ "AND (? = 1 OR (date_fin_encheres > GetDate() AND date_debut_encheres <= GetDate())) "
 				+ "AND (? = 1 OR E.no_utilisateur = ?) "
 				+ "AND (? = 1 OR AV.date_fin_encheres < GetDate() AND E.no_utilisateur = ?);";
 		} else {
@@ -95,7 +95,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				+ "WHERE (? = ' ' OR nom_article LIKE ?) "
 				+ "AND (? = 0 OR no_categorie = ?) "
 				+ "AND (AV.no_utilisateur = ?) "
-				+ "AND (? = 1 OR (AV.no_utilisateur = ? AND date_fin_encheres > GetDate())) "
+				+ "AND (? = 1 OR (AV.no_utilisateur = ? AND date_fin_encheres > GetDate() AND date_debut_encheres <= GetDate())) "
 				+ "AND (? = 1 OR date_debut_encheres > GetDate()) "
 				+ "AND (? = 1 OR date_fin_encheres < GetDate());";
 		}
