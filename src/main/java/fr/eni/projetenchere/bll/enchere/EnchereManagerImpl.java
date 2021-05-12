@@ -92,4 +92,9 @@ public class EnchereManagerImpl implements EnchereManager {
 		return enchereDAO.getUtilisateurWhoWin(a); 
 	}
 	
+	@Override
+	public Utilisateur getDernierEnrechisseur(int no_article) throws Exception {		
+		return enchereDAO.getDernierEncherisseur(no_article); 
+	}
+	
 }

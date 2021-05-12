@@ -20,4 +20,6 @@ public interface EnchereManager {
 	void removeEnchere(Enchere e) throws Exception;*/
 	
 	public Utilisateur getUtilisateurWhoWin(Article a) throws Exception;
+
+	public Utilisateur getDernierEnrechisseur(int no_article) throws Exception;
 }

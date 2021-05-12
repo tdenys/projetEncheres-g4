@@ -20,4 +20,6 @@ public interface EnchereDAO {
 	public int getNbEncheresByUtilisateur(Connection cnx, Utilisateur u) throws Exception;
 	
 	public Utilisateur getUtilisateurWhoWin(Article a) throws Exception;
+
+	public Utilisateur getDernierEncherisseur(int no_article) throws Exception;
 }
