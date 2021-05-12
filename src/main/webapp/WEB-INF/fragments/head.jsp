@@ -24,15 +24,9 @@
 
 	<style>
 		body{
-			/*
-				background-image: url('https://i0.hippopx.com/photos/164/964/28/background-board-brown-carpentry-preview.jpg');
-			*/
 			background-image: url("https://source.unsplash.com/1920x1080/?wild");
 			background-size: cover;
-			display : table;
-			width: 100%;
-			height: 100%;
-			margin: 0; padding: 0;
+			margin-bottom: 100px;
 		}
 		html {
 			position: relative;
@@ -42,7 +36,6 @@
 			position: absolute;
 		    bottom: 0;
 		    width: 100%;
-		    height: 60px;
 		}
 	</style>
 
