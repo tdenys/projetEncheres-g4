@@ -47,7 +47,7 @@ public class ArticleManagerImpl implements ArticleManager {
 			}
 			
 			a = articleDAO.insertArticle(cnx, a);
-			
+			 
 			Retrait r = new Retrait(a.getNo_article(), rue, cp, ville);
 			r = retraitDAO.insertRetrait(cnx, r);	
 			
