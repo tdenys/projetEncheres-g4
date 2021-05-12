@@ -110,8 +110,8 @@
 		
 		<hr/>
 		
-		<!-- RESULATATS DE RECHERCHE --> 
-		<div class="row" style="margin: 10px;">
+		<!-- RESULTATS DE RECHERCHE --> 
+		<div class="row" style="margin: 10px; padding-bottom: 20px;">
 			<c:forEach var="a" items="${listeArticles}">
 				<div class="col-6 col-md-4 col-xl-3" style="margin-top: 20px;">
 					
