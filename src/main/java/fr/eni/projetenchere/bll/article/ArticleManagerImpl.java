@@ -138,10 +138,10 @@ public class ArticleManagerImpl implements ArticleManager {
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
 		try {
-			if((new Date().after(a.getDate_debut_encheres()))) {
+			if((new Date().before(a.getDate_debut_encheres()))) {
 				
-				articleDAO.removeArticle(cnx, a);
 				retraitDAO.removeRetrait(cnx, r);
+				articleDAO.removeArticle(cnx, a);		
 				
 			}else {
 				throw new Exception("Problème lors de la suppression de l'article ou du retrait");

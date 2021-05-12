@@ -98,11 +98,22 @@ public class EnchereServlet extends HttpServlet {
 				}
 				request.setAttribute("commence",commence);
 				
+				if(request.getParameter("sup") != null) {
+					// Suppression
+					articleManager.deleteArticleAndRetrait(a, r);
+					// On redirige vers l'index
+					response.sendRedirect(request.getContextPath() + "/");
+				}
+				else {	
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
+					rd.forward(request, response);
+				}
+				
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
+				rd.forward(request, response);
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
-			rd.forward(request, response);
 		}
 		else {
 			response.sendRedirect(request.getContextPath() + "/connexion");

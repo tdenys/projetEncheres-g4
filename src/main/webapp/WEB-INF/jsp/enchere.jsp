@@ -80,6 +80,9 @@
 						<!-- SUBMIT -->
 						<input type="submit" class="btn btn-dark text-light" value="Enregistrer" />
 					</form>
+					<c:if test="${!commence}">
+						<a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}&sup" class="btn btn-danger">Annuler la vente</a>
+					</c:if>
 				</c:if>
 				<!-- SI JE SUIS UN ACHETEUR -->
 				<c:if test="${a.utilisateur.pseudo != u.pseudo || a.prix_vente != a.prix_initial}">
