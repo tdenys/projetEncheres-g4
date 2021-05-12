@@ -19,4 +19,7 @@ public interface UtilisateurManager {
 	public void removeUtilisateur(Utilisateur u) throws Exception;
 
 	public Utilisateur getUtilisateurByPseudoAndMDPWithCookies(String login, String MDP) throws Exception;
+
+	public void updateUtilisateurMDP(String pseudo, String motDePasseActuel, String nouveauMotDePasse,
+			String motDePasseConfirmation) throws Exception;
 }

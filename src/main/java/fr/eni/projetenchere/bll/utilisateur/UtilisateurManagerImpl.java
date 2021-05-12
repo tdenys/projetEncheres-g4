@@ -213,6 +213,30 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	}
 	
 	@Override
+	public void updateUtilisateurMDP(String pseudo, String motDePasseActuel, String nouveauMotDePasse, String motDePasseConfirmation) throws Exception {
+		
+		String ancienMotDePasse;
+		
+		/* mot de passe avant modif */
+		ancienMotDePasse = DAO.getUtilisateurByPseudo(pseudo).getMot_de_passe();
+		
+		/* test si mdp saisi est egal au mdp de l'user */
+		if(!ancienMotDePasse.equals(motDePasseActuel)) {
+			throw new Exception("Mot de passe incorrect !");
+		}
+		
+		/* si il a ete modifier, cryptage + verif si les 2 ok */
+		if(!nouveauMotDePasse.equals(motDePasseConfirmation)) {
+			throw new Exception("Les 2 mots de passe ne correspondent pas !");
+		}
+		nouveauMotDePasse = crypt(nouveauMotDePasse);
+		
+		/* envoi de du nouveau mdp*/
+		DAO.updatePasswordByPseudo(pseudo, nouveauMotDePasse);
+	}
+	
+	
+	@Override
 	public void removeUtilisateur(Utilisateur u) throws Exception {
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
