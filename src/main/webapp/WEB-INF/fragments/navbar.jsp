@@ -13,7 +13,8 @@
 
 	<c:if test="${!empty utilisateur}">
 		<a class="text-dark">Crédits : ${utilisateur.credit} pts </a>
-		<a style="margin-left: 50px;" class="text-dark" href="${pageContext.request.contextPath}/vente">Vendre un article <i class="fas fa-shopping-cart"></i></a>
+		<a style="margin-left: 50px;" class="text-dark" href="${pageContext.request.contextPath}/achat">Acheter des crédits <i class="fas fa-credit-card"></i></a>
+		<a style="margin-left: 30px;" class="text-dark" href="${pageContext.request.contextPath}/vente">Vendre un article <i class="fas fa-shopping-cart"></i></a>
 		<a style="margin-left: 30px;" class="text-dark" href="${pageContext.request.contextPath}/profil?p=${utilisateur.pseudo}">Profil <i class="fas fa-user-cog"></i></a>
     	<a style="margin-left: 30px;" class="text-dark" href="${pageContext.request.contextPath}/?dc=1">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
     </c:if>

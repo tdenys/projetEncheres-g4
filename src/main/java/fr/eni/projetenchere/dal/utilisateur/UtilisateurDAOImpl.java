@@ -183,6 +183,31 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	}
 	
 	@Override
+	public Utilisateur updateUtilisateurWithCredit(Utilisateur u) throws Exception {
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_UTILISATEUR_WITH_CREDIT);
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
+			stmt.setString(4, u.getEmail());
+			stmt.setString(5, u.getTelephone());
+			stmt.setString(6, u.getRue());
+			stmt.setString(7, u.getCode_postal());
+			stmt.setString(8, u.getVille());
+			stmt.setString(9, u.getMot_de_passe());
+			stmt.setInt(10, u.getCredit());
+			stmt.setString(11, u.getPseudo());
+
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_UTILISATEUR_WITH_CREDIT);
+		}
+		
+		return u;
+	}
+	
+	@Override
 	public void removeUtilisateur(Connection cnx, Utilisateur u) throws Exception {
 		try {
 			PreparedStatement stmt = cnx.prepareStatement(DELETE_UTILISATEUR);

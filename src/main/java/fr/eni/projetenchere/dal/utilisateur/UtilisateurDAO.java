@@ -24,4 +24,6 @@ public interface UtilisateurDAO {
 
 	public void addCredit(Utilisateur vendeur, int prix_vente) throws Exception;
 
+	public Utilisateur updateUtilisateurWithCredit(Utilisateur u) throws Exception;
+
 }
