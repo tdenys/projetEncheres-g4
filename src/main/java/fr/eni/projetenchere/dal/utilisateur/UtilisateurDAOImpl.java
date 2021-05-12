@@ -12,17 +12,26 @@ import fr.eni.projetenchere.dal.ConnectionProvider;
 
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
+	//GET
 	private String GET_UTILISATEUR_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?"; 
 	private String GET_UTILISATEUR_BY_PSEUDO_OR_EMAIL = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private String GET_UTILISATEUR_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email = ?";
-	private String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	
+	//UPDATE
 	private String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?";
-	private String ADD_CREDIT = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur = ?";
-	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
 	private String UPDATE_UTILISATEUR_WITH_CREDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?,"
 			+ "rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ? WHERE pseudo = ?";
+	private String UPDATE_PASSWORD_BY_PSEUDO = "UPDATE UTILISATEURS SET mot_de_passe = ? WHERE pseudo = ?";
+	private String ADD_CREDIT = "UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur = ?";
+	
+	//INSERT
+	private String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	
+	//DELETE
+	private String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE pseudo = ?";
+	
 	
 	@Override
 	public Utilisateur getUtilisateurById(int id) throws Exception {
@@ -234,6 +243,20 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new Exception(ADD_CREDIT);
 		}
 		
+	}
+
+	@Override
+	public void updatePasswordByPseudo(String pseudo, String password) throws Exception {
+		try(Connection cnx = ConnectionProvider.getConnection()){
+			PreparedStatement stmt = cnx.prepareStatement(UPDATE_PASSWORD_BY_PSEUDO);
+			stmt.setString(1, password);
+			stmt.setString(2, pseudo);
+
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(UPDATE_PASSWORD_BY_PSEUDO);
+		}
 	}
 	
 }
