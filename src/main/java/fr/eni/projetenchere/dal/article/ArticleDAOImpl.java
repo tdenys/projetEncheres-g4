@@ -20,7 +20,7 @@ import fr.eni.projetenchere.dal.utilisateur.UtilisateurDAOFactory;
 public class ArticleDAOImpl implements ArticleDAO {
 	
 	private String GET_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS WHERE NO_ARTICLE = ?";
-	private String GET_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	private String GET_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS ORDER BY date_debut_encheres DESC";
 	private String GET_ARTICLES_BY_UTILISATEUR = "SELECT * FROM ARTICLES_VENDUS WHERE NO_UTILISATEUR = ?";
 	private String GET_NB_ARTICLES_BY_UTILISATEUR = "SELECT COUNT(*) FROM ARTICLES_VENDUS WHERE NO_UTILISATEUR = ?";
 	private String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS(nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
