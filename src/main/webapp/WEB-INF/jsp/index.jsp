@@ -117,7 +117,7 @@
 					
 					<div class="card" style="width: 18rem;">
 					  <a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
-				  	  	<img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" /> 
+				  	  	<img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" height="200px;"/> 
 				  	  </a>
 					  <div class="card-body">
 					    <h5 class="card-title"><a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">${a.nom_article}</a></h5>
