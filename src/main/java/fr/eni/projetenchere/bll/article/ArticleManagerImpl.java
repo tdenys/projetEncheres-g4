@@ -41,6 +41,10 @@ public class ArticleManagerImpl implements ArticleManager {
 			datesValides(a.getDate_debut_encheres(), a.getDate_fin_encheres());
 			stringValide(a.getDescription(), "Description");
 			prixInitialValide(a.getPrix_initial());
+		
+			if(new Date().after(a.getDate_debut_encheres())) {
+				throw new Exception("La date de début d'enchère ne peut être supérieure la date courante.");
+			}
 			
 			a = articleDAO.insertArticle(cnx, a);
 			
