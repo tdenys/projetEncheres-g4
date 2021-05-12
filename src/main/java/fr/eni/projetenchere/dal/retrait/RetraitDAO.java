@@ -14,6 +14,7 @@ public interface RetraitDAO {
 	public Retrait updateRetrait(Connection cnx, Retrait r) throws Exception;
 
 	public void removeRetrait(Retrait r) throws Exception;
+	public void removeRetrait(Connection cnx, Retrait r) throws Exception;
 
 	Retrait insertRetrait(Connection cnx, Retrait r) throws Exception;
 

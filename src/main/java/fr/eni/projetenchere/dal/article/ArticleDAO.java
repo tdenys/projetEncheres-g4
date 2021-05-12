@@ -18,6 +18,7 @@ public interface ArticleDAO {
 	Article insertArticle(Connection cnx, Article a) throws Exception;
 
 	public void removeArticle(Article a) throws Exception;
+	public void removeArticle(Connection cnx, Article a) throws Exception;
 
 	public Article updateArticle(Article a) throws Exception;
 	public Article updateArticle(Connection cnx, Article a) throws Exception;

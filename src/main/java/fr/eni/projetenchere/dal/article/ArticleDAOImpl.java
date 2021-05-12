@@ -250,6 +250,18 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new Exception(DELETE_ARTICLE);
 		}
 	}
+	
+	@Override
+	public void removeArticle(Connection cnx, Article a) throws Exception {
+		try {
+			PreparedStatement stmt = cnx.prepareStatement(DELETE_ARTICLE);
+			stmt.setInt(1, a.getNo_article());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(DELETE_ARTICLE);
+		}
+	}
 
 	@Override
 	public int getNbArticlesByUtilisateur(Connection cnx, Utilisateur u) throws Exception {
@@ -281,7 +293,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 			e.printStackTrace();
 			throw new Exception(UPDATE_ARTICLE_VENDU);
 		}
-	}
-	
+	}	
 	
 }

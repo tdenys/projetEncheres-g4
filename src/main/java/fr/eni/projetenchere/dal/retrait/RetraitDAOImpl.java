@@ -114,5 +114,17 @@ public class RetraitDAOImpl implements RetraitDAO {
 		}
 	}
 	
+	@Override
+	public void removeRetrait(Connection cnx, Retrait r) throws Exception {
+		try {
+			PreparedStatement stmt = cnx.prepareStatement(DELETE_RETRAIT);
+			stmt.setInt(1, r.getNo_article());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			throw new Exception(DELETE_RETRAIT);
+		}
+	}
+	
 	
 }
