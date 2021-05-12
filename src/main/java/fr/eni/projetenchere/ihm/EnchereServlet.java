@@ -74,6 +74,12 @@ public class EnchereServlet extends HttpServlet {
 				Retrait r = retraitManager.getRetraitByIdArticle(id);
 				request.setAttribute("r",r);
 				
+				// Récupération de l'enchérisseur actuel
+				Utilisateur best = enchereManager.getDernierEnrechisseur(id);
+				if(best != null) {
+					request.setAttribute("best"," par " + best.getPseudo());
+				}
+				
 				Date now = new Date();
 				
 				// Vérification si la vente est terminée

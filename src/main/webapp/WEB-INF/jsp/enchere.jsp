@@ -96,7 +96,7 @@
 	   				<!-- CATEGORIE -->
 					<p>Catégorie : ${a.categorie.libelle}</p>
 					<!-- MEILLEUR OFFRE -->
-					<p>Meilleur offre : ${a.prix_vente}</p>    
+					<p>Meilleur offre : ${a.prix_vente} ${best}</p>    
 				    <!-- MISE A PRIX -->
 					<p>Mise à prix : ${a.prix_initial}</p>				
 					<!-- FIN ENCHERE -->
