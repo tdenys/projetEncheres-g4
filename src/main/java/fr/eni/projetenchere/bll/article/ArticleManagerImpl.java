@@ -140,8 +140,8 @@ public class ArticleManagerImpl implements ArticleManager {
 		try {
 			if((new Date().after(a.getDate_debut_encheres()))) {
 				
-				a = articleDAO.removeArticle(cnx, a);
-				r = retraitDAO.removeRetrait(cnx, r);
+				articleDAO.removeArticle(cnx, a);
+				retraitDAO.removeRetrait(cnx, r);
 				
 			}else {
 				throw new Exception("Problème lors de la suppression de l'article ou du retrait");
