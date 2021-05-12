@@ -140,5 +140,6 @@
 		}
 	</script>
 
+	<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 </html>

@@ -170,6 +170,7 @@
 		</div>
 	</c:if>
 
+	<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 <script>
 if(document.querySelector('input#encheresOuvertes')){

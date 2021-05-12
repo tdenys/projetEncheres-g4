@@ -77,7 +77,7 @@ public class EnchereServlet extends HttpServlet {
 				// Récupération de l'enchérisseur actuel
 				Utilisateur best = enchereManager.getDernierEnrechisseur(id);
 				if(best != null) {
-					request.setAttribute("best"," par " + best.getPseudo());
+					request.setAttribute("best",best);
 				}
 				
 				Date now = new Date();

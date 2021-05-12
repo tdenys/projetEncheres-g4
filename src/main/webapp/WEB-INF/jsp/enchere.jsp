@@ -96,7 +96,12 @@
 	   				<!-- CATEGORIE -->
 					<p>Catégorie : ${a.categorie.libelle}</p>
 					<!-- MEILLEUR OFFRE -->
-					<p>Meilleur offre : ${a.prix_vente} ${best}</p>    
+					<c:if test="${best != null }">
+						<p>Meilleur offre : ${a.prix_vente} par <a href="${pageContext.request.contextPath}/profil?p=${best.pseudo}">${best.pseudo}</a></p>
+					</c:if>
+					<c:if test="${best == null }">
+						<p>Meilleur offre : ${a.prix_vente}</p>
+					</c:if>
 				    <!-- MISE A PRIX -->
 					<p>Mise à prix : ${a.prix_initial}</p>				
 					<!-- FIN ENCHERE -->
@@ -109,7 +114,7 @@
 						${r.ville}
 					</p>
 					<!-- VENDEUR -->
-					<p>Vendeur : ${a.utilisateur.pseudo}</p>
+					<p>Vendeur : <a href="${pageContext.request.contextPath}/profil?p=${a.utilisateur.pseudo}">${a.utilisateur.pseudo}</a></p>
 				</c:if>
 				
 				<c:if test="${!termine && a.utilisateur.pseudo != u.pseudo && commence}">
@@ -157,5 +162,6 @@
 		
 	</div>
 
+	<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 </html>

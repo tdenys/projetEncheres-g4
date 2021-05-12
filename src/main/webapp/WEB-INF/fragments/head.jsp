@@ -29,6 +29,20 @@
 			*/
 			background-image: url("https://source.unsplash.com/1920x1080/?wild");
 			background-size: cover;
+			display : table;
+			width: 100%;
+			height: 100%;
+			margin: 0; padding: 0;
+		}
+		html {
+			position: relative;
+    		min-height: 100%;
+		}
+		footer {
+			position: absolute;
+		    bottom: 0;
+		    width: 100%;
+		    height: 60px;
 		}
 	</style>
 
