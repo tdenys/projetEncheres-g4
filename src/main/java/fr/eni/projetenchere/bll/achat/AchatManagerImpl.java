@@ -33,8 +33,13 @@ public class AchatManagerImpl implements AchatManager{
 	public Utilisateur doAchat(Utilisateur u, String ccn, int credit) throws Exception {
 		if(CheckWithLuhn(ccn)) {
 			try {
-				u.setCredit(u.getCredit() + credit);
-				utilisateurDAO.updateUtilisateurWithCredit(u);
+				if(credit > 0) {
+					u.setCredit(u.getCredit() + credit);
+					utilisateurDAO.updateUtilisateurWithCredit(u);
+				}
+				else {
+					throw new Exception("Le nombre de crédit doit etre strictement positif");
+				}
 			} catch(Exception e) {
 				e.printStackTrace();
 				throw new Exception("Le numéro de la carte est invalide");
