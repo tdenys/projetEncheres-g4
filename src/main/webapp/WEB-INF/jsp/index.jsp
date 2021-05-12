@@ -116,7 +116,9 @@
 				<div class="col-6 col-md-4 col-xl-3" style="margin-top: 20px;">
 					
 					<div class="card" style="width: 18rem;">
-					  <img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" /> 
+					  <a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
+				  	  	<img class="card-img-top" src="https://source.unsplash.com/250x200/?${a.nom_article}" width="18rem" /> 
+				  	  </a>
 					  <div class="card-body">
 					    <h5 class="card-title"><a href="${pageContext.request.contextPath}/enchere?id=${a.no_article}">${a.nom_article}</a></h5>
 					    <p class="card-text">
@@ -125,6 +127,25 @@
 					    	<br/>
 					    	Vendeur : <a href="${pageContext.request.contextPath}/profil?p=${a.utilisateur.pseudo}">${a.utilisateur.pseudo}</a>
 					    </p>
+					    
+					    <c:if test="${a.date_debut_encheres.after(now)}">
+					    	<div class="alert alert-warning text-center" role="alert">
+							  La vente n'a pas débutée
+							</div>
+					    </c:if>
+					    
+					    <c:if test="${a.date_fin_encheres.before(now)}">
+					    	<div class="alert alert-danger text-center" role="alert">
+							  Terminée
+							</div>
+					    </c:if>
+					    
+					    <c:if test="${a.date_debut_encheres.before(now) && a.date_fin_encheres.after(now)}">
+					    	<div class="alert alert-success text-center" role="alert">
+							  En cours
+							</div>
+					    </c:if>
+					    
 					  </div>
 					</div>
 				

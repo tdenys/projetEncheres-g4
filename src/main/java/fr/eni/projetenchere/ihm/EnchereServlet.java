@@ -185,6 +185,25 @@ public class EnchereServlet extends HttpServlet {
 		catch(Exception e){
 			e.printStackTrace();
 			request.setAttribute("erreur", e.getMessage());
+			
+			try {
+				// Récupération de l'article
+				int id = Integer.parseInt(request.getParameter("id"));
+				Article a = articleManager.getById(id);
+				request.setAttribute("a",a);
+				
+				// Verification si la vente est commencée
+				boolean commence = true;
+				Date now = new Date();
+				if(a.getDate_debut_encheres().after(now)) {
+					commence = false;
+				}
+				request.setAttribute("commence",commence);
+			}
+			catch(Exception e1) {
+				e.printStackTrace();
+				request.setAttribute("erreur", e1.getMessage());
+			}
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere.jsp");
 		rd.forward(request, response);

@@ -38,7 +38,7 @@
 				</c:if>
 				
 				<!-- SI JE SUIS LE CRETEUR DE LA VENTE ET QU'AUCUNE ENCHERE A ETE FAITE -->
-				<c:if test="${a.utilisateur.pseudo == u.pseudo && a.prix_vente == a.prix_initial}">
+				<c:if test="${a.utilisateur.pseudo == u.pseudo && a.prix_vente == a.prix_initial && !termine}">
 					<form method="POST" action="${pageContext.request.contextPath}/enchere?id=${a.no_article}">
 						<!-- NOM DE L'ARTICLE -->
 						<label for="article">Article : </label>
@@ -85,7 +85,7 @@
 					</c:if>
 				</c:if>
 				<!-- SI JE SUIS UN ACHETEUR -->
-				<c:if test="${a.utilisateur.pseudo != u.pseudo || a.prix_vente != a.prix_initial}">
+				<c:if test="${a.utilisateur.pseudo != u.pseudo || a.prix_vente != a.prix_initial || termine}">
 					<!-- NOM DE L'ARTICLE -->
 					<h3 style="margin-bottom: 10px;"><b>${a.nom_article}</b></h3>			
 					<!-- DESCRIPTION -->

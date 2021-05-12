@@ -2,6 +2,7 @@ package fr.eni.projetenchere.ihm;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -68,6 +69,8 @@ public class IndexServlet extends HttpServlet {
 			request.setAttribute("affType1","");
 			request.setAttribute("affType2","disabled");
 			
+			request.setAttribute("now",new Date());
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 			rd.forward(request, response);
 		}
@@ -78,6 +81,8 @@ public class IndexServlet extends HttpServlet {
 		
 		Utilisateur u = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		request.setAttribute("u", u);
+		
+		request.setAttribute("now",new Date());
 		
 		// Get All Catégories
 		List<Categorie> listeCategories =  new ArrayList<>();
