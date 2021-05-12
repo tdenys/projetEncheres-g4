@@ -10,25 +10,8 @@ public class AchatManagerImpl implements AchatManager{
 	
 	public static boolean CheckWithLuhn(String ccNumber)
     {
-        
-        /*
-            $numCB = $_POST['newClient-cb']; // Vérification de la carte bancaire par l'algorithme de Luhn
-		    $newNumCB = 0;
-		    $list = str_split($numCB);
-		    $index = 1;
-		    foreach($list as $unNombre){
-		        if($index % 2 != 0){
-		            $unNombre = $unNombre * 2;
-		            if($unNombre > 9){
-		                $unNombre = $unNombre - 9;
-		            }
-		        }
-		        $newNumCB = $newNumCB + intval($unNombre);
-		        $index++;
-		    }
-		    if($newNumCB % 10 == 0)
-         */
-        
+		
+		// Algorithme de Luhn
 		int i = 1;
 		int newCB = 0;
         for (char ch: ccNumber.toCharArray()) {
@@ -44,7 +27,6 @@ public class AchatManagerImpl implements AchatManager{
         	
         }
         return (newCB % 10 == 0);
-        
     }
 
 	@Override
