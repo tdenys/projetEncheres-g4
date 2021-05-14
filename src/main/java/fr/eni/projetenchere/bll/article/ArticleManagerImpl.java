@@ -34,29 +34,35 @@ public class ArticleManagerImpl implements ArticleManager {
 	
 	@Override
 	public Article insertArticle(Article a, String rue, String cp, String ville) throws Exception {
+		//creation de la connection
 		Connection cnx = ConnectionProvider.getConnection();
 		cnx.setAutoCommit(false);
 		try {
-			//Validation des saisies utilisateur
+			//validation des information saisies par l'utilisateur
 			datesValides(a.getDate_debut_encheres(), a.getDate_fin_encheres());
 			stringValide(a.getDescription(), "Description");
 			prixInitialValide(a.getPrix_initial());
-		
 			if(new Date().after(a.getDate_debut_encheres())) {
 				throw new Exception("La date de début d'enchère ne peut être supérieure la date courante.");
 			}
 			
+			//insertion de l'article dans la base
 			a = articleDAO.insertArticle(cnx, a);
 			 
+			//création et insertion du retrait dans la base
 			Retrait r = new Retrait(a.getNo_article(), rue, cp, ville);
 			r = retraitDAO.insertRetrait(cnx, r);	
 			
+			//si tout est bon, on en valide les changements
 			cnx.commit();
 		} catch (Exception e) {
+			//si ya un problème on rolleback les changements
 			cnx.rollback();
 			throw new Exception(e);
 		}
+		//on ferme la connection
 		cnx.close();
+		//on retourne l'article avec son id
 		return a;
 	}
 	
