@@ -53,7 +53,7 @@ public class ArticleManagerImpl implements ArticleManager {
 			Retrait r = new Retrait(a.getNo_article(), rue, cp, ville);
 			r = retraitDAO.insertRetrait(cnx, r);	
 			
-			//si tout est bon, on en valide les changements
+			//si tout est bon, on valide les changements
 			cnx.commit();
 		} catch (Exception e) {
 			//si ya un problème on rolleback les changements
